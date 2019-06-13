@@ -43,6 +43,16 @@ message UserReadResponse {
     User user = 1;
 }
 
+message UserReadByUsernameResponse {
+    // return a user
+    User user = 1;
+}
+
+message UserReadByUsernameRequest {
+    // read a user by id
+    string username = 1;
+}
+
 message UserUpdateRequest {
     // update a user by id
     User user = 1;
@@ -69,6 +79,7 @@ service UserService {
     rpc Slice(UserSliceRequest) returns (UserSliceResponse);
     rpc Create(UserCreateRequest) returns (UserCreateResponse);
     rpc Read(UserReadRequest) returns (UserReadResponse);
+    rpc ReadByUsername(UserReadByUsernameRequest) returns (UserReadByUsernameResponse);
     rpc Update(UserUpdateRequest) returns (UserUpdateResponse);
     rpc Delete(UserDeleteRequest) returns (UserDeleteResponse);
 }

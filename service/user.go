@@ -104,6 +104,27 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadRequest) 
 	return res, nil
 }
 
+// Read returns a single user
+func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserReadByUsernameRequest) (*api.UserReadByUsernameResponse, error) {
+	// prepare a response
+	res := new(api.UserReadByUsernameResponse)
+
+	// initialize user
+	res.User = new(api.User)
+
+	// find a user
+	err := s.DB.Collection("users").FindOne(ctx,
+		bson.M{
+			"username": req.Username,
+		},
+	).Decode(res.User)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
 // Update modifies a user
 func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateRequest) (*api.UserUpdateResponse, error) {
 	// prepare a response
