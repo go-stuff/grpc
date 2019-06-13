@@ -14,72 +14,72 @@ message User {
     google.protobuf.Timestamp modifiedAt = 7;
 }
 
-message UserSliceRequest {
+message UserSliceReq {
     // do not filter
 }
 
-message UserSliceResponse {
+message UserSliceRes {
     // return a collection of users
     repeated User users = 1;
 }
 
-message UserCreateRequest {
+message UserCreateReq {
     // create a user
     User user = 1;
 }
 
-message UserCreateResponse {
+message UserCreateRes {
     // reutrn an id
     string id = 1;
 }
 
-message UserReadRequest {
+message UserReadReq {
     // read a user by id
     string id = 1;
 }
 
-message UserReadResponse {
+message UserReadRes {
     // return a user
     User user = 1;
 }
 
-message UserReadByUsernameResponse {
+message UserByUsernameRes {
     // return a user
     User user = 1;
 }
 
-message UserReadByUsernameRequest {
+message UserByUsernameReq {
     // read a user by id
     string username = 1;
 }
 
-message UserUpdateRequest {
+message UserUpdateReq {
     // update a user by id
     User user = 1;
 }
 
-message UserUpdateResponse {
+message UserUpdateRes {
     // return number of users updated
     // should equal 1 on success
     int64 updated = 1;
 }
 
-message UserDeleteRequest {
+message UserDeleteReq {
     // delete a user by id
     string id = 1;
 }
 
-message UserDeleteResponse {
+message UserDeleteRes {
     // return number of users deleted
     // should equal 1 on success
     int64 deleted = 1;
 }
 
 service UserService {
-    rpc Slice(UserSliceRequest) returns (UserSliceResponse);
-    rpc Create(UserCreateRequest) returns (UserCreateResponse);
-    rpc Read(UserReadRequest) returns (UserReadResponse);
-    rpc ReadByUsername(UserReadByUsernameRequest) returns (UserReadByUsernameResponse);
-    rpc Update(UserUpdateRequest) returns (UserUpdateResponse);
-    rpc Delete(UserDeleteRequest) returns (UserDeleteResponse);
+    rpc Slice(UserSliceReq) returns (UserSliceRes);
+    rpc Create(UserCreateReq) returns (UserCreateRes);
+    rpc Read(UserReadReq) returns (UserReadRes);
+    rpc ByUsername(UserByUsernameReq) returns (UserByUsernameRes);
+    rpc Update(UserUpdateReq) returns (UserUpdateRes);
+    rpc Delete(UserDeleteReq) returns (UserDeleteRes);
 }

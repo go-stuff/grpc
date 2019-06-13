@@ -17,9 +17,9 @@ type UserServiceServer struct {
 }
 
 // Slice returns a slice of users
-func (s *UserServiceServer) Slice(ctx context.Context, req *api.UserSliceRequest) (*api.UserSliceResponse, error) {
-	// prepare a response
-	res := new(api.UserSliceResponse)
+func (s *UserServiceServer) Slice(ctx context.Context, req *api.UserSliceReq) (*api.UserSliceRes, error) {
+	// prepare a Res
+	res := new(api.UserSliceRes)
 
 	// find all users
 	cursor, err := s.DB.Collection("users").Find(ctx,
@@ -57,9 +57,9 @@ func (s *UserServiceServer) Slice(ctx context.Context, req *api.UserSliceRequest
 }
 
 // Create inserts a user
-func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateRequest) (*api.UserCreateResponse, error) {
-	// prepare a response
-	res := new(api.UserCreateResponse)
+func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) (*api.UserCreateRes, error) {
+	// prepare a Res
+	res := new(api.UserCreateRes)
 
 	user := &api.User{
 		Id:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
@@ -77,16 +77,16 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReque
 		return nil, err
 	}
 
-	// update the response id
+	// update the Res id
 	res.Id = user.Id
 
 	return res, nil
 }
 
 // Read returns a single user
-func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadRequest) (*api.UserReadResponse, error) {
-	// prepare a response
-	res := new(api.UserReadResponse)
+func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*api.UserReadRes, error) {
+	// prepare a Res
+	res := new(api.UserReadRes)
 
 	// initialize user
 	res.User = new(api.User)
@@ -105,9 +105,9 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadRequest) 
 }
 
 // Read returns a single user
-func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserReadByUsernameRequest) (*api.UserReadByUsernameResponse, error) {
-	// prepare a response
-	res := new(api.UserReadByUsernameResponse)
+func (s *UserServiceServer) ByUsername(ctx context.Context, req *api.UserByUsernameReq) (*api.UserByUsernameRes, error) {
+	// prepare a Res
+	res := new(api.UserByUsernameRes)
 
 	// initialize user
 	res.User = new(api.User)
@@ -126,9 +126,9 @@ func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserRea
 }
 
 // Update modifies a user
-func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateRequest) (*api.UserUpdateResponse, error) {
-	// prepare a response
-	res := new(api.UserUpdateResponse)
+func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) (*api.UserUpdateRes, error) {
+	// prepare a Res
+	res := new(api.UserUpdateRes)
 
 	// update a user
 	updateRes, err := s.DB.Collection("users").UpdateOne(ctx,
@@ -154,9 +154,9 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReque
 }
 
 // Delete removes a user
-func (s *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteRequest) (*api.UserDeleteResponse, error) {
-	// prepare a response
-	res := new(api.UserDeleteResponse)
+func (s *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteReq) (*api.UserDeleteRes, error) {
+	// prepare a Res
+	res := new(api.UserDeleteRes)
 
 	// delete a user
 	deleteRes, err := s.DB.Collection("users").DeleteOne(ctx,
