@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+message User {
+    string id = 1;  
+    string username = 2;
+    repeated string groups = 3;
+    string createdBy = 4;
+    google.protobuf.Timestamp createdAt = 5;
+    string modifiedBy = 6;
+    google.protobuf.Timestamp modifiedAt = 7;
+}
+
+message UserSliceRequest {
+    // do not filter
+}
+
+message UserSliceResponse {
+    // return a collection of users
+    repeated User users = 1;
+}
+
+message UserCreateRequest {
+    // create a user
+    User user = 1;
+}
+
+message UserCreateResponse {
+    // reutrn an id
+    string id = 1;
+}
+
+message UserReadRequest {
+    // read a user by id
+    string id = 1;
+}
+
+message UserReadResponse {
+    // return a user
+    User user = 1;
+}
+
+message UserUpdateRequest {
+    // update a user by id
+    User user = 1;
+}
+
+message UserUpdateResponse {
+    // return number of users updated
+    // should equal 1 on success
+    int64 updated = 1;
+}
+
+message UserDeleteRequest {
+    // delete a user by id
+    string id = 1;
+}
+
+message UserDeleteResponse {
+    // return number of users deleted
+    // should equal 1 on success
+    int64 deleted = 1;
+}
+
+service UserService {
+    rpc Slice(UserSliceRequest) returns (UserSliceResponse);
+    rpc Create(UserCreateRequest) returns (UserCreateResponse);
+    rpc Read(UserReadRequest) returns (UserReadResponse);
+    rpc Update(UserUpdateRequest) returns (UserUpdateResponse);
+    rpc Delete(UserDeleteRequest) returns (UserDeleteResponse);
+}
