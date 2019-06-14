@@ -3,15 +3,16 @@ syntax = "proto3";
 package api;
 
 import "google/protobuf/timestamp.proto";
+import "github.com/srikrsna/protoc-gen-gotag/tagger/tagger.proto";
 
 message User {
-    string id = 1;  
-    string username = 2;
-    repeated string groups = 3;
-    string createdBy = 4;
-    google.protobuf.Timestamp createdAt = 5;
-    string modifiedBy = 6;
-    google.protobuf.Timestamp modifiedAt = 7;
+    string ID = 1 [(tagger.tags) = "bson:\"_id,omitempty\""];
+    string Username = 2;
+    repeated string Groups = 3;
+    string CreatedBy = 4;
+    google.protobuf.Timestamp CreatedAt = 5;
+    string ModifiedBy = 6;
+    google.protobuf.Timestamp ModifiedAt = 7;
 }
 
 message UserSliceReq {
@@ -20,59 +21,59 @@ message UserSliceReq {
 
 message UserSliceRes {
     // return a collection of users
-    repeated User users = 1;
+    repeated User Users = 1;
 }
 
 message UserCreateReq {
     // create a user
-    User user = 1;
+    User User = 1;
 }
 
 message UserCreateRes {
     // reutrn an id
-    string id = 1;
+    string ID = 1;
 }
 
 message UserReadReq {
     // read a user by id
-    string id = 1;
+    string ID = 1;
 }
 
 message UserReadRes {
     // return a user
-    User user = 1;
+    User User = 1;
 }
 
 message UserByUsernameReq {
     // read a user by id
-    string username = 1;
+    string Username = 1;
 }
 
 message UserByUsernameRes {
     // return a user
-    User user = 1;
+    User User = 1;
 }
 
 message UserUpdateReq {
     // update a user by id
-    User user = 1;
+    User User = 1;
 }
 
 message UserUpdateRes {
     // return number of users updated
     // should equal 1 on success
-    int64 updated = 1;
+    int64 Updated = 1;
 }
 
 message UserDeleteReq {
     // delete a user by id
-    string id = 1;
+    string ID = 1;
 }
 
 message UserDeleteRes {
     // return number of users deleted
     // should equal 1 on success
-    int64 deleted = 1;
+    int64 Deleted = 1;
 }
 
 service UserService {

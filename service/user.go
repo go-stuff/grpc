@@ -29,7 +29,7 @@ func (s *UserServiceServer) Slice(ctx context.Context, req *api.UserSliceReq) (*
 		bson.M{},
 		&options.FindOptions{
 			Sort: bson.M{
-				"username": 1, // acending
+				"Username": 1, // acending
 				//"username": -1, // descending
 			},
 		},
@@ -65,7 +65,7 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 	res := new(api.UserCreateRes)
 
 	user := &api.User{
-		Id:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
+		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
 		Username:   req.User.Username,
 		Groups:     req.User.Groups,
 		CreatedBy:  req.User.CreatedBy,
@@ -81,7 +81,7 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 	}
 
 	// update the Res id
-	res.Id = user.Id
+	res.ID = user.ID
 
 	return res, nil
 }
@@ -97,7 +97,7 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 	// find a user
 	err := s.DB.Collection(UserCollection).FindOne(ctx,
 		bson.M{
-			"id": req.Id,
+			"_id": req.ID,
 		},
 	).Decode(res.User)
 	if err != nil {
@@ -118,7 +118,7 @@ func (s *UserServiceServer) ByUsername(ctx context.Context, req *api.UserByUsern
 	// find a user
 	err := s.DB.Collection(UserCollection).FindOne(ctx,
 		bson.M{
-			"username": req.Username,
+			"Username": req.Username,
 		},
 	).Decode(res.User)
 	if err != nil {
@@ -136,7 +136,7 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 	// update a user
 	updateRes, err := s.DB.Collection(UserCollection).UpdateOne(ctx,
 		bson.M{
-			"id": req.User.Id,
+			"_id": req.User.ID,
 		},
 		bson.M{
 			"$set": bson.M{
@@ -164,7 +164,7 @@ func (s *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteReq) 
 	// delete a user
 	deleteRes, err := s.DB.Collection(UserCollection).DeleteOne(ctx,
 		bson.M{
-			"id": req.Id,
+			"_id": req.ID,
 		},
 	)
 	if err != nil {
