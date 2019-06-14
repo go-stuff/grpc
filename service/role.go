@@ -11,6 +11,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// RoleCollection is the name of the collection in the database.
+const RoleCollection string = "roles"
+
 // RoleServiceServer is a service in the API for managing Roles.
 type RoleServiceServer struct {
 	DB *mongo.Database
@@ -22,7 +25,7 @@ func (s *RoleServiceServer) Slice(ctx context.Context, req *api.RoleSliceReq) (*
 	res := new(api.RoleSliceRes)
 
 	// find all Roles
-	cursor, err := s.DB.Collection("Roles").Find(ctx,
+	cursor, err := s.DB.Collection(RoleCollection).Find(ctx,
 		bson.M{},
 		&options.FindOptions{
 			Sort: bson.M{
@@ -72,7 +75,7 @@ func (s *RoleServiceServer) Create(ctx context.Context, req *api.RoleCreateReq) 
 	}
 
 	// insert role into mongo
-	_, err := s.DB.Collection("Roles").InsertOne(ctx, Role)
+	_, err := s.DB.Collection(RoleCollection).InsertOne(ctx, Role)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +95,7 @@ func (s *RoleServiceServer) Read(ctx context.Context, req *api.RoleReadReq) (*ap
 	res.Role = new(api.Role)
 
 	// find a Role
-	err := s.DB.Collection("Roles").FindOne(ctx,
+	err := s.DB.Collection(RoleCollection).FindOne(ctx,
 		bson.M{
 			"ID": req.Id,
 		},
@@ -110,7 +113,7 @@ func (s *RoleServiceServer) Update(ctx context.Context, req *api.RoleUpdateReq) 
 	res := new(api.RoleUpdateRes)
 
 	// update a Role
-	updateRes, err := s.DB.Collection("Roles").UpdateOne(ctx,
+	updateRes, err := s.DB.Collection(RoleCollection).UpdateOne(ctx,
 		bson.M{
 			"ID": req.Role.ID,
 		},
@@ -138,7 +141,7 @@ func (s *RoleServiceServer) Delete(ctx context.Context, req *api.RoleDeleteReq) 
 	res := new(api.RoleDeleteRes)
 
 	// delete a Role
-	deleteRes, err := s.DB.Collection("Roles").DeleteOne(ctx,
+	deleteRes, err := s.DB.Collection(RoleCollection).DeleteOne(ctx,
 		bson.M{
 			"ID": req.Id,
 		},

@@ -11,6 +11,9 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// UserCollection is the name of the collection in the database.
+const UserCollection string = "users"
+
 // UserServiceServer is a service in the API for managing users.
 type UserServiceServer struct {
 	DB *mongo.Database
@@ -22,7 +25,7 @@ func (s *UserServiceServer) Slice(ctx context.Context, req *api.UserSliceReq) (*
 	res := new(api.UserSliceRes)
 
 	// find all users
-	cursor, err := s.DB.Collection("users").Find(ctx,
+	cursor, err := s.DB.Collection(UserCollection).Find(ctx,
 		bson.M{},
 		&options.FindOptions{
 			Sort: bson.M{
@@ -72,7 +75,7 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 	}
 
 	// insert role into mongo
-	_, err := s.DB.Collection("users").InsertOne(ctx, user)
+	_, err := s.DB.Collection(UserCollection).InsertOne(ctx, user)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +95,7 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 	res.User = new(api.User)
 
 	// find a user
-	err := s.DB.Collection("users").FindOne(ctx,
+	err := s.DB.Collection(UserCollection).FindOne(ctx,
 		bson.M{
 			"id": req.Id,
 		},
@@ -113,7 +116,7 @@ func (s *UserServiceServer) ByUsername(ctx context.Context, req *api.UserByUsern
 	res.User = new(api.User)
 
 	// find a user
-	err := s.DB.Collection("users").FindOne(ctx,
+	err := s.DB.Collection(UserCollection).FindOne(ctx,
 		bson.M{
 			"username": req.Username,
 		},
@@ -131,7 +134,7 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 	res := new(api.UserUpdateRes)
 
 	// update a user
-	updateRes, err := s.DB.Collection("users").UpdateOne(ctx,
+	updateRes, err := s.DB.Collection(UserCollection).UpdateOne(ctx,
 		bson.M{
 			"id": req.User.Id,
 		},
@@ -159,7 +162,7 @@ func (s *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteReq) 
 	res := new(api.UserDeleteRes)
 
 	// delete a user
-	deleteRes, err := s.DB.Collection("users").DeleteOne(ctx,
+	deleteRes, err := s.DB.Collection(UserCollection).DeleteOne(ctx,
 		bson.M{
 			"id": req.Id,
 		},
