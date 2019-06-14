@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+message Role {
+    string ID = 1;  
+    string Name = 2;
+    string Description = 3;
+    string CreatedBy = 4;
+    google.protobuf.Timestamp CreatedAt = 5;
+    string ModifiedBy = 6;
+    google.protobuf.Timestamp ModifiedAt = 7;
+}
+
+message RoleSliceReq {
+    // do not filter
+}
+
+message RoleSliceRes {
+    // return a collection of Roles
+    repeated Role Roles = 1;
+}
+
+message RoleCreateReq {
+    // create a Role
+    Role Role = 1;
+}
+
+message RoleCreateRes {
+    // reutrn an id
+    string id = 1;
+}
+
+message RoleReadReq {
+    // read a Role by id
+    string id = 1;
+}
+
+message RoleReadRes {
+    // return a Role
+    Role Role = 1;
+}
+
+message RoleUpdateReq {
+    // update a Role by id
+    Role Role = 1;
+}
+
+message RoleUpdateRes {
+    // return number of Roles updated
+    // should equal 1 on success
+    int64 updated = 1;
+}
+
+message RoleDeleteReq {
+    // delete a Role by id
+    string id = 1;
+}
+
+message RoleDeleteRes {
+    // return number of Roles deleted
+    // should equal 1 on success
+    int64 deleted = 1;
+}
+
+service RoleService {
+    rpc Slice(RoleSliceReq) returns (RoleSliceRes);
+    rpc Create(RoleCreateReq) returns (RoleCreateRes);
+    rpc Read(RoleReadReq) returns (RoleReadRes);
+    rpc Update(RoleUpdateReq) returns (RoleUpdateRes);
+    rpc Delete(RoleDeleteReq) returns (RoleDeleteRes);
+}

@@ -43,14 +43,14 @@ message UserReadRes {
     User user = 1;
 }
 
-message UserByUsernameRes {
-    // return a user
-    User user = 1;
-}
-
 message UserByUsernameReq {
     // read a user by id
     string username = 1;
+}
+
+message UserByUsernameRes {
+    // return a user
+    User user = 1;
 }
 
 message UserUpdateReq {

@@ -26,10 +26,20 @@ func main() {
 	}
 	defer client.Disconnect(ctx)
 
-	// init a pointer to the database
-	db := client.Database("test")
+	// use a default mongo database if the MONGO_DATABASE environment variable is not set
+	if os.Getenv("MONGO_DATABASE") == "" {
+		os.Setenv("MONGO_DATABASE", "test")
+	}
 
-	lis, err := net.Listen("tcp", "localhost:6000")
+	// init a pointer to the database
+	db := client.Database(os.Getenv("MONGO_DATABASE"))
+
+	// use a default api uri if the API_URI environment variable is not set
+	if os.Getenv("API_URI") == "" {
+		os.Setenv("API_URI", "localhost:6000")
+	}
+
+	lis, err := net.Listen("tcp", os.Getenv("API_URI"))
 	if err != nil {
 		log.Fatalf("failed to initializa TCP listen: %v", err)
 	}
@@ -54,13 +64,13 @@ func initMongoClient() (*mongo.Client, context.Context, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
-	// use a default mongo uri if the MONGOURL environment variable is not set
-	if os.Getenv("MONGOURL") == "" {
-		os.Setenv("MONGOURL", "mongodb://localhost:27017")
+	// use a default mongo uri if the MONGO_URI environment variable is not set
+	if os.Getenv("MONGO_URI") == "" {
+		os.Setenv("MONGO_URI", "mongodb://localhost:27017")
 	}
 
 	// connect does not do server discovery, use ping
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGOURL")))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
 	if err != nil {
 		return nil, nil, err
 	}
