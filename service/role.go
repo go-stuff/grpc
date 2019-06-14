@@ -29,7 +29,7 @@ func (s *RoleServiceServer) Slice(ctx context.Context, req *api.RoleSliceReq) (*
 		bson.M{},
 		&options.FindOptions{
 			Sort: bson.M{
-				"Name": 1, // acending
+				"name": 1, // acending
 				//"Name": -1, // descending
 			},
 		},
@@ -119,10 +119,10 @@ func (s *RoleServiceServer) Update(ctx context.Context, req *api.RoleUpdateReq) 
 		},
 		bson.M{
 			"$set": bson.M{
-				"Name":        req.Role.Name,
-				"Description": req.Role.Description,
-				"Modifiedby":  req.Role.ModifiedBy,
-				"Modifiedat":  ptypes.TimestampNow(),
+				"name":        req.Role.Name,
+				"description": req.Role.Description,
+				"modifiedby":  req.Role.ModifiedBy,
+				"modifiedat":  ptypes.TimestampNow(),
 			},
 		},
 	)

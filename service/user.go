@@ -29,7 +29,7 @@ func (s *UserServiceServer) Slice(ctx context.Context, req *api.UserSliceReq) (*
 		bson.M{},
 		&options.FindOptions{
 			Sort: bson.M{
-				"Username": 1, // acending
+				"username": 1, // acending
 				//"username": -1, // descending
 			},
 		},
@@ -118,7 +118,7 @@ func (s *UserServiceServer) ByUsername(ctx context.Context, req *api.UserByUsern
 	// find a user
 	err := s.DB.Collection(UserCollection).FindOne(ctx,
 		bson.M{
-			"Username": req.Username,
+			"username": req.Username,
 		},
 	).Decode(res.User)
 	if err != nil {
@@ -140,10 +140,10 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 		},
 		bson.M{
 			"$set": bson.M{
-				"Username":   req.User.Username,
-				"Groups":     req.User.Groups,
-				"Modifiedby": req.User.ModifiedBy,
-				"Modifiedat": ptypes.TimestampNow(),
+				"username":   req.User.Username,
+				"groups":     req.User.Groups,
+				"modifiedby": req.User.ModifiedBy,
+				"modifiedat": ptypes.TimestampNow(),
 			},
 		},
 	)
