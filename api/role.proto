@@ -3,9 +3,10 @@ syntax = "proto3";
 package api;
 
 import "google/protobuf/timestamp.proto";
+import "github.com/srikrsna/protoc-gen-gotag/tagger/tagger.proto";
 
 message Role {
-    string ID = 1;  
+    string ID = 1 [(tagger.tags) = "bson:\"_id,omitempty\""];
     string Name = 2;
     string Description = 3;
     string CreatedBy = 4;
@@ -30,12 +31,12 @@ message RoleCreateReq {
 
 message RoleCreateRes {
     // reutrn an id
-    string id = 1;
+    string ID = 1;
 }
 
 message RoleReadReq {
     // read a Role by id
-    string id = 1;
+    string ID = 1;
 }
 
 message RoleReadRes {
@@ -51,18 +52,18 @@ message RoleUpdateReq {
 message RoleUpdateRes {
     // return number of Roles updated
     // should equal 1 on success
-    int64 updated = 1;
+    int64 Updated = 1;
 }
 
 message RoleDeleteReq {
     // delete a Role by id
-    string id = 1;
+    string ID = 1;
 }
 
 message RoleDeleteRes {
     // return number of Roles deleted
     // should equal 1 on success
-    int64 deleted = 1;
+    int64 Deleted = 1;
 }
 
 service RoleService {

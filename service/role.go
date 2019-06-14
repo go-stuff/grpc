@@ -81,7 +81,7 @@ func (s *RoleServiceServer) Create(ctx context.Context, req *api.RoleCreateReq) 
 	}
 
 	// update the Res id
-	res.Id = Role.ID
+	res.ID = Role.ID
 
 	return res, nil
 }
@@ -97,7 +97,7 @@ func (s *RoleServiceServer) Read(ctx context.Context, req *api.RoleReadReq) (*ap
 	// find a Role
 	err := s.DB.Collection(RoleCollection).FindOne(ctx,
 		bson.M{
-			"ID": req.Id,
+			"_id": req.ID,
 		},
 	).Decode(res.Role)
 	if err != nil {
@@ -115,7 +115,7 @@ func (s *RoleServiceServer) Update(ctx context.Context, req *api.RoleUpdateReq) 
 	// update a Role
 	updateRes, err := s.DB.Collection(RoleCollection).UpdateOne(ctx,
 		bson.M{
-			"ID": req.Role.ID,
+			"_id": req.Role.ID,
 		},
 		bson.M{
 			"$set": bson.M{
@@ -143,7 +143,7 @@ func (s *RoleServiceServer) Delete(ctx context.Context, req *api.RoleDeleteReq) 
 	// delete a Role
 	deleteRes, err := s.DB.Collection(RoleCollection).DeleteOne(ctx,
 		bson.M{
-			"ID": req.Id,
+			"_id": req.ID,
 		},
 	)
 	if err != nil {
