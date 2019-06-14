@@ -3,16 +3,22 @@ syntax = "proto3";
 package api;
 
 import "google/protobuf/timestamp.proto";
-import "github.com/srikrsna/protoc-gen-gotag/tagger/tagger.proto";
 
 message User {
-    string ID = 1 [(tagger.tags) = "bson:\"_id,omitempty\""];
-    string Username = 2 [(tagger.tags) = "bson:\"username,omitempty\""];;
-    repeated string Groups = 3 [(tagger.tags) = "bson:\"groups,omitempty\""];
-    string CreatedBy = 4 [(tagger.tags) = "bson:\"createdby,omitempty\""];
-    google.protobuf.Timestamp CreatedAt = 5 [(tagger.tags) = "bson:\"createdat,omitempty\""];
-    string ModifiedBy = 6 [(tagger.tags) = "bson:\"modifiedby,omitempty\""];
-    google.protobuf.Timestamp ModifiedAt = 7 [(tagger.tags) = "bson:\"modifiedat,omitempty\""];
+    // @inject_tag: bson:"_id"
+    string ID = 1;
+    // @inject_tag: bson:"username"
+    string Username = 2;
+    // @inject_tag: bson:"groups"
+    repeated string Groups = 3;
+    // @inject_tag: bson:"createdby"
+    string CreatedBy = 4;
+    // @inject_tag: bson:"createdat"
+    google.protobuf.Timestamp CreatedAt = 5;
+    // @inject_tag: bson:"modifiedby"
+    string ModifiedBy = 6;
+    // @inject_tag: bson:"modifiedat"
+    google.protobuf.Timestamp ModifiedAt = 7;
 }
 
 message UserSliceReq {
