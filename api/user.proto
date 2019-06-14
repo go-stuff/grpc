@@ -7,12 +7,12 @@ import "github.com/srikrsna/protoc-gen-gotag/tagger/tagger.proto";
 
 message User {
     string ID = 1 [(tagger.tags) = "bson:\"_id,omitempty\""];
-    string Username = 2;
-    repeated string Groups = 3;
-    string CreatedBy = 4;
-    google.protobuf.Timestamp CreatedAt = 5;
-    string ModifiedBy = 6;
-    google.protobuf.Timestamp ModifiedAt = 7;
+    string Username = 2 [(tagger.tags) = "bson:\"username,omitempty\""];;
+    repeated string Groups = 3 [(tagger.tags) = "bson:\"groups,omitempty\""];
+    string CreatedBy = 4 [(tagger.tags) = "bson:\"createdby,omitempty\""];
+    google.protobuf.Timestamp CreatedAt = 5 [(tagger.tags) = "bson:\"createdat,omitempty\""];
+    string ModifiedBy = 6 [(tagger.tags) = "bson:\"modifiedby,omitempty\""];
+    google.protobuf.Timestamp ModifiedAt = 7 [(tagger.tags) = "bson:\"modifiedat,omitempty\""];
 }
 
 message UserSliceReq {

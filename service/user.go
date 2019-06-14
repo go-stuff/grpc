@@ -107,7 +107,7 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 	return res, nil
 }
 
-// Read returns a single user
+// ByUsername returns a single user by username
 func (s *UserServiceServer) ByUsername(ctx context.Context, req *api.UserByUsernameReq) (*api.UserByUsernameRes, error) {
 	// prepare a Res
 	res := new(api.UserByUsernameRes)
@@ -140,10 +140,10 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 		},
 		bson.M{
 			"$set": bson.M{
-				"username":   req.User.Username,
-				"groups":     req.User.Groups,
-				"modifiedby": req.User.ModifiedBy,
-				"modifiedat": ptypes.TimestampNow(),
+				"Username":   req.User.Username,
+				"Groups":     req.User.Groups,
+				"Modifiedby": req.User.ModifiedBy,
+				"Modifiedat": ptypes.TimestampNow(),
 			},
 		},
 	)

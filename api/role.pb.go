@@ -25,12 +25,12 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Role struct {
 	ID                   string               `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty" bson:"_id,omitempty"`
-	Name                 string               `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty"`
-	Description          string               `protobuf:"bytes,3,opt,name=Description,proto3" json:"Description,omitempty"`
-	CreatedBy            string               `protobuf:"bytes,4,opt,name=CreatedBy,proto3" json:"CreatedBy,omitempty"`
-	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,5,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty"`
-	ModifiedBy           string               `protobuf:"bytes,6,opt,name=ModifiedBy,proto3" json:"ModifiedBy,omitempty"`
-	ModifiedAt           *timestamp.Timestamp `protobuf:"bytes,7,opt,name=ModifiedAt,proto3" json:"ModifiedAt,omitempty"`
+	Name                 string               `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty" bson:"name,omitempty"`
+	Description          string               `protobuf:"bytes,3,opt,name=Description,proto3" json:"Description,omitempty" bson:"description,omitempty"`
+	CreatedBy            string               `protobuf:"bytes,4,opt,name=CreatedBy,proto3" json:"CreatedBy,omitempty" bson:"createdby,omitempty"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,5,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" bson:"createdat,omitempty"`
+	ModifiedBy           string               `protobuf:"bytes,6,opt,name=ModifiedBy,proto3" json:"ModifiedBy,omitempty" bson:"modifiedby,omitempty"`
+	ModifiedAt           *timestamp.Timestamp `protobuf:"bytes,7,opt,name=ModifiedAt,proto3" json:"ModifiedAt,omitempty" bson:"modifiedat,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
