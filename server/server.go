@@ -45,16 +45,17 @@ func main() {
 	}
 	defer lis.Close()
 
-	server := grpc.NewServer()
+	svr := grpc.NewServer()
 
 	// Register services with the server
-	api.RegisterUserServiceServer(server, &service.UserServiceServer{DB: db})
+	api.RegisterUserServiceServer(svr, &service.UserServiceServer{DB: db})
+	api.RegisterRoleServiceServer(svr, &service.RoleServiceServer{DB: db})
 
 	// Register reflection service on gRPC server.
-	reflection.Register(server)
+	reflection.Register(svr)
 
 	fmt.Printf("listening @ %v...", lis.Addr().String())
-	server.Serve(lis)
+	svr.Serve(lis)
 }
 
 func initMongoClient() (*mongo.Client, context.Context, error) {
