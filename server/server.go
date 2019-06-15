@@ -10,11 +10,11 @@ import (
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/go-stuff/grpc/service"
-
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -45,7 +45,15 @@ func main() {
 	}
 	defer lis.Close()
 
-	svr := grpc.NewServer()
+	// with cert
+	creds, err := credentials.NewServerTLSFromFile("./certs/cert.pem", "./certs/key.pem")
+	if err != nil {
+		log.Fatalf("failed to get creds: %v", err)
+	}
+	svr := grpc.NewServer(grpc.Creds(creds))
+
+	// without cert
+	//svr := grpc.NewServer()
 
 	// Register services with the server
 	api.RegisterUserServiceServer(svr, &service.UserServiceServer{DB: db})

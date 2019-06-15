@@ -68,6 +68,7 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
 		Username:   req.User.Username,
 		Groups:     req.User.Groups,
+		RoleID:     req.User.RoleID,
 		CreatedBy:  req.User.CreatedBy,
 		CreatedAt:  ptypes.TimestampNow(),
 		ModifiedBy: req.User.ModifiedBy,
@@ -142,6 +143,7 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 			"$set": bson.M{
 				"username":   req.User.Username,
 				"groups":     req.User.Groups,
+				"roleid":     req.User.RoleID,
 				"modifiedby": req.User.ModifiedBy,
 				"modifiedat": ptypes.TimestampNow(),
 			},
