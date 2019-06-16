@@ -56,6 +56,7 @@ func main() {
 	//svr := grpc.NewServer()
 
 	// Register services with the server
+	api.RegisterSessionServiceServer(svr, &service.SessionServiceServer{DB: db})
 	api.RegisterUserServiceServer(svr, &service.UserServiceServer{DB: db})
 	api.RegisterRoleServiceServer(svr, &service.RoleServiceServer{DB: db})
 
