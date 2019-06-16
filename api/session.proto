@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+message Session {
+    // @inject_tag: bson:"_id"
+    string ID = 1;
+    // @inject_tag: bson:"username"
+    string Username = 2;
+    // @inject_tag: bson:"remoteaddr"
+    string RemoteAddr = 3;
+    // @inject_tag: bson:"host"
+    string Host = 4;
+    // @inject_tag: bson:"createdat"
+    google.protobuf.Timestamp CreatedAt = 5;
+    // @inject_tag: bson:"expiresat"
+    google.protobuf.Timestamp ExpiresAt = 6;
+}
+
+message SessionSliceReq {
+    // do not filter
+}
+
+message SessionSliceRes {
+    // return a collection of Sessions
+    repeated Session Sessions = 1;
+}
+
+service SessionService {
+    rpc Slice(SessionSliceReq) returns (SessionSliceRes);
+}
