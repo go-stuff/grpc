@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+message Permission {
+    // @inject_tag: bson:"_id"
+    string ID = 1;
+    // @inject_tag: bson:"roleid"
+    string RoleID = 2;
+    // @inject_tag: bson:"route"
+    string Route = 3;
+    // @inject_tag: bson:"createdby"
+    string CreatedBy = 4;
+    // @inject_tag: bson:"createdat"
+    google.protobuf.Timestamp CreatedAt = 5;
+    // @inject_tag: bson:"modifiedby"
+    string ModifiedBy = 6;
+    // @inject_tag: bson:"modifiedat"
+    google.protobuf.Timestamp ModifiedAt = 7;
+}
+
+message PermissionSliceReq {
+    // do not filter
+}
+
+message PermissionSliceRes {
+    // return a collection of Permissions
+    repeated Permission Permissions = 1;
+}
+
+message PermissionCreateReq {
+    // create a Permission
+    Permission Permission = 1;
+}
+
+message PermissionCreateRes {
+    // reutrn an id
+    string ID = 1;
+}
+
+message PermissionReadReq {
+    // read a Permission by id
+    string ID = 1;
+}
+
+message PermissionReadRes {
+    // return a Permission
+    Permission Permission = 1;
+}
+
+message PermissionUpdateReq {
+    // update a Permission by id
+    Permission Permission = 1;
+}
+
+message PermissionUpdateRes {
+    // return number of Permissions updated
+    // should equal 1 on success
+    int64 Updated = 1;
+}
+
+message PermissionDeleteReq {
+    // delete a Permission by id
+    string ID = 1;
+}
+
+message PermissionDeleteRes {
+    // return number of Permissions deleted
+    // should equal 1 on success
+    int64 Deleted = 1;
+}
+
+service PermissionService {
+    rpc Slice(PermissionSliceReq) returns (PermissionSliceRes);
+    rpc Create(PermissionCreateReq) returns (PermissionCreateRes);
+    rpc Read(PermissionReadReq) returns (PermissionReadRes);
+    rpc Update(PermissionUpdateReq) returns (PermissionUpdateRes);
+    rpc Delete(PermissionDeleteReq) returns (PermissionDeleteRes);
+}
