@@ -148,7 +148,7 @@ func (s *RouteServiceServer) Read(ctx context.Context, req *api.RouteReadReq) (*
 	return res, nil
 }
 
-// ReadByPath returns a single Route
+// ReadByRoleIDAndPath returns a single Route
 func (s *RouteServiceServer) ReadByRoleIDAndPath(ctx context.Context, req *api.RouteReadByRoleIDAndPathReq) (*api.RouteReadByRoleIDAndPathRes, error) {
 	// prepare a Res
 	res := new(api.RouteReadByRoleIDAndPathRes)
@@ -182,7 +182,7 @@ func (s *RouteServiceServer) Update(ctx context.Context, req *api.RouteUpdateReq
 		},
 		bson.M{
 			"$set": bson.M{
-				"name":       req.Route.Path,
+				"path":       req.Route.Path,
 				"modifiedby": req.Route.ModifiedBy,
 				"modifiedat": ptypes.TimestampNow(),
 			},
@@ -210,16 +210,44 @@ func (s *RouteServiceServer) UpdateByRoleIDAndPath(ctx context.Context, req *api
 		},
 		bson.M{
 			"$set": bson.M{
+				// "roleid":     req.Route.RoleID,
+				// "path":       req.Route.Path,
+				"permission": req.Route.Permission,
 				"modifiedby": req.Route.ModifiedBy,
 				"modifiedat": ptypes.TimestampNow(),
 			},
 		},
+		//options.Update().SetUpsert(true),
 	)
 	if err != nil {
 		return nil, err
 	}
 
 	res.Updated = updateRes.ModifiedCount
+
+	if res.Updated == 0 {
+
+		Route := &api.Route{
+			ID:         primitive.NewObjectID().Hex(),
+			RoleID:     req.Route.RoleID,
+			Path:       req.Route.Path,
+			Permission: req.Route.Permission,
+			CreatedBy:  "System",
+			CreatedAt:  ptypes.TimestampNow(),
+			ModifiedBy: "System",
+			ModifiedAt: ptypes.TimestampNow(),
+		}
+
+		// insert Route into mongo
+		_, err := s.DB.Collection(RouteCollection).InsertOne(ctx, Route)
+		if err != nil {
+			return nil, err
+		}
+
+		// update the Res id
+		res.Updated = 1
+		//res.ID = Route.ID
+	}
 
 	return res, nil
 }
