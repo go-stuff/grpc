@@ -20,9 +20,9 @@ type UserServiceServer struct {
 }
 
 // Slice returns a slice of users
-func (s *UserServiceServer) Slice(ctx context.Context, req *api.UserSliceReq) (*api.UserSliceRes, error) {
+func (s *UserServiceServer) List(ctx context.Context, req *api.UserListReq) (*api.UserListRes, error) {
 	// prepare a Res
-	res := new(api.UserSliceRes)
+	res := new(api.UserListRes)
 
 	// find all users
 	cursor, err := s.DB.Collection(UserCollection).Find(ctx,
@@ -109,9 +109,9 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 }
 
 // ByUsername returns a single user by username
-func (s *UserServiceServer) ByUsername(ctx context.Context, req *api.UserByUsernameReq) (*api.UserByUsernameRes, error) {
+func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserReadByUsernameReq) (*api.UserReadByUsernameRes, error) {
 	// prepare a Res
-	res := new(api.UserByUsernameRes)
+	res := new(api.UserReadByUsernameRes)
 
 	// initialize user
 	res.User = new(api.User)

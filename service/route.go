@@ -20,9 +20,9 @@ type RouteServiceServer struct {
 }
 
 // Slice returns a slice of Routes
-func (s *RouteServiceServer) Slice(ctx context.Context, req *api.RouteSliceReq) (*api.RouteSliceRes, error) {
+func (s *RouteServiceServer) List(ctx context.Context, req *api.RouteListReq) (*api.RouteListRes, error) {
 	// prepare a Res
-	res := new(api.RouteSliceRes)
+	res := new(api.RouteListRes)
 
 	// find all Routes
 	cursor, err := s.DB.Collection(RouteCollection).Find(ctx,
@@ -59,10 +59,10 @@ func (s *RouteServiceServer) Slice(ctx context.Context, req *api.RouteSliceReq) 
 	return res, nil
 }
 
-// SliceByRoleID returns a slice of Routes by RoleID
-func (s *RouteServiceServer) SliceByRoleID(ctx context.Context, req *api.RouteSliceByRoleIDReq) (*api.RouteSliceByRoleIDRes, error) {
+// ListByRoleID returns a slice of Routes by RoleID
+func (s *RouteServiceServer) ListByRoleID(ctx context.Context, req *api.RouteListByRoleIDReq) (*api.RouteListByRoleIDRes, error) {
 	// prepare a Res
-	res := new(api.RouteSliceByRoleIDRes)
+	res := new(api.RouteListByRoleIDRes)
 
 	// find all Routes
 	cursor, err := s.DB.Collection(RouteCollection).Find(ctx,

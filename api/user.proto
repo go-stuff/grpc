@@ -23,11 +23,11 @@ message User {
     google.protobuf.Timestamp ModifiedAt = 8;
 }
 
-message UserSliceReq {
+message UserListReq {
     // do not filter
 }
 
-message UserSliceRes {
+message UserListRes {
     // return a collection of users
     repeated User Users = 1;
 }
@@ -52,12 +52,12 @@ message UserReadRes {
     User User = 1;
 }
 
-message UserByUsernameReq {
+message UserReadByUsernameReq {
     // read a user by id
     string Username = 1;
 }
 
-message UserByUsernameRes {
+message UserReadByUsernameRes {
     // return a user
     User User = 1;
 }
@@ -85,10 +85,10 @@ message UserDeleteRes {
 }
 
 service UserService {
-    rpc Slice(UserSliceReq) returns (UserSliceRes);
+    rpc List(UserListReq) returns (UserListRes);
     rpc Create(UserCreateReq) returns (UserCreateRes);
     rpc Read(UserReadReq) returns (UserReadRes);
-    rpc ByUsername(UserByUsernameReq) returns (UserByUsernameRes);
+    rpc ReadByUsername(UserReadByUsernameReq) returns (UserReadByUsernameRes);
     rpc Update(UserUpdateReq) returns (UserUpdateRes);
     rpc Delete(UserDeleteReq) returns (UserDeleteRes);
 }

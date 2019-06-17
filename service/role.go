@@ -19,10 +19,10 @@ type RoleServiceServer struct {
 	DB *mongo.Database
 }
 
-// Slice returns a slice of Roles
-func (s *RoleServiceServer) Slice(ctx context.Context, req *api.RoleSliceReq) (*api.RoleSliceRes, error) {
+// List returns a slice of Roles
+func (s *RoleServiceServer) List(ctx context.Context, req *api.RoleListReq) (*api.RoleListRes, error) {
 	// prepare a Res
-	res := new(api.RoleSliceRes)
+	res := new(api.RoleListRes)
 
 	// find all Roles
 	cursor, err := s.DB.Collection(RoleCollection).Find(ctx,

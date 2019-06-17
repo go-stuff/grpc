@@ -17,10 +17,10 @@ type SessionServiceServer struct {
 	DB *mongo.Database
 }
 
-// Slice returns a slice of Sessions
-func (s *SessionServiceServer) Slice(ctx context.Context, req *api.SessionSliceReq) (*api.SessionSliceRes, error) {
+// List returns a slice of Sessions
+func (s *SessionServiceServer) List(ctx context.Context, req *api.SessionListReq) (*api.SessionListRes, error) {
 	// prepare a Res
-	res := new(api.SessionSliceRes)
+	res := new(api.SessionListRes)
 
 	// find all Sessions
 	cursor, err := s.DB.Collection(SessionCollection).Find(ctx,

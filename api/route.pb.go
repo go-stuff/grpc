@@ -126,38 +126,38 @@ func (m *Route) GetModifiedAt() *timestamp.Timestamp {
 	return nil
 }
 
-type RouteSliceReq struct {
+type RouteListReq struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RouteSliceReq) Reset()         { *m = RouteSliceReq{} }
-func (m *RouteSliceReq) String() string { return proto.CompactTextString(m) }
-func (*RouteSliceReq) ProtoMessage()    {}
-func (*RouteSliceReq) Descriptor() ([]byte, []int) {
+func (m *RouteListReq) Reset()         { *m = RouteListReq{} }
+func (m *RouteListReq) String() string { return proto.CompactTextString(m) }
+func (*RouteListReq) ProtoMessage()    {}
+func (*RouteListReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0984d49a362b6b9f, []int{1}
 }
 
-func (m *RouteSliceReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RouteSliceReq.Unmarshal(m, b)
+func (m *RouteListReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RouteListReq.Unmarshal(m, b)
 }
-func (m *RouteSliceReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RouteSliceReq.Marshal(b, m, deterministic)
+func (m *RouteListReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RouteListReq.Marshal(b, m, deterministic)
 }
-func (m *RouteSliceReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RouteSliceReq.Merge(m, src)
+func (m *RouteListReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RouteListReq.Merge(m, src)
 }
-func (m *RouteSliceReq) XXX_Size() int {
-	return xxx_messageInfo_RouteSliceReq.Size(m)
+func (m *RouteListReq) XXX_Size() int {
+	return xxx_messageInfo_RouteListReq.Size(m)
 }
-func (m *RouteSliceReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_RouteSliceReq.DiscardUnknown(m)
+func (m *RouteListReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_RouteListReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RouteSliceReq proto.InternalMessageInfo
+var xxx_messageInfo_RouteListReq proto.InternalMessageInfo
 
-type RouteSliceRes struct {
+type RouteListRes struct {
 	// return a collection of Routes
 	Routes               []*Route `protobuf:"bytes,1,rep,name=Routes,proto3" json:"Routes,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -165,78 +165,78 @@ type RouteSliceRes struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RouteSliceRes) Reset()         { *m = RouteSliceRes{} }
-func (m *RouteSliceRes) String() string { return proto.CompactTextString(m) }
-func (*RouteSliceRes) ProtoMessage()    {}
-func (*RouteSliceRes) Descriptor() ([]byte, []int) {
+func (m *RouteListRes) Reset()         { *m = RouteListRes{} }
+func (m *RouteListRes) String() string { return proto.CompactTextString(m) }
+func (*RouteListRes) ProtoMessage()    {}
+func (*RouteListRes) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0984d49a362b6b9f, []int{2}
 }
 
-func (m *RouteSliceRes) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RouteSliceRes.Unmarshal(m, b)
+func (m *RouteListRes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RouteListRes.Unmarshal(m, b)
 }
-func (m *RouteSliceRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RouteSliceRes.Marshal(b, m, deterministic)
+func (m *RouteListRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RouteListRes.Marshal(b, m, deterministic)
 }
-func (m *RouteSliceRes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RouteSliceRes.Merge(m, src)
+func (m *RouteListRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RouteListRes.Merge(m, src)
 }
-func (m *RouteSliceRes) XXX_Size() int {
-	return xxx_messageInfo_RouteSliceRes.Size(m)
+func (m *RouteListRes) XXX_Size() int {
+	return xxx_messageInfo_RouteListRes.Size(m)
 }
-func (m *RouteSliceRes) XXX_DiscardUnknown() {
-	xxx_messageInfo_RouteSliceRes.DiscardUnknown(m)
+func (m *RouteListRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_RouteListRes.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RouteSliceRes proto.InternalMessageInfo
+var xxx_messageInfo_RouteListRes proto.InternalMessageInfo
 
-func (m *RouteSliceRes) GetRoutes() []*Route {
+func (m *RouteListRes) GetRoutes() []*Route {
 	if m != nil {
 		return m.Routes
 	}
 	return nil
 }
 
-type RouteSliceByRoleIDReq struct {
+type RouteListByRoleIDReq struct {
 	RoleID               string   `protobuf:"bytes,1,opt,name=RoleID,proto3" json:"RoleID,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RouteSliceByRoleIDReq) Reset()         { *m = RouteSliceByRoleIDReq{} }
-func (m *RouteSliceByRoleIDReq) String() string { return proto.CompactTextString(m) }
-func (*RouteSliceByRoleIDReq) ProtoMessage()    {}
-func (*RouteSliceByRoleIDReq) Descriptor() ([]byte, []int) {
+func (m *RouteListByRoleIDReq) Reset()         { *m = RouteListByRoleIDReq{} }
+func (m *RouteListByRoleIDReq) String() string { return proto.CompactTextString(m) }
+func (*RouteListByRoleIDReq) ProtoMessage()    {}
+func (*RouteListByRoleIDReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0984d49a362b6b9f, []int{3}
 }
 
-func (m *RouteSliceByRoleIDReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RouteSliceByRoleIDReq.Unmarshal(m, b)
+func (m *RouteListByRoleIDReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RouteListByRoleIDReq.Unmarshal(m, b)
 }
-func (m *RouteSliceByRoleIDReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RouteSliceByRoleIDReq.Marshal(b, m, deterministic)
+func (m *RouteListByRoleIDReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RouteListByRoleIDReq.Marshal(b, m, deterministic)
 }
-func (m *RouteSliceByRoleIDReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RouteSliceByRoleIDReq.Merge(m, src)
+func (m *RouteListByRoleIDReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RouteListByRoleIDReq.Merge(m, src)
 }
-func (m *RouteSliceByRoleIDReq) XXX_Size() int {
-	return xxx_messageInfo_RouteSliceByRoleIDReq.Size(m)
+func (m *RouteListByRoleIDReq) XXX_Size() int {
+	return xxx_messageInfo_RouteListByRoleIDReq.Size(m)
 }
-func (m *RouteSliceByRoleIDReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_RouteSliceByRoleIDReq.DiscardUnknown(m)
+func (m *RouteListByRoleIDReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_RouteListByRoleIDReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RouteSliceByRoleIDReq proto.InternalMessageInfo
+var xxx_messageInfo_RouteListByRoleIDReq proto.InternalMessageInfo
 
-func (m *RouteSliceByRoleIDReq) GetRoleID() string {
+func (m *RouteListByRoleIDReq) GetRoleID() string {
 	if m != nil {
 		return m.RoleID
 	}
 	return ""
 }
 
-type RouteSliceByRoleIDRes struct {
+type RouteListByRoleIDRes struct {
 	// return a collection of Routes
 	Routes               []*Route `protobuf:"bytes,1,rep,name=Routes,proto3" json:"Routes,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -244,32 +244,32 @@ type RouteSliceByRoleIDRes struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *RouteSliceByRoleIDRes) Reset()         { *m = RouteSliceByRoleIDRes{} }
-func (m *RouteSliceByRoleIDRes) String() string { return proto.CompactTextString(m) }
-func (*RouteSliceByRoleIDRes) ProtoMessage()    {}
-func (*RouteSliceByRoleIDRes) Descriptor() ([]byte, []int) {
+func (m *RouteListByRoleIDRes) Reset()         { *m = RouteListByRoleIDRes{} }
+func (m *RouteListByRoleIDRes) String() string { return proto.CompactTextString(m) }
+func (*RouteListByRoleIDRes) ProtoMessage()    {}
+func (*RouteListByRoleIDRes) Descriptor() ([]byte, []int) {
 	return fileDescriptor_0984d49a362b6b9f, []int{4}
 }
 
-func (m *RouteSliceByRoleIDRes) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RouteSliceByRoleIDRes.Unmarshal(m, b)
+func (m *RouteListByRoleIDRes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RouteListByRoleIDRes.Unmarshal(m, b)
 }
-func (m *RouteSliceByRoleIDRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RouteSliceByRoleIDRes.Marshal(b, m, deterministic)
+func (m *RouteListByRoleIDRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RouteListByRoleIDRes.Marshal(b, m, deterministic)
 }
-func (m *RouteSliceByRoleIDRes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RouteSliceByRoleIDRes.Merge(m, src)
+func (m *RouteListByRoleIDRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RouteListByRoleIDRes.Merge(m, src)
 }
-func (m *RouteSliceByRoleIDRes) XXX_Size() int {
-	return xxx_messageInfo_RouteSliceByRoleIDRes.Size(m)
+func (m *RouteListByRoleIDRes) XXX_Size() int {
+	return xxx_messageInfo_RouteListByRoleIDRes.Size(m)
 }
-func (m *RouteSliceByRoleIDRes) XXX_DiscardUnknown() {
-	xxx_messageInfo_RouteSliceByRoleIDRes.DiscardUnknown(m)
+func (m *RouteListByRoleIDRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_RouteListByRoleIDRes.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RouteSliceByRoleIDRes proto.InternalMessageInfo
+var xxx_messageInfo_RouteListByRoleIDRes proto.InternalMessageInfo
 
-func (m *RouteSliceByRoleIDRes) GetRoutes() []*Route {
+func (m *RouteListByRoleIDRes) GetRoutes() []*Route {
 	if m != nil {
 		return m.Routes
 	}
@@ -769,10 +769,10 @@ func (m *RouteDeleteRes) GetDeleted() int64 {
 
 func init() {
 	proto.RegisterType((*Route)(nil), "api.Route")
-	proto.RegisterType((*RouteSliceReq)(nil), "api.RouteSliceReq")
-	proto.RegisterType((*RouteSliceRes)(nil), "api.RouteSliceRes")
-	proto.RegisterType((*RouteSliceByRoleIDReq)(nil), "api.RouteSliceByRoleIDReq")
-	proto.RegisterType((*RouteSliceByRoleIDRes)(nil), "api.RouteSliceByRoleIDRes")
+	proto.RegisterType((*RouteListReq)(nil), "api.RouteListReq")
+	proto.RegisterType((*RouteListRes)(nil), "api.RouteListRes")
+	proto.RegisterType((*RouteListByRoleIDReq)(nil), "api.RouteListByRoleIDReq")
+	proto.RegisterType((*RouteListByRoleIDRes)(nil), "api.RouteListByRoleIDRes")
 	proto.RegisterType((*RouteCreateReq)(nil), "api.RouteCreateReq")
 	proto.RegisterType((*RouteCreateRes)(nil), "api.RouteCreateRes")
 	proto.RegisterType((*RouteReadReq)(nil), "api.RouteReadReq")
@@ -790,41 +790,41 @@ func init() {
 func init() { proto.RegisterFile("route.proto", fileDescriptor_0984d49a362b6b9f) }
 
 var fileDescriptor_0984d49a362b6b9f = []byte{
-	// 536 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0x4b, 0x6f, 0xd3, 0x40,
-	0x10, 0x96, 0x9d, 0x47, 0xdb, 0x09, 0x2d, 0x62, 0xaa, 0x22, 0x6b, 0x81, 0x62, 0xed, 0x29, 0xaa,
-	0x90, 0x83, 0xdc, 0x0b, 0x8f, 0x03, 0x4a, 0x89, 0x84, 0x72, 0x40, 0xaa, 0xb6, 0x70, 0xe0, 0x84,
-	0xdc, 0x7a, 0x5b, 0x56, 0x4a, 0x6a, 0xd7, 0xbb, 0x41, 0xea, 0x9f, 0xe0, 0xca, 0xdf, 0x45, 0xde,
-	0xf5, 0x63, 0xed, 0x98, 0x24, 0xb7, 0xcc, 0x37, 0xdf, 0x3c, 0xf6, 0x9b, 0xcf, 0x81, 0x51, 0x96,
-	0xac, 0x14, 0x0f, 0xd2, 0x2c, 0x51, 0x09, 0xf6, 0xa2, 0x54, 0x90, 0xd7, 0x77, 0x49, 0x72, 0xb7,
-	0xe0, 0x13, 0x0d, 0x5d, 0xaf, 0x6e, 0x27, 0x4a, 0x2c, 0xb9, 0x54, 0xd1, 0x32, 0x35, 0x2c, 0xfa,
-	0xd7, 0x85, 0x01, 0xcb, 0xab, 0xf0, 0x08, 0xdc, 0xf9, 0xcc, 0x73, 0x7c, 0x67, 0x7c, 0xc0, 0xdc,
-	0xf9, 0x0c, 0x9f, 0xc3, 0x90, 0x25, 0x0b, 0x3e, 0x9f, 0x79, 0xae, 0xc6, 0x8a, 0x08, 0x11, 0xfa,
-	0x97, 0x91, 0xfa, 0xe5, 0xf5, 0x34, 0xaa, 0x7f, 0xe3, 0x29, 0xc0, 0x25, 0xcf, 0x96, 0x42, 0x4a,
-	0x91, 0xdc, 0x7b, 0x7d, 0xdf, 0x19, 0xef, 0x33, 0x0b, 0xc1, 0x97, 0x70, 0xf0, 0x39, 0xe3, 0x91,
-	0xe2, 0xf1, 0xc5, 0xa3, 0x37, 0xd0, 0x85, 0x35, 0x80, 0xef, 0xaa, 0xec, 0x54, 0x79, 0x43, 0xdf,
-	0x19, 0x8f, 0x42, 0x12, 0x98, 0xc5, 0x83, 0x72, 0xf1, 0xe0, 0x5b, 0xb9, 0x38, 0xab, 0xc9, 0xf9,
-	0xdc, 0xaf, 0x49, 0x2c, 0x6e, 0x85, 0x6e, 0xbc, 0xa7, 0x1b, 0x5b, 0x08, 0x7e, 0xa8, 0xf3, 0x53,
-	0xe5, 0xed, 0x6f, 0x6d, 0x6d, 0xb1, 0xe9, 0x53, 0x38, 0xd4, 0xc2, 0x5c, 0x2d, 0xc4, 0x0d, 0x67,
-	0xfc, 0x81, 0x9e, 0x37, 0x01, 0x89, 0x34, 0x57, 0x68, 0xa5, 0xb8, 0xf4, 0x1c, 0xbf, 0x37, 0x1e,
-	0x85, 0x10, 0x44, 0xa9, 0x08, 0x34, 0xc4, 0x8a, 0x0c, 0x9d, 0xc0, 0x49, 0x5d, 0x74, 0xf1, 0x68,
-	0x34, 0x64, 0xfc, 0xc1, 0x92, 0xd7, 0xb1, 0xe5, 0xa5, 0x1f, 0xbb, 0x0b, 0x76, 0x9b, 0x16, 0xc2,
-	0x91, 0xfe, 0x65, 0x14, 0xca, 0xc7, 0xf8, 0xc5, 0x79, 0xf5, 0x94, 0x66, 0x91, 0x49, 0x50, 0xbf,
-	0x55, 0x23, 0xdb, 0x4e, 0xa0, 0xa7, 0xf0, 0xc4, 0x54, 0xf0, 0x28, 0xce, 0x7b, 0xb6, 0xf3, 0x6f,
-	0x1b, 0x79, 0xb9, 0xc3, 0xcc, 0x39, 0xbc, 0xa8, 0x2a, 0xca, 0x37, 0x4e, 0xef, 0xe3, 0xdc, 0x4b,
-	0x1b, 0xb4, 0xa9, 0xac, 0xe7, 0xd6, 0xd6, 0xa3, 0x9f, 0x36, 0xb5, 0xda, 0x65, 0x97, 0x52, 0xb3,
-	0xef, 0x69, 0xbc, 0xb3, 0x66, 0x67, 0xad, 0x1a, 0x89, 0x1e, 0xec, 0x99, 0x20, 0xd6, 0x55, 0x3d,
-	0x56, 0x86, 0x74, 0x0a, 0xaf, 0x2c, 0x6e, 0xc7, 0x6b, 0xb7, 0x8f, 0x7b, 0xbf, 0xb9, 0xc5, 0xa6,
-	0xe9, 0xe5, 0x75, 0x67, 0x7c, 0xc1, 0xcd, 0xeb, 0xda, 0xd7, 0x3b, 0x6b, 0x31, 0x74, 0x37, 0x13,
-	0x54, 0xdd, 0x8a, 0x30, 0xfc, 0xd3, 0x2f, 0x4e, 0x7d, 0xc5, 0xb3, 0xdf, 0xe2, 0x86, 0xe3, 0x04,
-	0x06, 0xda, 0xa8, 0x88, 0xf5, 0xd6, 0xe5, 0x07, 0x43, 0xd6, 0x31, 0x89, 0x5f, 0xe0, 0xb0, 0xe1,
-	0x6c, 0x24, 0x2d, 0x92, 0xf5, 0x8d, 0x90, 0xff, 0xe7, 0x24, 0x86, 0x30, 0x34, 0x8e, 0xc5, 0xe3,
-	0x9a, 0x55, 0xf9, 0x9e, 0x74, 0x80, 0x12, 0xdf, 0x40, 0x3f, 0xb7, 0x09, 0x3e, 0xb3, 0x24, 0x36,
-	0x9e, 0x26, 0x6b, 0x90, 0xc4, 0x1f, 0x70, 0xdc, 0x61, 0x2a, 0xf4, 0x9b, 0xcc, 0xf5, 0x83, 0x92,
-	0x6d, 0x0c, 0xbd, 0xbc, 0x39, 0x90, 0xbd, 0x7c, 0x65, 0x40, 0xd2, 0x01, 0x4a, 0xfc, 0x09, 0x27,
-	0x9d, 0xf7, 0x47, 0xda, 0x66, 0x77, 0xac, 0xb4, 0x9d, 0xa3, 0x97, 0x32, 0x77, 0xb6, 0x97, 0xaa,
-	0x7c, 0x43, 0x3a, 0x40, 0x79, 0x3d, 0xd4, 0x7f, 0xa2, 0xe7, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff,
-	0xec, 0xd7, 0x13, 0x0c, 0x7a, 0x06, 0x00, 0x00,
+	// 532 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x54, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0x95, 0x9d, 0x34, 0x6d, 0x27, 0x55, 0x24, 0xa6, 0x80, 0x8c, 0x81, 0x62, 0xed, 0x29, 0xaa,
+	0x90, 0x8b, 0xcc, 0x05, 0x7a, 0x41, 0x29, 0xbe, 0x44, 0x02, 0xa9, 0x5a, 0xe0, 0xc0, 0x09, 0xb9,
+	0x78, 0x5b, 0x56, 0x4a, 0x6a, 0xd7, 0xbb, 0x41, 0xca, 0x3f, 0xe0, 0x1f, 0xf0, 0x77, 0xd1, 0xee,
+	0xfa, 0x63, 0xed, 0x98, 0x24, 0xb7, 0xcc, 0x9b, 0x37, 0x33, 0x6f, 0x67, 0x9e, 0x03, 0xe3, 0x22,
+	0x5b, 0x49, 0x16, 0xe6, 0x45, 0x26, 0x33, 0x1c, 0x24, 0x39, 0xf7, 0x5f, 0xdd, 0x65, 0xd9, 0xdd,
+	0x82, 0x5d, 0x68, 0xe8, 0x66, 0x75, 0x7b, 0x21, 0xf9, 0x92, 0x09, 0x99, 0x2c, 0x73, 0xc3, 0x22,
+	0x7f, 0x5d, 0x38, 0xa0, 0xaa, 0x0a, 0x27, 0xe0, 0xce, 0x63, 0xcf, 0x09, 0x9c, 0xe9, 0x31, 0x75,
+	0xe7, 0x31, 0x3e, 0x85, 0x11, 0xcd, 0x16, 0x6c, 0x1e, 0x7b, 0xae, 0xc6, 0xca, 0x08, 0x11, 0x86,
+	0xd7, 0x89, 0xfc, 0xe5, 0x0d, 0x34, 0xaa, 0x7f, 0xe3, 0x19, 0xc0, 0x35, 0x2b, 0x96, 0x5c, 0x08,
+	0x9e, 0xdd, 0x7b, 0xc3, 0xc0, 0x99, 0x1e, 0x51, 0x0b, 0xc1, 0x17, 0x70, 0xfc, 0xb1, 0x60, 0x89,
+	0x64, 0xe9, 0xd5, 0xda, 0x3b, 0xd0, 0x85, 0x0d, 0x80, 0xef, 0xea, 0xec, 0x4c, 0x7a, 0xa3, 0xc0,
+	0x99, 0x8e, 0x23, 0x3f, 0x34, 0xc2, 0xc3, 0x4a, 0x78, 0xf8, 0xb5, 0x12, 0x4e, 0x1b, 0xb2, 0x9a,
+	0xfb, 0x39, 0x4b, 0xf9, 0x2d, 0xd7, 0x8d, 0x0f, 0x75, 0x63, 0x0b, 0xc1, 0xcb, 0x26, 0x3f, 0x93,
+	0xde, 0xd1, 0xce, 0xd6, 0x16, 0x9b, 0x4c, 0xe0, 0x44, 0x2f, 0xe6, 0x13, 0x17, 0x92, 0xb2, 0x07,
+	0x12, 0xb5, 0x62, 0x81, 0x44, 0xed, 0x67, 0x25, 0x99, 0xf0, 0x9c, 0x60, 0x30, 0x1d, 0x47, 0x10,
+	0x26, 0x39, 0x0f, 0x35, 0x44, 0xcb, 0x0c, 0x09, 0xe1, 0x71, 0x5d, 0x73, 0xb5, 0x36, 0x0b, 0xa4,
+	0xec, 0xc1, 0xda, 0xad, 0x63, 0xef, 0x96, 0x5c, 0xf6, 0xf2, 0xf7, 0x9b, 0x15, 0xc1, 0x44, 0xff,
+	0x32, 0xdb, 0x51, 0x53, 0x82, 0xf2, 0xb4, 0x7a, 0x48, 0xbb, 0xc8, 0x24, 0x48, 0xd0, 0xa9, 0x11,
+	0x5d, 0x17, 0x90, 0xb3, 0xf2, 0xd5, 0x94, 0x25, 0xa9, 0xea, 0xd9, 0xcd, 0xbf, 0x69, 0xe5, 0xc5,
+	0x1e, 0x33, 0xe7, 0xf0, 0xbc, 0xae, 0xa8, 0xde, 0x38, 0xbb, 0x4f, 0x95, 0x8f, 0xb6, 0xac, 0xa6,
+	0xb6, 0x9d, 0xdb, 0xd8, 0x8e, 0x7c, 0xd8, 0xd6, 0x6a, 0x1f, 0x2d, 0xd5, 0xce, 0xbe, 0xe5, 0xe9,
+	0xde, 0x3b, 0x3b, 0xef, 0xd4, 0x08, 0xf4, 0xe0, 0xd0, 0x04, 0xa9, 0xae, 0x1a, 0xd0, 0x2a, 0x24,
+	0x33, 0x78, 0x69, 0x71, 0x7b, 0x5e, 0xbb, 0x7b, 0xdc, 0xfb, 0xed, 0x2d, 0xb6, 0x4d, 0xaf, 0xae,
+	0x1b, 0xb3, 0x05, 0x33, 0xaf, 0xeb, 0x5e, 0xef, 0xbc, 0xc3, 0xd0, 0xdd, 0x4c, 0x50, 0x77, 0x2b,
+	0xc3, 0xe8, 0xcf, 0xb0, 0x3c, 0xf5, 0x17, 0x56, 0xfc, 0xe6, 0x3f, 0x19, 0xbe, 0x86, 0xa1, 0xf2,
+	0x29, 0x3e, 0x6a, 0x44, 0x97, 0xdf, 0x8a, 0xbf, 0x01, 0x09, 0x8c, 0xe1, 0xc4, 0x76, 0x35, 0x3e,
+	0x6b, 0x53, 0xac, 0xaf, 0xc3, 0xff, 0x6f, 0x4a, 0x60, 0x04, 0x23, 0xe3, 0x55, 0x3c, 0x6d, 0x48,
+	0xb5, 0xe3, 0xfd, 0x1e, 0x50, 0x28, 0x9d, 0xca, 0x20, 0xb6, 0xce, 0xd2, 0xcd, 0xfe, 0x06, 0x24,
+	0xf0, 0x3b, 0x9c, 0xf6, 0xd8, 0x09, 0x83, 0x36, 0x73, 0xf3, 0x94, 0xfe, 0x2e, 0x86, 0x16, 0x6f,
+	0x4e, 0x63, 0x8b, 0xaf, 0xad, 0xe7, 0xf7, 0x80, 0x02, 0x7f, 0xc0, 0x93, 0xde, 0xcb, 0x23, 0xe9,
+	0xb2, 0x7b, 0x24, 0xed, 0xe6, 0x68, 0x51, 0xe6, 0xc2, 0xb6, 0xa8, 0xda, 0x31, 0x7e, 0x0f, 0x28,
+	0x6e, 0x46, 0xfa, 0xaf, 0xf3, 0xed, 0xbf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x85, 0x64, 0x25, 0x9b,
+	0x70, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -839,8 +839,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type RouteServiceClient interface {
-	Slice(ctx context.Context, in *RouteSliceReq, opts ...grpc.CallOption) (*RouteSliceRes, error)
-	SliceByRoleID(ctx context.Context, in *RouteSliceByRoleIDReq, opts ...grpc.CallOption) (*RouteSliceByRoleIDRes, error)
+	List(ctx context.Context, in *RouteListReq, opts ...grpc.CallOption) (*RouteListRes, error)
+	ListByRoleID(ctx context.Context, in *RouteListByRoleIDReq, opts ...grpc.CallOption) (*RouteListByRoleIDRes, error)
 	Create(ctx context.Context, in *RouteCreateReq, opts ...grpc.CallOption) (*RouteCreateRes, error)
 	Read(ctx context.Context, in *RouteReadReq, opts ...grpc.CallOption) (*RouteReadRes, error)
 	ReadByRoleIDAndPath(ctx context.Context, in *RouteReadByRoleIDAndPathReq, opts ...grpc.CallOption) (*RouteReadByRoleIDAndPathRes, error)
@@ -857,18 +857,18 @@ func NewRouteServiceClient(cc *grpc.ClientConn) RouteServiceClient {
 	return &routeServiceClient{cc}
 }
 
-func (c *routeServiceClient) Slice(ctx context.Context, in *RouteSliceReq, opts ...grpc.CallOption) (*RouteSliceRes, error) {
-	out := new(RouteSliceRes)
-	err := c.cc.Invoke(ctx, "/api.RouteService/Slice", in, out, opts...)
+func (c *routeServiceClient) List(ctx context.Context, in *RouteListReq, opts ...grpc.CallOption) (*RouteListRes, error) {
+	out := new(RouteListRes)
+	err := c.cc.Invoke(ctx, "/api.RouteService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *routeServiceClient) SliceByRoleID(ctx context.Context, in *RouteSliceByRoleIDReq, opts ...grpc.CallOption) (*RouteSliceByRoleIDRes, error) {
-	out := new(RouteSliceByRoleIDRes)
-	err := c.cc.Invoke(ctx, "/api.RouteService/SliceByRoleID", in, out, opts...)
+func (c *routeServiceClient) ListByRoleID(ctx context.Context, in *RouteListByRoleIDReq, opts ...grpc.CallOption) (*RouteListByRoleIDRes, error) {
+	out := new(RouteListByRoleIDRes)
+	err := c.cc.Invoke(ctx, "/api.RouteService/ListByRoleID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -931,8 +931,8 @@ func (c *routeServiceClient) Delete(ctx context.Context, in *RouteDeleteReq, opt
 
 // RouteServiceServer is the server API for RouteService service.
 type RouteServiceServer interface {
-	Slice(context.Context, *RouteSliceReq) (*RouteSliceRes, error)
-	SliceByRoleID(context.Context, *RouteSliceByRoleIDReq) (*RouteSliceByRoleIDRes, error)
+	List(context.Context, *RouteListReq) (*RouteListRes, error)
+	ListByRoleID(context.Context, *RouteListByRoleIDReq) (*RouteListByRoleIDRes, error)
 	Create(context.Context, *RouteCreateReq) (*RouteCreateRes, error)
 	Read(context.Context, *RouteReadReq) (*RouteReadRes, error)
 	ReadByRoleIDAndPath(context.Context, *RouteReadByRoleIDAndPathReq) (*RouteReadByRoleIDAndPathRes, error)
@@ -945,38 +945,38 @@ func RegisterRouteServiceServer(s *grpc.Server, srv RouteServiceServer) {
 	s.RegisterService(&_RouteService_serviceDesc, srv)
 }
 
-func _RouteService_Slice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RouteSliceReq)
+func _RouteService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RouteListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RouteServiceServer).Slice(ctx, in)
+		return srv.(RouteServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.RouteService/Slice",
+		FullMethod: "/api.RouteService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RouteServiceServer).Slice(ctx, req.(*RouteSliceReq))
+		return srv.(RouteServiceServer).List(ctx, req.(*RouteListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RouteService_SliceByRoleID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RouteSliceByRoleIDReq)
+func _RouteService_ListByRoleID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RouteListByRoleIDReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RouteServiceServer).SliceByRoleID(ctx, in)
+		return srv.(RouteServiceServer).ListByRoleID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.RouteService/SliceByRoleID",
+		FullMethod: "/api.RouteService/ListByRoleID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RouteServiceServer).SliceByRoleID(ctx, req.(*RouteSliceByRoleIDReq))
+		return srv.(RouteServiceServer).ListByRoleID(ctx, req.(*RouteListByRoleIDReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1094,12 +1094,12 @@ var _RouteService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*RouteServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Slice",
-			Handler:    _RouteService_Slice_Handler,
+			MethodName: "List",
+			Handler:    _RouteService_List_Handler,
 		},
 		{
-			MethodName: "SliceByRoleID",
-			Handler:    _RouteService_SliceByRoleID_Handler,
+			MethodName: "ListByRoleID",
+			Handler:    _RouteService_ListByRoleID_Handler,
 		},
 		{
 			MethodName: "Create",

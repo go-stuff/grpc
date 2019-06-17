@@ -126,38 +126,38 @@ func (m *User) GetModifiedAt() *timestamp.Timestamp {
 	return nil
 }
 
-type UserSliceReq struct {
+type UserListReq struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserSliceReq) Reset()         { *m = UserSliceReq{} }
-func (m *UserSliceReq) String() string { return proto.CompactTextString(m) }
-func (*UserSliceReq) ProtoMessage()    {}
-func (*UserSliceReq) Descriptor() ([]byte, []int) {
+func (m *UserListReq) Reset()         { *m = UserListReq{} }
+func (m *UserListReq) String() string { return proto.CompactTextString(m) }
+func (*UserListReq) ProtoMessage()    {}
+func (*UserListReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_116e343673f7ffaf, []int{1}
 }
 
-func (m *UserSliceReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserSliceReq.Unmarshal(m, b)
+func (m *UserListReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserListReq.Unmarshal(m, b)
 }
-func (m *UserSliceReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserSliceReq.Marshal(b, m, deterministic)
+func (m *UserListReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserListReq.Marshal(b, m, deterministic)
 }
-func (m *UserSliceReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserSliceReq.Merge(m, src)
+func (m *UserListReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserListReq.Merge(m, src)
 }
-func (m *UserSliceReq) XXX_Size() int {
-	return xxx_messageInfo_UserSliceReq.Size(m)
+func (m *UserListReq) XXX_Size() int {
+	return xxx_messageInfo_UserListReq.Size(m)
 }
-func (m *UserSliceReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserSliceReq.DiscardUnknown(m)
+func (m *UserListReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserListReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UserSliceReq proto.InternalMessageInfo
+var xxx_messageInfo_UserListReq proto.InternalMessageInfo
 
-type UserSliceRes struct {
+type UserListRes struct {
 	// return a collection of users
 	Users                []*User  `protobuf:"bytes,1,rep,name=Users,proto3" json:"Users,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -165,32 +165,32 @@ type UserSliceRes struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserSliceRes) Reset()         { *m = UserSliceRes{} }
-func (m *UserSliceRes) String() string { return proto.CompactTextString(m) }
-func (*UserSliceRes) ProtoMessage()    {}
-func (*UserSliceRes) Descriptor() ([]byte, []int) {
+func (m *UserListRes) Reset()         { *m = UserListRes{} }
+func (m *UserListRes) String() string { return proto.CompactTextString(m) }
+func (*UserListRes) ProtoMessage()    {}
+func (*UserListRes) Descriptor() ([]byte, []int) {
 	return fileDescriptor_116e343673f7ffaf, []int{2}
 }
 
-func (m *UserSliceRes) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserSliceRes.Unmarshal(m, b)
+func (m *UserListRes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserListRes.Unmarshal(m, b)
 }
-func (m *UserSliceRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserSliceRes.Marshal(b, m, deterministic)
+func (m *UserListRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserListRes.Marshal(b, m, deterministic)
 }
-func (m *UserSliceRes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserSliceRes.Merge(m, src)
+func (m *UserListRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserListRes.Merge(m, src)
 }
-func (m *UserSliceRes) XXX_Size() int {
-	return xxx_messageInfo_UserSliceRes.Size(m)
+func (m *UserListRes) XXX_Size() int {
+	return xxx_messageInfo_UserListRes.Size(m)
 }
-func (m *UserSliceRes) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserSliceRes.DiscardUnknown(m)
+func (m *UserListRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserListRes.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UserSliceRes proto.InternalMessageInfo
+var xxx_messageInfo_UserListRes proto.InternalMessageInfo
 
-func (m *UserSliceRes) GetUsers() []*User {
+func (m *UserListRes) GetUsers() []*User {
 	if m != nil {
 		return m.Users
 	}
@@ -357,7 +357,7 @@ func (m *UserReadRes) GetUser() *User {
 	return nil
 }
 
-type UserByUsernameReq struct {
+type UserReadByUsernameReq struct {
 	// read a user by id
 	Username             string   `protobuf:"bytes,1,opt,name=Username,proto3" json:"Username,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -365,39 +365,39 @@ type UserByUsernameReq struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserByUsernameReq) Reset()         { *m = UserByUsernameReq{} }
-func (m *UserByUsernameReq) String() string { return proto.CompactTextString(m) }
-func (*UserByUsernameReq) ProtoMessage()    {}
-func (*UserByUsernameReq) Descriptor() ([]byte, []int) {
+func (m *UserReadByUsernameReq) Reset()         { *m = UserReadByUsernameReq{} }
+func (m *UserReadByUsernameReq) String() string { return proto.CompactTextString(m) }
+func (*UserReadByUsernameReq) ProtoMessage()    {}
+func (*UserReadByUsernameReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_116e343673f7ffaf, []int{7}
 }
 
-func (m *UserByUsernameReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserByUsernameReq.Unmarshal(m, b)
+func (m *UserReadByUsernameReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserReadByUsernameReq.Unmarshal(m, b)
 }
-func (m *UserByUsernameReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserByUsernameReq.Marshal(b, m, deterministic)
+func (m *UserReadByUsernameReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserReadByUsernameReq.Marshal(b, m, deterministic)
 }
-func (m *UserByUsernameReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserByUsernameReq.Merge(m, src)
+func (m *UserReadByUsernameReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserReadByUsernameReq.Merge(m, src)
 }
-func (m *UserByUsernameReq) XXX_Size() int {
-	return xxx_messageInfo_UserByUsernameReq.Size(m)
+func (m *UserReadByUsernameReq) XXX_Size() int {
+	return xxx_messageInfo_UserReadByUsernameReq.Size(m)
 }
-func (m *UserByUsernameReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserByUsernameReq.DiscardUnknown(m)
+func (m *UserReadByUsernameReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserReadByUsernameReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UserByUsernameReq proto.InternalMessageInfo
+var xxx_messageInfo_UserReadByUsernameReq proto.InternalMessageInfo
 
-func (m *UserByUsernameReq) GetUsername() string {
+func (m *UserReadByUsernameReq) GetUsername() string {
 	if m != nil {
 		return m.Username
 	}
 	return ""
 }
 
-type UserByUsernameRes struct {
+type UserReadByUsernameRes struct {
 	// return a user
 	User                 *User    `protobuf:"bytes,1,opt,name=User,proto3" json:"User,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -405,32 +405,32 @@ type UserByUsernameRes struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserByUsernameRes) Reset()         { *m = UserByUsernameRes{} }
-func (m *UserByUsernameRes) String() string { return proto.CompactTextString(m) }
-func (*UserByUsernameRes) ProtoMessage()    {}
-func (*UserByUsernameRes) Descriptor() ([]byte, []int) {
+func (m *UserReadByUsernameRes) Reset()         { *m = UserReadByUsernameRes{} }
+func (m *UserReadByUsernameRes) String() string { return proto.CompactTextString(m) }
+func (*UserReadByUsernameRes) ProtoMessage()    {}
+func (*UserReadByUsernameRes) Descriptor() ([]byte, []int) {
 	return fileDescriptor_116e343673f7ffaf, []int{8}
 }
 
-func (m *UserByUsernameRes) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserByUsernameRes.Unmarshal(m, b)
+func (m *UserReadByUsernameRes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserReadByUsernameRes.Unmarshal(m, b)
 }
-func (m *UserByUsernameRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserByUsernameRes.Marshal(b, m, deterministic)
+func (m *UserReadByUsernameRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserReadByUsernameRes.Marshal(b, m, deterministic)
 }
-func (m *UserByUsernameRes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserByUsernameRes.Merge(m, src)
+func (m *UserReadByUsernameRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserReadByUsernameRes.Merge(m, src)
 }
-func (m *UserByUsernameRes) XXX_Size() int {
-	return xxx_messageInfo_UserByUsernameRes.Size(m)
+func (m *UserReadByUsernameRes) XXX_Size() int {
+	return xxx_messageInfo_UserReadByUsernameRes.Size(m)
 }
-func (m *UserByUsernameRes) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserByUsernameRes.DiscardUnknown(m)
+func (m *UserReadByUsernameRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserReadByUsernameRes.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UserByUsernameRes proto.InternalMessageInfo
+var xxx_messageInfo_UserReadByUsernameRes proto.InternalMessageInfo
 
-func (m *UserByUsernameRes) GetUser() *User {
+func (m *UserReadByUsernameRes) GetUser() *User {
 	if m != nil {
 		return m.User
 	}
@@ -601,14 +601,14 @@ func (m *UserDeleteRes) GetDeleted() int64 {
 
 func init() {
 	proto.RegisterType((*User)(nil), "api.User")
-	proto.RegisterType((*UserSliceReq)(nil), "api.UserSliceReq")
-	proto.RegisterType((*UserSliceRes)(nil), "api.UserSliceRes")
+	proto.RegisterType((*UserListReq)(nil), "api.UserListReq")
+	proto.RegisterType((*UserListRes)(nil), "api.UserListRes")
 	proto.RegisterType((*UserCreateReq)(nil), "api.UserCreateReq")
 	proto.RegisterType((*UserCreateRes)(nil), "api.UserCreateRes")
 	proto.RegisterType((*UserReadReq)(nil), "api.UserReadReq")
 	proto.RegisterType((*UserReadRes)(nil), "api.UserReadRes")
-	proto.RegisterType((*UserByUsernameReq)(nil), "api.UserByUsernameReq")
-	proto.RegisterType((*UserByUsernameRes)(nil), "api.UserByUsernameRes")
+	proto.RegisterType((*UserReadByUsernameReq)(nil), "api.UserReadByUsernameReq")
+	proto.RegisterType((*UserReadByUsernameRes)(nil), "api.UserReadByUsernameRes")
 	proto.RegisterType((*UserUpdateReq)(nil), "api.UserUpdateReq")
 	proto.RegisterType((*UserUpdateRes)(nil), "api.UserUpdateRes")
 	proto.RegisterType((*UserDeleteReq)(nil), "api.UserDeleteReq")
@@ -618,36 +618,36 @@ func init() {
 func init() { proto.RegisterFile("user.proto", fileDescriptor_116e343673f7ffaf) }
 
 var fileDescriptor_116e343673f7ffaf = []byte{
-	// 456 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x93, 0xcd, 0x6e, 0xd3, 0x40,
-	0x14, 0x85, 0x65, 0x3b, 0x49, 0x9b, 0x1b, 0xa8, 0xe8, 0x5d, 0x54, 0xa3, 0x11, 0x25, 0x91, 0x57,
-	0x29, 0x02, 0x07, 0x99, 0x0d, 0x42, 0x6c, 0x5a, 0x2c, 0xa1, 0x2c, 0xd8, 0x4c, 0xe9, 0x03, 0xb8,
-	0xf5, 0x6d, 0x65, 0xc9, 0xc1, 0xae, 0xc7, 0x41, 0xca, 0x8b, 0xf0, 0x34, 0x3c, 0x1c, 0x9a, 0x19,
-	0x7b, 0xfc, 0x87, 0x14, 0x56, 0xc9, 0xf9, 0xee, 0x8f, 0x6f, 0xce, 0x89, 0x01, 0xf6, 0x92, 0xca,
-	0xa0, 0x28, 0xf3, 0x2a, 0x47, 0x2f, 0x2e, 0x52, 0xbe, 0x7c, 0xca, 0xf3, 0xa7, 0x8c, 0x36, 0x1a,
-	0xdd, 0xef, 0x1f, 0x37, 0x55, 0xba, 0x23, 0x59, 0xc5, 0xbb, 0xc2, 0x74, 0xf9, 0xbf, 0x5d, 0x98,
-	0xdc, 0x49, 0x2a, 0xf1, 0x0c, 0xdc, 0x6d, 0xc4, 0x9c, 0x95, 0xb3, 0x9e, 0x0b, 0x77, 0x1b, 0x21,
-	0x87, 0x53, 0xc5, 0x7f, 0xc6, 0x3b, 0x62, 0xae, 0xa6, 0x56, 0xe3, 0x05, 0xcc, 0xbe, 0x95, 0xf9,
-	0xbe, 0x90, 0xcc, 0x5b, 0x79, 0xeb, 0xb9, 0xa8, 0x95, 0xe2, 0x22, 0xcf, 0x68, 0x1b, 0xb1, 0x89,
-	0x9e, 0xa8, 0x15, 0xbe, 0x86, 0xf9, 0xd7, 0x92, 0xe2, 0x8a, 0x92, 0x9b, 0x03, 0x9b, 0xea, 0x52,
-	0x0b, 0xf0, 0x93, 0xad, 0x5e, 0x57, 0x6c, 0xb6, 0x72, 0xd6, 0x8b, 0x90, 0x07, 0xe6, 0xee, 0xa0,
-	0xb9, 0x3b, 0xf8, 0xd1, 0xdc, 0x2d, 0xda, 0x66, 0x7c, 0x03, 0xf0, 0x3d, 0x4f, 0xd2, 0xc7, 0x54,
-	0x2f, 0x3e, 0xd1, 0x8b, 0x3b, 0x04, 0x3f, 0xb7, 0xf5, 0xeb, 0x8a, 0x9d, 0x1e, 0x5d, 0xdd, 0xe9,
-	0xf6, 0xcf, 0xe0, 0x85, 0xfa, 0xbd, 0xb7, 0x59, 0xfa, 0x40, 0x82, 0x9e, 0xfd, 0x4d, 0x4f, 0x4b,
-	0x5c, 0xc2, 0x54, 0x69, 0xc9, 0x9c, 0x95, 0xb7, 0x5e, 0x84, 0xf3, 0x20, 0x2e, 0xd2, 0x40, 0x11,
-	0x61, 0xb8, 0x1f, 0xc0, 0x4b, 0xf5, 0xc5, 0x5c, 0x2b, 0xe8, 0x19, 0x2f, 0x8d, 0xd3, 0xda, 0xe3,
-	0xde, 0x80, 0xc6, 0xfe, 0xb2, 0xdf, 0x2f, 0x87, 0x89, 0xf8, 0x97, 0xb0, 0xd0, 0xed, 0x14, 0x27,
-	0x6a, 0xdd, 0xb0, 0xfc, 0xae, 0x5b, 0x96, 0xc7, 0x9e, 0xb6, 0x81, 0x73, 0xf5, 0x79, 0x73, 0x68,
-	0x42, 0x55, 0x2b, 0xbb, 0x99, 0x3b, 0xfd, 0xcc, 0xfd, 0x70, 0x3c, 0x70, 0xf4, 0x21, 0xb5, 0x05,
-	0x77, 0x45, 0xf2, 0x7f, 0x16, 0x5c, 0xf5, 0xfb, 0x25, 0x32, 0x38, 0x31, 0x22, 0xd1, 0x23, 0x9e,
-	0x68, 0x64, 0xe3, 0x56, 0x44, 0x19, 0x99, 0xd5, 0x43, 0x3b, 0xae, 0xfa, 0x0d, 0x7a, 0x97, 0x11,
-	0x76, 0x57, 0x2d, 0xc3, 0x3f, 0xae, 0xb1, 0xee, 0x96, 0xca, 0x5f, 0xe9, 0x03, 0xe1, 0x7b, 0x98,
-	0xea, 0x98, 0xf1, 0xdc, 0x1e, 0xd8, 0xfc, 0x0d, 0xf8, 0x08, 0x49, 0xfc, 0x00, 0x33, 0x13, 0x1a,
-	0xa2, 0x2d, 0xda, 0xd4, 0xf9, 0x98, 0x49, 0x7c, 0x0b, 0x13, 0x15, 0x13, 0xbe, 0x6a, 0x0d, 0x30,
-	0xa1, 0xf2, 0x21, 0x91, 0xf8, 0x05, 0xa0, 0xf5, 0x1c, 0x2f, 0x6c, 0xbd, 0x97, 0x1c, 0xff, 0x37,
-	0xd7, 0xb7, 0x19, 0xc7, 0x3a, 0xb7, 0xd9, 0x38, 0xf8, 0x98, 0xe9, 0x09, 0xe3, 0x4b, 0x67, 0xc2,
-	0xba, 0xcc, 0xc7, 0x4c, 0xde, 0xcf, 0xf4, 0x9b, 0xf4, 0xf1, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0xd3, 0x23, 0xc4, 0x9e, 0x7d, 0x04, 0x00, 0x00,
+	// 451 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x53, 0xd1, 0x6a, 0xdb, 0x30,
+	0x14, 0xc5, 0x76, 0x9a, 0xd6, 0x37, 0xb4, 0x8c, 0x0b, 0x1b, 0x42, 0xac, 0x8b, 0xf1, 0x93, 0x3b,
+	0x86, 0x3a, 0x52, 0x18, 0x63, 0x6f, 0xed, 0x0c, 0x5b, 0x60, 0x7b, 0xd1, 0xd6, 0x0f, 0x70, 0x67,
+	0xb5, 0x18, 0x92, 0xd9, 0xb5, 0x9c, 0x41, 0x7e, 0x64, 0x7f, 0xb4, 0xff, 0x1a, 0x92, 0x6c, 0x45,
+	0x72, 0x36, 0xd2, 0xb7, 0x9c, 0x73, 0xef, 0x3d, 0x3a, 0x39, 0x27, 0x01, 0xd8, 0x48, 0xd1, 0xb2,
+	0xa6, 0xad, 0xbb, 0x1a, 0xa3, 0xa2, 0xa9, 0xe8, 0xfc, 0xa1, 0xae, 0x1f, 0x56, 0xe2, 0x52, 0x53,
+	0x77, 0x9b, 0xfb, 0xcb, 0xae, 0x5a, 0x0b, 0xd9, 0x15, 0xeb, 0xc6, 0x6c, 0xa5, 0xbf, 0x43, 0x98,
+	0xdc, 0x4a, 0xd1, 0xe2, 0x19, 0x84, 0xcb, 0x9c, 0x04, 0x49, 0x90, 0xc5, 0x3c, 0x5c, 0xe6, 0x48,
+	0xe1, 0x44, 0xf1, 0x3f, 0x8b, 0xb5, 0x20, 0xa1, 0x66, 0x2d, 0xc6, 0x17, 0x30, 0xfd, 0xd4, 0xd6,
+	0x9b, 0x46, 0x92, 0x28, 0x89, 0xb2, 0x98, 0xf7, 0x48, 0xf1, 0xbc, 0x5e, 0x89, 0x65, 0x4e, 0x26,
+	0xfa, 0xa2, 0x47, 0xf8, 0x12, 0xe2, 0x8f, 0xad, 0x28, 0x3a, 0x51, 0xde, 0x6c, 0xc9, 0x91, 0x1e,
+	0xed, 0x08, 0x7c, 0x6f, 0xa7, 0xd7, 0x1d, 0x99, 0x26, 0x41, 0x36, 0x5b, 0x50, 0x66, 0x7c, 0xb3,
+	0xc1, 0x37, 0xfb, 0x3e, 0xf8, 0xe6, 0xbb, 0x65, 0x7c, 0x05, 0xf0, 0xb5, 0x2e, 0xab, 0xfb, 0x4a,
+	0x0b, 0x1f, 0x6b, 0x61, 0x87, 0xc1, 0x0f, 0xbb, 0xf9, 0x75, 0x47, 0x4e, 0x0e, 0x4a, 0x3b, 0xdb,
+	0xe9, 0x29, 0xcc, 0xd4, 0xf7, 0xfd, 0x52, 0xc9, 0x8e, 0x8b, 0xc7, 0x94, 0xb9, 0x50, 0xe2, 0x1c,
+	0x8e, 0x14, 0x94, 0x24, 0x48, 0xa2, 0x6c, 0xb6, 0x88, 0x59, 0xd1, 0x54, 0x4c, 0x31, 0xdc, 0xf0,
+	0x29, 0x83, 0x53, 0xf5, 0xc1, 0x78, 0xe5, 0xe2, 0x11, 0xcf, 0x4d, 0xce, 0x3a, 0x61, 0xef, 0x40,
+	0xd3, 0xe9, 0xdc, 0xdf, 0x97, 0xe3, 0x3e, 0xd2, 0x73, 0x63, 0x80, 0x8b, 0xa2, 0x54, 0x72, 0xe3,
+	0xf1, 0x1b, 0x77, 0x2c, 0x0f, 0xbd, 0x76, 0x05, 0xcf, 0x87, 0xed, 0x9b, 0xed, 0x50, 0xab, 0x92,
+	0x75, 0x5b, 0x0f, 0xfc, 0xd6, 0xd3, 0x77, 0xff, 0x3e, 0x3a, 0xf8, 0x58, 0x1f, 0xc5, 0x6d, 0x53,
+	0x3e, 0x2d, 0x8a, 0x0b, 0x7f, 0x5f, 0x22, 0x81, 0x63, 0x03, 0x4a, 0x7d, 0x12, 0xf1, 0x01, 0x0e,
+	0xa9, 0xe5, 0x62, 0x25, 0x8c, 0xf4, 0x38, 0x96, 0x0b, 0x7f, 0x41, 0x6b, 0x19, 0x60, 0xb5, 0x7a,
+	0xb8, 0xf8, 0x13, 0x9a, 0x08, 0xbf, 0x89, 0xf6, 0x57, 0xf5, 0x43, 0xe0, 0x6b, 0x98, 0xa8, 0xb6,
+	0xf1, 0x99, 0xf5, 0xd7, 0xff, 0x16, 0xe8, 0x98, 0x91, 0xf8, 0x16, 0xa6, 0xa6, 0x39, 0x44, 0x3b,
+	0xb3, 0xd5, 0xd3, 0x7d, 0x4e, 0x2a, 0x75, 0x15, 0xa4, 0xa3, 0xde, 0x37, 0x4b, 0xc7, 0x8c, 0xc4,
+	0xcf, 0x70, 0xe6, 0x87, 0x8e, 0xd4, 0xdb, 0xf1, 0x2a, 0xa4, 0xff, 0x9f, 0x69, 0x9f, 0x26, 0x3a,
+	0xc7, 0xa7, 0xed, 0x85, 0xee, 0x73, 0xfa, 0xc2, 0x04, 0xe4, 0x5c, 0xd8, 0xb8, 0xe9, 0x3e, 0x27,
+	0xef, 0xa6, 0xfa, 0x8f, 0x75, 0xf5, 0x37, 0x00, 0x00, 0xff, 0xff, 0x4a, 0xf7, 0x59, 0xda, 0x8c,
+	0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -662,10 +662,10 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserServiceClient interface {
-	Slice(ctx context.Context, in *UserSliceReq, opts ...grpc.CallOption) (*UserSliceRes, error)
+	List(ctx context.Context, in *UserListReq, opts ...grpc.CallOption) (*UserListRes, error)
 	Create(ctx context.Context, in *UserCreateReq, opts ...grpc.CallOption) (*UserCreateRes, error)
 	Read(ctx context.Context, in *UserReadReq, opts ...grpc.CallOption) (*UserReadRes, error)
-	ByUsername(ctx context.Context, in *UserByUsernameReq, opts ...grpc.CallOption) (*UserByUsernameRes, error)
+	ReadByUsername(ctx context.Context, in *UserReadByUsernameReq, opts ...grpc.CallOption) (*UserReadByUsernameRes, error)
 	Update(ctx context.Context, in *UserUpdateReq, opts ...grpc.CallOption) (*UserUpdateRes, error)
 	Delete(ctx context.Context, in *UserDeleteReq, opts ...grpc.CallOption) (*UserDeleteRes, error)
 }
@@ -678,9 +678,9 @@ func NewUserServiceClient(cc *grpc.ClientConn) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) Slice(ctx context.Context, in *UserSliceReq, opts ...grpc.CallOption) (*UserSliceRes, error) {
-	out := new(UserSliceRes)
-	err := c.cc.Invoke(ctx, "/api.UserService/Slice", in, out, opts...)
+func (c *userServiceClient) List(ctx context.Context, in *UserListReq, opts ...grpc.CallOption) (*UserListRes, error) {
+	out := new(UserListRes)
+	err := c.cc.Invoke(ctx, "/api.UserService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -705,9 +705,9 @@ func (c *userServiceClient) Read(ctx context.Context, in *UserReadReq, opts ...g
 	return out, nil
 }
 
-func (c *userServiceClient) ByUsername(ctx context.Context, in *UserByUsernameReq, opts ...grpc.CallOption) (*UserByUsernameRes, error) {
-	out := new(UserByUsernameRes)
-	err := c.cc.Invoke(ctx, "/api.UserService/ByUsername", in, out, opts...)
+func (c *userServiceClient) ReadByUsername(ctx context.Context, in *UserReadByUsernameReq, opts ...grpc.CallOption) (*UserReadByUsernameRes, error) {
+	out := new(UserReadByUsernameRes)
+	err := c.cc.Invoke(ctx, "/api.UserService/ReadByUsername", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -734,10 +734,10 @@ func (c *userServiceClient) Delete(ctx context.Context, in *UserDeleteReq, opts 
 
 // UserServiceServer is the server API for UserService service.
 type UserServiceServer interface {
-	Slice(context.Context, *UserSliceReq) (*UserSliceRes, error)
+	List(context.Context, *UserListReq) (*UserListRes, error)
 	Create(context.Context, *UserCreateReq) (*UserCreateRes, error)
 	Read(context.Context, *UserReadReq) (*UserReadRes, error)
-	ByUsername(context.Context, *UserByUsernameReq) (*UserByUsernameRes, error)
+	ReadByUsername(context.Context, *UserReadByUsernameReq) (*UserReadByUsernameRes, error)
 	Update(context.Context, *UserUpdateReq) (*UserUpdateRes, error)
 	Delete(context.Context, *UserDeleteReq) (*UserDeleteRes, error)
 }
@@ -746,20 +746,20 @@ func RegisterUserServiceServer(s *grpc.Server, srv UserServiceServer) {
 	s.RegisterService(&_UserService_serviceDesc, srv)
 }
 
-func _UserService_Slice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserSliceReq)
+func _UserService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).Slice(ctx, in)
+		return srv.(UserServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.UserService/Slice",
+		FullMethod: "/api.UserService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).Slice(ctx, req.(*UserSliceReq))
+		return srv.(UserServiceServer).List(ctx, req.(*UserListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -800,20 +800,20 @@ func _UserService_Read_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_ByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UserByUsernameReq)
+func _UserService_ReadByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserReadByUsernameReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).ByUsername(ctx, in)
+		return srv.(UserServiceServer).ReadByUsername(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.UserService/ByUsername",
+		FullMethod: "/api.UserService/ReadByUsername",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).ByUsername(ctx, req.(*UserByUsernameReq))
+		return srv.(UserServiceServer).ReadByUsername(ctx, req.(*UserReadByUsernameReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -859,8 +859,8 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Slice",
-			Handler:    _UserService_Slice_Handler,
+			MethodName: "List",
+			Handler:    _UserService_List_Handler,
 		},
 		{
 			MethodName: "Create",
@@ -871,8 +871,8 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_Read_Handler,
 		},
 		{
-			MethodName: "ByUsername",
-			Handler:    _UserService_ByUsername_Handler,
+			MethodName: "ReadByUsername",
+			Handler:    _UserService_ReadByUsername_Handler,
 		},
 		{
 			MethodName: "Update",

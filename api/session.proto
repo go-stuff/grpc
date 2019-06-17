@@ -19,15 +19,15 @@ message Session {
     google.protobuf.Timestamp ExpiresAt = 6;
 }
 
-message SessionSliceReq {
+message SessionListReq {
     // do not filter
 }
 
-message SessionSliceRes {
+message SessionListRes {
     // return a collection of Sessions
     repeated Session Sessions = 1;
 }
 
 service SessionService {
-    rpc Slice(SessionSliceReq) returns (SessionSliceRes);
+    rpc List(SessionListReq) returns (SessionListRes);
 }

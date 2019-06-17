@@ -58,10 +58,9 @@ func main() {
 	// Register services with the server
 	api.RegisterSessionServiceServer(svr, &service.SessionServiceServer{DB: db})
 	api.RegisterRouteServiceServer(svr, &service.RouteServiceServer{DB: db})
-	api.RegisterPermissionServiceServer(svr, &service.PermissionServiceServer{DB: db})
-	api.RegisterUserServiceServer(svr, &service.UserServiceServer{DB: db})
 	api.RegisterRoleServiceServer(svr, &service.RoleServiceServer{DB: db})
-
+	api.RegisterUserServiceServer(svr, &service.UserServiceServer{DB: db})
+	
 	// Register reflection service on gRPC server.
 	reflection.Register(svr)
 

@@ -108,38 +108,38 @@ func (m *Session) GetExpiresAt() *timestamp.Timestamp {
 	return nil
 }
 
-type SessionSliceReq struct {
+type SessionListReq struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *SessionSliceReq) Reset()         { *m = SessionSliceReq{} }
-func (m *SessionSliceReq) String() string { return proto.CompactTextString(m) }
-func (*SessionSliceReq) ProtoMessage()    {}
-func (*SessionSliceReq) Descriptor() ([]byte, []int) {
+func (m *SessionListReq) Reset()         { *m = SessionListReq{} }
+func (m *SessionListReq) String() string { return proto.CompactTextString(m) }
+func (*SessionListReq) ProtoMessage()    {}
+func (*SessionListReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_3a6be1b361fa6f14, []int{1}
 }
 
-func (m *SessionSliceReq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SessionSliceReq.Unmarshal(m, b)
+func (m *SessionListReq) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SessionListReq.Unmarshal(m, b)
 }
-func (m *SessionSliceReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SessionSliceReq.Marshal(b, m, deterministic)
+func (m *SessionListReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SessionListReq.Marshal(b, m, deterministic)
 }
-func (m *SessionSliceReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SessionSliceReq.Merge(m, src)
+func (m *SessionListReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SessionListReq.Merge(m, src)
 }
-func (m *SessionSliceReq) XXX_Size() int {
-	return xxx_messageInfo_SessionSliceReq.Size(m)
+func (m *SessionListReq) XXX_Size() int {
+	return xxx_messageInfo_SessionListReq.Size(m)
 }
-func (m *SessionSliceReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_SessionSliceReq.DiscardUnknown(m)
+func (m *SessionListReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_SessionListReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_SessionSliceReq proto.InternalMessageInfo
+var xxx_messageInfo_SessionListReq proto.InternalMessageInfo
 
-type SessionSliceRes struct {
+type SessionListRes struct {
 	// return a collection of Sessions
 	Sessions             []*Session `protobuf:"bytes,1,rep,name=Sessions,proto3" json:"Sessions,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
@@ -147,32 +147,32 @@ type SessionSliceRes struct {
 	XXX_sizecache        int32      `json:"-"`
 }
 
-func (m *SessionSliceRes) Reset()         { *m = SessionSliceRes{} }
-func (m *SessionSliceRes) String() string { return proto.CompactTextString(m) }
-func (*SessionSliceRes) ProtoMessage()    {}
-func (*SessionSliceRes) Descriptor() ([]byte, []int) {
+func (m *SessionListRes) Reset()         { *m = SessionListRes{} }
+func (m *SessionListRes) String() string { return proto.CompactTextString(m) }
+func (*SessionListRes) ProtoMessage()    {}
+func (*SessionListRes) Descriptor() ([]byte, []int) {
 	return fileDescriptor_3a6be1b361fa6f14, []int{2}
 }
 
-func (m *SessionSliceRes) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SessionSliceRes.Unmarshal(m, b)
+func (m *SessionListRes) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SessionListRes.Unmarshal(m, b)
 }
-func (m *SessionSliceRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SessionSliceRes.Marshal(b, m, deterministic)
+func (m *SessionListRes) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SessionListRes.Marshal(b, m, deterministic)
 }
-func (m *SessionSliceRes) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SessionSliceRes.Merge(m, src)
+func (m *SessionListRes) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SessionListRes.Merge(m, src)
 }
-func (m *SessionSliceRes) XXX_Size() int {
-	return xxx_messageInfo_SessionSliceRes.Size(m)
+func (m *SessionListRes) XXX_Size() int {
+	return xxx_messageInfo_SessionListRes.Size(m)
 }
-func (m *SessionSliceRes) XXX_DiscardUnknown() {
-	xxx_messageInfo_SessionSliceRes.DiscardUnknown(m)
+func (m *SessionListRes) XXX_DiscardUnknown() {
+	xxx_messageInfo_SessionListRes.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_SessionSliceRes proto.InternalMessageInfo
+var xxx_messageInfo_SessionListRes proto.InternalMessageInfo
 
-func (m *SessionSliceRes) GetSessions() []*Session {
+func (m *SessionListRes) GetSessions() []*Session {
 	if m != nil {
 		return m.Sessions
 	}
@@ -181,31 +181,31 @@ func (m *SessionSliceRes) GetSessions() []*Session {
 
 func init() {
 	proto.RegisterType((*Session)(nil), "api.Session")
-	proto.RegisterType((*SessionSliceReq)(nil), "api.SessionSliceReq")
-	proto.RegisterType((*SessionSliceRes)(nil), "api.SessionSliceRes")
+	proto.RegisterType((*SessionListReq)(nil), "api.SessionListReq")
+	proto.RegisterType((*SessionListRes)(nil), "api.SessionListRes")
 }
 
 func init() { proto.RegisterFile("session.proto", fileDescriptor_3a6be1b361fa6f14) }
 
 var fileDescriptor_3a6be1b361fa6f14 = []byte{
-	// 266 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x8f, 0xcd, 0x4a, 0xc3, 0x40,
-	0x14, 0x85, 0x49, 0xd2, 0xd6, 0xf6, 0x56, 0x2b, 0x5e, 0x5c, 0x0c, 0x59, 0x68, 0xc8, 0x2a, 0xab,
-	0x29, 0xa4, 0x1b, 0xc1, 0x55, 0xb0, 0x05, 0xbb, 0x4d, 0xf5, 0x01, 0xd2, 0xe6, 0x5a, 0x06, 0x9a,
-	0x4e, 0x9c, 0x3b, 0x8a, 0x2f, 0xeb, 0xbb, 0x88, 0x93, 0x1f, 0x8b, 0x08, 0xee, 0x92, 0xef, 0x9c,
-	0x6f, 0xe6, 0x0c, 0x5c, 0x30, 0x31, 0x2b, 0x7d, 0x94, 0xb5, 0xd1, 0x56, 0x63, 0x50, 0xd4, 0x2a,
-	0xbc, 0xdd, 0x6b, 0xbd, 0x3f, 0xd0, 0xdc, 0xa1, 0xed, 0xdb, 0xcb, 0xdc, 0xaa, 0x8a, 0xd8, 0x16,
-	0x55, 0xdd, 0xb4, 0xe2, 0x4f, 0x0f, 0xce, 0x36, 0x8d, 0x87, 0x33, 0xf0, 0xd7, 0x4b, 0xe1, 0x45,
-	0x5e, 0x32, 0xc9, 0xfd, 0xf5, 0x12, 0x43, 0x18, 0x3f, 0x33, 0x99, 0x63, 0x51, 0x91, 0xf0, 0x1d,
-	0xed, 0xff, 0xf1, 0x06, 0x20, 0xa7, 0x4a, 0x5b, 0xca, 0xca, 0xd2, 0x88, 0xc0, 0xa5, 0x27, 0x04,
-	0x11, 0x06, 0x8f, 0x9a, 0xad, 0x18, 0xb8, 0xc4, 0x7d, 0xe3, 0x1d, 0x4c, 0x1e, 0x0c, 0x15, 0x96,
-	0xca, 0xcc, 0x8a, 0x61, 0xe4, 0x25, 0xd3, 0x34, 0x94, 0xcd, 0x40, 0xd9, 0x0d, 0x94, 0x4f, 0xdd,
-	0xc0, 0xfc, 0xa7, 0xfc, 0x6d, 0xae, 0x3e, 0x6a, 0x65, 0x88, 0x33, 0x2b, 0x46, 0xff, 0x9b, 0x7d,
-	0x39, 0xbe, 0x82, 0xcb, 0xf6, 0x79, 0x9b, 0x83, 0xda, 0x51, 0x4e, 0xaf, 0xf1, 0xfd, 0x6f, 0xc4,
-	0x98, 0xc0, 0xb8, 0x45, 0x2c, 0xbc, 0x28, 0x48, 0xa6, 0xe9, 0xb9, 0x2c, 0x6a, 0x25, 0x5b, 0x98,
-	0xf7, 0x69, 0xba, 0x82, 0x59, 0x27, 0x93, 0x79, 0x57, 0x3b, 0xc2, 0x05, 0x0c, 0xdd, 0x39, 0x78,
-	0x7d, 0xaa, 0x74, 0xb7, 0x85, 0x7f, 0x51, 0xde, 0x8e, 0xdc, 0xea, 0xc5, 0x57, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0x65, 0xb4, 0xc9, 0x39, 0xb4, 0x01, 0x00, 0x00,
+	// 264 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x8f, 0xc1, 0x4a, 0xc3, 0x40,
+	0x14, 0x45, 0x49, 0x13, 0x6b, 0xfb, 0xaa, 0x45, 0x9e, 0x9b, 0x21, 0x0b, 0x0d, 0x59, 0x65, 0x35,
+	0x95, 0xb8, 0x11, 0x77, 0xd1, 0x0a, 0x16, 0x5c, 0xa5, 0xfa, 0x01, 0xa9, 0x79, 0x96, 0x01, 0xd3,
+	0x19, 0xe7, 0x8d, 0xe2, 0xcf, 0xfa, 0x2f, 0xd2, 0x49, 0x1a, 0x8b, 0x08, 0xee, 0x92, 0x73, 0xef,
+	0x99, 0xb9, 0x03, 0xc7, 0x4c, 0xcc, 0x4a, 0x6f, 0xa4, 0xb1, 0xda, 0x69, 0x0c, 0x2b, 0xa3, 0xe2,
+	0xf3, 0xb5, 0xd6, 0xeb, 0x57, 0x9a, 0x79, 0xb4, 0x7a, 0x7f, 0x99, 0x39, 0xd5, 0x10, 0xbb, 0xaa,
+	0x31, 0x6d, 0x2b, 0xfd, 0x0a, 0xe0, 0x70, 0xd9, 0x7a, 0x38, 0x85, 0xc1, 0x62, 0x2e, 0x82, 0x24,
+	0xc8, 0xc6, 0xe5, 0x60, 0x31, 0xc7, 0x18, 0x46, 0x4f, 0x4c, 0x76, 0x53, 0x35, 0x24, 0x06, 0x9e,
+	0xf6, 0xff, 0x78, 0x06, 0x50, 0x52, 0xa3, 0x1d, 0x15, 0x75, 0x6d, 0x45, 0xe8, 0xd3, 0x3d, 0x82,
+	0x08, 0xd1, 0xbd, 0x66, 0x27, 0x22, 0x9f, 0xf8, 0x6f, 0xbc, 0x82, 0xf1, 0xad, 0xa5, 0xca, 0x51,
+	0x5d, 0x38, 0x71, 0x90, 0x04, 0xd9, 0x24, 0x8f, 0x65, 0x3b, 0x50, 0xee, 0x06, 0xca, 0xc7, 0xdd,
+	0xc0, 0xf2, 0xa7, 0xbc, 0x35, 0xef, 0x3e, 0x8d, 0xb2, 0xc4, 0x85, 0x13, 0xc3, 0xff, 0xcd, 0xbe,
+	0x9c, 0x9e, 0xc0, 0xb4, 0x7b, 0xde, 0x83, 0x62, 0x57, 0xd2, 0x5b, 0x7a, 0xfd, 0x8b, 0x30, 0x66,
+	0x30, 0xea, 0x08, 0x8b, 0x20, 0x09, 0xb3, 0x49, 0x7e, 0x24, 0x2b, 0xa3, 0x64, 0x07, 0xcb, 0x3e,
+	0xcd, 0x6f, 0x7a, 0x77, 0x49, 0xf6, 0x43, 0x3d, 0x13, 0x5e, 0x40, 0xb4, 0x3d, 0x06, 0x4f, 0xf7,
+	0x8d, 0xee, 0xaa, 0xf8, 0x0f, 0xc8, 0xab, 0xa1, 0x1f, 0x7c, 0xf9, 0x1d, 0x00, 0x00, 0xff, 0xff,
+	0x15, 0xaf, 0x73, 0xcc, 0xaf, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -220,7 +220,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SessionServiceClient interface {
-	Slice(ctx context.Context, in *SessionSliceReq, opts ...grpc.CallOption) (*SessionSliceRes, error)
+	List(ctx context.Context, in *SessionListReq, opts ...grpc.CallOption) (*SessionListRes, error)
 }
 
 type sessionServiceClient struct {
@@ -231,9 +231,9 @@ func NewSessionServiceClient(cc *grpc.ClientConn) SessionServiceClient {
 	return &sessionServiceClient{cc}
 }
 
-func (c *sessionServiceClient) Slice(ctx context.Context, in *SessionSliceReq, opts ...grpc.CallOption) (*SessionSliceRes, error) {
-	out := new(SessionSliceRes)
-	err := c.cc.Invoke(ctx, "/api.SessionService/Slice", in, out, opts...)
+func (c *sessionServiceClient) List(ctx context.Context, in *SessionListReq, opts ...grpc.CallOption) (*SessionListRes, error) {
+	out := new(SessionListRes)
+	err := c.cc.Invoke(ctx, "/api.SessionService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -242,27 +242,27 @@ func (c *sessionServiceClient) Slice(ctx context.Context, in *SessionSliceReq, o
 
 // SessionServiceServer is the server API for SessionService service.
 type SessionServiceServer interface {
-	Slice(context.Context, *SessionSliceReq) (*SessionSliceRes, error)
+	List(context.Context, *SessionListReq) (*SessionListRes, error)
 }
 
 func RegisterSessionServiceServer(s *grpc.Server, srv SessionServiceServer) {
 	s.RegisterService(&_SessionService_serviceDesc, srv)
 }
 
-func _SessionService_Slice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SessionSliceReq)
+func _SessionService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SessionListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionServiceServer).Slice(ctx, in)
+		return srv.(SessionServiceServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.SessionService/Slice",
+		FullMethod: "/api.SessionService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).Slice(ctx, req.(*SessionSliceReq))
+		return srv.(SessionServiceServer).List(ctx, req.(*SessionListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -272,8 +272,8 @@ var _SessionService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*SessionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Slice",
-			Handler:    _SessionService_Slice_Handler,
+			MethodName: "List",
+			Handler:    _SessionService_List_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

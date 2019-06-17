@@ -23,20 +23,20 @@ message Route {
     google.protobuf.Timestamp ModifiedAt = 8;
 }
 
-message RouteSliceReq {
+message RouteListReq {
     // do not filter
 }
 
-message RouteSliceRes {
+message RouteListRes {
     // return a collection of Routes
     repeated Route Routes = 1;
 }
 
-message RouteSliceByRoleIDReq {
+message RouteListByRoleIDReq {
     string RoleID = 1;
 }
 
-message RouteSliceByRoleIDRes {
+message RouteListByRoleIDRes {
     // return a collection of Routes
     repeated Route Routes = 1;
 }
@@ -106,8 +106,8 @@ message RouteDeleteRes {
 }
 
 service RouteService {
-    rpc Slice(RouteSliceReq) returns (RouteSliceRes);
-    rpc SliceByRoleID(RouteSliceByRoleIDReq) returns (RouteSliceByRoleIDRes);
+    rpc List(RouteListReq) returns (RouteListRes);
+    rpc ListByRoleID(RouteListByRoleIDReq) returns (RouteListByRoleIDRes);
     rpc Create(RouteCreateReq) returns (RouteCreateRes);
     rpc Read(RouteReadReq) returns (RouteReadRes);
     rpc ReadByRoleIDAndPath(RouteReadByRoleIDAndPathReq) returns (RouteReadByRoleIDAndPathRes);

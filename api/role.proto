@@ -21,11 +21,11 @@ message Role {
     google.protobuf.Timestamp ModifiedAt = 7;
 }
 
-message RoleSliceReq {
+message RoleListReq {
     // do not filter
 }
 
-message RoleSliceRes {
+message RoleListRes {
     // return a collection of Roles
     repeated Role Roles = 1;
 }
@@ -73,7 +73,7 @@ message RoleDeleteRes {
 }
 
 service RoleService {
-    rpc Slice(RoleSliceReq) returns (RoleSliceRes);
+    rpc List(RoleListReq) returns (RoleListRes);
     rpc Create(RoleCreateReq) returns (RoleCreateRes);
     rpc Read(RoleReadReq) returns (RoleReadRes);
     rpc Update(RoleUpdateReq) returns (RoleUpdateRes);
