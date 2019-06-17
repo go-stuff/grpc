@@ -28,8 +28,8 @@ type Role struct {
 	ID string `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty" bson:"_id"`
 	// @inject_tag: bson:"name"
 	Name string `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty" bson:"name"`
-	// @inject_tag: bson:"desription"
-	Description string `protobuf:"bytes,3,opt,name=Description,proto3" json:"Description,omitempty" bson:"desription"`
+	// @inject_tag: bson:"description"
+	Description string `protobuf:"bytes,3,opt,name=Description,proto3" json:"Description,omitempty" bson:"description"`
 	// @inject_tag: bson:"createdby"
 	CreatedBy string `protobuf:"bytes,4,opt,name=CreatedBy,proto3" json:"CreatedBy,omitempty" bson:"createdby"`
 	// @inject_tag: bson:"createdat"

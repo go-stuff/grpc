@@ -9,7 +9,7 @@ message Role {
     string ID = 1;
     // @inject_tag: bson:"name"
     string Name = 2;
-    // @inject_tag: bson:"desription"
+    // @inject_tag: bson:"description"
     string Description = 3;
     // @inject_tag: bson:"createdby"
     string CreatedBy = 4;

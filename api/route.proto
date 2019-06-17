@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+message Route {
+    // @inject_tag: bson:"_id"
+    string ID = 1;
+    // @inject_tag: bson:"name"
+    string Name = 2;
+    // @inject_tag: bson:"description"
+    string Description = 3;
+    // @inject_tag: bson:"createdby"
+    string CreatedBy = 4;
+    // @inject_tag: bson:"createdat"
+    google.protobuf.Timestamp CreatedAt = 5;
+    // @inject_tag: bson:"modifiedby"
+    string ModifiedBy = 6;
+    // @inject_tag: bson:"modifiedat"
+    google.protobuf.Timestamp ModifiedAt = 7;
+}
+
+message RouteSliceReq {
+    // do not filter
+}
+
+message RouteSliceRes {
+    // return a collection of Routes
+    repeated Route Routes = 1;
+}
+
+message RouteCreateReq {
+    // create a Route
+    Route Route = 1;
+}
+
+message RouteCreateRes {
+    // reutrn an id
+    string ID = 1;
+}
+
+message RouteReadReq {
+    // read a Route by id
+    string ID = 1;
+}
+
+message RouteReadRes {
+    // return a Route
+    Route Route = 1;
+}
+
+message RouteUpdateReq {
+    // update a Route by id
+    Route Route = 1;
+}
+
+message RouteUpdateRes {
+    // return number of Routes updated
+    // should equal 1 on success
+    int64 Updated = 1;
+}
+
+message RouteDeleteReq {
+    // delete a Route by id
+    string ID = 1;
+}
+
+message RouteDeleteRes {
+    // return number of Routes deleted
+    // should equal 1 on success
+    int64 Deleted = 1;
+}
+
+service RouteService {
+    rpc Slice(RouteSliceReq) returns (RouteSliceRes);
+    rpc Create(RouteCreateReq) returns (RouteCreateRes);
+    rpc Read(RouteReadReq) returns (RouteReadRes);
+    rpc Update(RouteUpdateReq) returns (RouteUpdateRes);
+    rpc Delete(RouteDeleteReq) returns (RouteDeleteRes);
+}

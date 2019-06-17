@@ -11,14 +11,16 @@ message User {
     string Username = 2;
     // @inject_tag: bson:"groups"
     repeated string Groups = 3;
+    // @inject_tag: bson:"roleid"
+    string RoleID = 4;
     // @inject_tag: bson:"createdby"
-    string CreatedBy = 4;
+    string CreatedBy = 5;
     // @inject_tag: bson:"createdat"
-    google.protobuf.Timestamp CreatedAt = 5;
+    google.protobuf.Timestamp CreatedAt = 6;
     // @inject_tag: bson:"modifiedby"
-    string ModifiedBy = 6;
+    string ModifiedBy = 7;
     // @inject_tag: bson:"modifiedat"
-    google.protobuf.Timestamp ModifiedAt = 7;
+    google.protobuf.Timestamp ModifiedAt = 8;
 }
 
 message UserSliceReq {
