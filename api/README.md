@@ -37,4 +37,7 @@ protoc-go-inject-tag -input=./user.pb.go
 
 protoc -I . --go_out=plugins=grpc:. ./role.proto
 protoc-go-inject-tag -input=./role.pb.go
+
+protoc -I . --go_out=plugins=grpc:. ./route.proto
+protoc-go-inject-tag -input="./route.pb.go"
 ```

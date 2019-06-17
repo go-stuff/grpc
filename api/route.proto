@@ -9,16 +9,14 @@ message Route {
     string ID = 1;
     // @inject_tag: bson:"name"
     string Name = 2;
-    // @inject_tag: bson:"description"
-    string Description = 3;
     // @inject_tag: bson:"createdby"
-    string CreatedBy = 4;
+    string CreatedBy = 3;
     // @inject_tag: bson:"createdat"
-    google.protobuf.Timestamp CreatedAt = 5;
+    google.protobuf.Timestamp CreatedAt = 4;
     // @inject_tag: bson:"modifiedby"
-    string ModifiedBy = 6;
+    string ModifiedBy = 5;
     // @inject_tag: bson:"modifiedat"
-    google.protobuf.Timestamp ModifiedAt = 7;
+    google.protobuf.Timestamp ModifiedAt = 6;
 }
 
 message RouteSliceReq {
