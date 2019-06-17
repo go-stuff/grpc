@@ -11,14 +11,16 @@ message Permission {
     string RoleID = 2;
     // @inject_tag: bson:"route"
     string Route = 3;
+    // @inject_tag: bson:"permission"
+    bool Permission = 4;
     // @inject_tag: bson:"createdby"
-    string CreatedBy = 4;
+    string CreatedBy = 5;
     // @inject_tag: bson:"createdat"
-    google.protobuf.Timestamp CreatedAt = 5;
+    google.protobuf.Timestamp CreatedAt = 6;
     // @inject_tag: bson:"modifiedby"
-    string ModifiedBy = 6;
+    string ModifiedBy = 7;
     // @inject_tag: bson:"modifiedat"
-    google.protobuf.Timestamp ModifiedAt = 7;
+    google.protobuf.Timestamp ModifiedAt = 8;
 }
 
 message PermissionSliceReq {
@@ -30,15 +32,15 @@ message PermissionSliceRes {
     repeated Permission Permissions = 1;
 }
 
-message PermissionByRoleReq {
-    // filter slice by roleid
+message PermissionSliceByRoleIDReq {
     string RoleID = 1;
 }
 
-message PermissionByRoleRes {
-    // return a collection of Permissions
-    repeated Permission Permissions = 1;
+message PermissionSliceByRoleIDRes {
+     // return a collection of Permissions
+     repeated Permission Permissions = 1;
 }
+
 
 message PermissionCreateReq {
     // create a Permission
@@ -59,8 +61,6 @@ message PermissionReadRes {
     // return a Permission
     Permission Permission = 1;
 }
-
-
 
 message PermissionUpdateReq {
     // update a Permission by id
@@ -86,7 +86,7 @@ message PermissionDeleteRes {
 
 service PermissionService {
     rpc Slice(PermissionSliceReq) returns (PermissionSliceRes);
-    rpc ByRole(PermissionByRoleReq) returns (PermissionByRoleRes);
+    rpc SliceByRoleID(PermissionSliceByRoleIDReq) returns (PermissionSliceByRoleIDRes);
     rpc Create(PermissionCreateReq) returns (PermissionCreateRes);
     rpc Read(PermissionReadReq) returns (PermissionReadRes);
     rpc Update(PermissionUpdateReq) returns (PermissionUpdateRes);

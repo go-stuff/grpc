@@ -59,6 +59,48 @@ func (s *RouteServiceServer) Slice(ctx context.Context, req *api.RouteSliceReq) 
 	return res, nil
 }
 
+// SliceByRoleID returns a slice of Routes by RoleID
+func (s *RouteServiceServer) SliceByRoleID(ctx context.Context, req *api.RouteSliceByRoleIDReq) (*api.RouteSliceByRoleIDRes, error) {
+	// prepare a Res
+	res := new(api.RouteSliceByRoleIDRes)
+
+	// find all Routes
+	cursor, err := s.DB.Collection(RouteCollection).Find(ctx,
+		bson.M{
+			"roleid": req.RoleID,
+		},
+		&options.FindOptions{
+			Sort: bson.M{
+				"path": 1, // acending
+				//"path": -1, // descending
+			},
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	// itterate each document returned
+	for cursor.Next(ctx) {
+		var Route = new(api.Route)
+		err := cursor.Decode(&Route)
+		if err != nil {
+			return nil, err
+		}
+
+		// append the current Route to the slice
+		res.Routes = append(res.Routes, Route)
+	}
+
+	// handle any errors with the cursor
+	if err := cursor.Err(); err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
 // Create inserts a Route
 func (s *RouteServiceServer) Create(ctx context.Context, req *api.RouteCreateReq) (*api.RouteCreateRes, error) {
 	// prepare a Res
@@ -66,7 +108,7 @@ func (s *RouteServiceServer) Create(ctx context.Context, req *api.RouteCreateReq
 
 	Route := &api.Route{
 		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
-		Name:       req.Route.Name,
+		Path:       req.Route.Path,
 		CreatedBy:  req.Route.CreatedBy,
 		CreatedAt:  ptypes.TimestampNow(),
 		ModifiedBy: req.Route.ModifiedBy,
@@ -106,10 +148,10 @@ func (s *RouteServiceServer) Read(ctx context.Context, req *api.RouteReadReq) (*
 	return res, nil
 }
 
-// Read returns a single Route
-func (s *RouteServiceServer) ReadByName(ctx context.Context, req *api.RouteReadByNameReq) (*api.RouteReadByNameRes, error) {
+// ReadByPath returns a single Route
+func (s *RouteServiceServer) ReadByRoleIDAndPath(ctx context.Context, req *api.RouteReadByRoleIDAndPathReq) (*api.RouteReadByRoleIDAndPathRes, error) {
 	// prepare a Res
-	res := new(api.RouteReadByNameRes)
+	res := new(api.RouteReadByRoleIDAndPathRes)
 
 	// initialize Route
 	res.Route = new(api.Route)
@@ -117,7 +159,8 @@ func (s *RouteServiceServer) ReadByName(ctx context.Context, req *api.RouteReadB
 	// find a Route
 	err := s.DB.Collection(RouteCollection).FindOne(ctx,
 		bson.M{
-			"name": req.Name,
+			"roleid": req.RoleID,
+			"path":   req.Path,
 		},
 	).Decode(res.Route)
 	if err != nil {
@@ -139,7 +182,34 @@ func (s *RouteServiceServer) Update(ctx context.Context, req *api.RouteUpdateReq
 		},
 		bson.M{
 			"$set": bson.M{
-				"name":       req.Route.Name,
+				"name":       req.Route.Path,
+				"modifiedby": req.Route.ModifiedBy,
+				"modifiedat": ptypes.TimestampNow(),
+			},
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	res.Updated = updateRes.ModifiedCount
+
+	return res, nil
+}
+
+// UpdateByRoleIDAndPath modifies a Route
+func (s *RouteServiceServer) UpdateByRoleIDAndPath(ctx context.Context, req *api.RouteUpdateByRoleIDAndPathReq) (*api.RouteUpdateByRoleIDAndPathRes, error) {
+	// prepare a Res
+	res := new(api.RouteUpdateByRoleIDAndPathRes)
+
+	// update a Route
+	updateRes, err := s.DB.Collection(RouteCollection).UpdateOne(ctx,
+		bson.M{
+			"roleid": req.Route.RoleID,
+			"path":   req.Route.Path,
+		},
+		bson.M{
+			"$set": bson.M{
 				"modifiedby": req.Route.ModifiedBy,
 				"modifiedat": ptypes.TimestampNow(),
 			},

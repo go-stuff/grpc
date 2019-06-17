@@ -7,16 +7,20 @@ import "google/protobuf/timestamp.proto";
 message Route {
     // @inject_tag: bson:"_id"
     string ID = 1;
-    // @inject_tag: bson:"name"
-    string Name = 2;
+    // @inject_tag: bson:"roleid"
+    string RoleID = 2;
+    // @inject_tag: bson:"path"
+    string Path = 3;
+    // @inject_tag: bson:"permission"
+    bool Permission = 4;
     // @inject_tag: bson:"createdby"
-    string CreatedBy = 3;
+    string CreatedBy = 5;
     // @inject_tag: bson:"createdat"
-    google.protobuf.Timestamp CreatedAt = 4;
+    google.protobuf.Timestamp CreatedAt = 6;
     // @inject_tag: bson:"modifiedby"
-    string ModifiedBy = 5;
+    string ModifiedBy = 7;
     // @inject_tag: bson:"modifiedat"
-    google.protobuf.Timestamp ModifiedAt = 6;
+    google.protobuf.Timestamp ModifiedAt = 8;
 }
 
 message RouteSliceReq {
@@ -24,6 +28,15 @@ message RouteSliceReq {
 }
 
 message RouteSliceRes {
+    // return a collection of Routes
+    repeated Route Routes = 1;
+}
+
+message RouteSliceByRoleIDReq {
+    string RoleID = 1;
+}
+
+message RouteSliceByRoleIDRes {
     // return a collection of Routes
     repeated Route Routes = 1;
 }
@@ -48,12 +61,13 @@ message RouteReadRes {
     Route Route = 1;
 }
 
-message RouteReadByNameReq {
-    // read a Route by name
-    string Name = 1;
+message RouteReadByRoleIDAndPathReq {
+    // read a Route by path
+    string RoleID = 1;
+    string Path = 2;
 }
 
-message RouteReadByNameRes {
+message RouteReadByRoleIDAndPathRes {
     // return a Route
     Route Route = 1;
 }
@@ -64,6 +78,17 @@ message RouteUpdateReq {
 }
 
 message RouteUpdateRes {
+    // return number of Routes updated
+    // should equal 1 on success
+    int64 Updated = 1;
+}
+
+message RouteUpdateByRoleIDAndPathReq {
+    // update a Route by roleid and path
+    Route Route = 1;
+}
+
+message RouteUpdateByRoleIDAndPathRes {
     // return number of Routes updated
     // should equal 1 on success
     int64 Updated = 1;
@@ -82,9 +107,11 @@ message RouteDeleteRes {
 
 service RouteService {
     rpc Slice(RouteSliceReq) returns (RouteSliceRes);
+    rpc SliceByRoleID(RouteSliceByRoleIDReq) returns (RouteSliceByRoleIDRes);
     rpc Create(RouteCreateReq) returns (RouteCreateRes);
     rpc Read(RouteReadReq) returns (RouteReadRes);
-    rpc ReadByName(RouteReadByNameReq) returns (RouteReadByNameRes);
+    rpc ReadByRoleIDAndPath(RouteReadByRoleIDAndPathReq) returns (RouteReadByRoleIDAndPathRes);
     rpc Update(RouteUpdateReq) returns (RouteUpdateRes);
+    rpc UpdateByRoleIDAndPath(RouteUpdateByRoleIDAndPathReq) returns (RouteUpdateByRoleIDAndPathRes);
     rpc Delete(RouteDeleteReq) returns (RouteDeleteRes);
 }
