@@ -29,6 +29,9 @@ cd api
 protoc -I . --go_out=plugins=grpc:. ./session.proto
 protoc-go-inject-tag -input=./session.pb.go
 
+protoc -I . --go_out=plugins=grpc:. ./permission.proto
+protoc-go-inject-tag -input=./permission.pb.go
+
 protoc -I . --go_out=plugins=grpc:. ./user.proto
 protoc-go-inject-tag -input=./user.pb.go
 

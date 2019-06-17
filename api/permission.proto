@@ -30,6 +30,16 @@ message PermissionSliceRes {
     repeated Permission Permissions = 1;
 }
 
+message PermissionSliceByRoleReq {
+    // filter slice by roleid
+    string RoleID = 1;
+}
+
+message PermissionSliceByRoleRes {
+    // return a collection of Permissions
+    repeated Permission Permissions = 1;
+}
+
 message PermissionCreateReq {
     // create a Permission
     Permission Permission = 1;
@@ -74,6 +84,7 @@ message PermissionDeleteRes {
 
 service PermissionService {
     rpc Slice(PermissionSliceReq) returns (PermissionSliceRes);
+    rpc SliceByRole(PermissionSliceByRoleReq) returns (PermissionSliceByRoleRes);
     rpc Create(PermissionCreateReq) returns (PermissionCreateRes);
     rpc Read(PermissionReadReq) returns (PermissionReadRes);
     rpc Update(PermissionUpdateReq) returns (PermissionUpdateRes);

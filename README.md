@@ -6,15 +6,17 @@ Testing grpc
 
 # Environment Variables Required
 
+The following are default values if none are specified:
+
 ```bash
-MONGO_URI
-MONGO_DATABASE
-API_URI
+MONGO_URI = "mongodb://localhost:27017"
+MONGO_DATABASE = "test"
+API_URI = "localhost:6000"
 ```
 
-# Test Certs
+# Certs
 
-I have included some test certs in the package. You can generate them the following way.
+I have included some test certs in the package to connect with `go-stuff\web`. You can generate them the following way:
 
 ``` bash
 go run GOROOT/src/crypto/tls/generate_cert.go --host 127.0.0.1 --duration 17520h
