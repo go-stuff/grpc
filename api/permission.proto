@@ -60,6 +60,8 @@ message PermissionReadRes {
     Permission Permission = 1;
 }
 
+
+
 message PermissionUpdateReq {
     // update a Permission by id
     Permission Permission = 1;

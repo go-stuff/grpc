@@ -48,6 +48,16 @@ message RouteReadRes {
     Route Route = 1;
 }
 
+message RouteReadByNameReq {
+    // read a Route by name
+    string Name = 1;
+}
+
+message RouteReadByNameRes {
+    // return a Route
+    Route Route = 1;
+}
+
 message RouteUpdateReq {
     // update a Route by id
     Route Route = 1;
@@ -74,6 +84,7 @@ service RouteService {
     rpc Slice(RouteSliceReq) returns (RouteSliceRes);
     rpc Create(RouteCreateReq) returns (RouteCreateRes);
     rpc Read(RouteReadReq) returns (RouteReadRes);
+    rpc ReadByName(RouteReadByNameReq) returns (RouteReadByNameRes);
     rpc Update(RouteUpdateReq) returns (RouteUpdateRes);
     rpc Delete(RouteDeleteReq) returns (RouteDeleteRes);
 }
