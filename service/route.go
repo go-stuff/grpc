@@ -159,8 +159,8 @@ func (s *RouteServiceServer) ReadByRoleIDAndPath(ctx context.Context, req *api.R
 	// find a Route
 	err := s.DB.Collection(RouteCollection).FindOne(ctx,
 		bson.M{
-			"roleid": req.RoleID,
-			"path":   req.Path,
+			"roleid": req.Route.RoleID,
+			"path":   req.Route.Path,
 		},
 	).Decode(res.Route)
 	if err != nil {
