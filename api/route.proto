@@ -62,9 +62,8 @@ message RouteReadRes {
 }
 
 message RouteReadByRoleIDAndPathReq {
-    // read a Route by path
-    string RoleID = 1;
-    string Path = 2;
+    // update a Route by id
+    Route Route = 1;
 }
 
 message RouteReadByRoleIDAndPathRes {
