@@ -107,6 +107,27 @@ func (s *RoleServiceServer) Read(ctx context.Context, req *api.RoleReadReq) (*ap
 	return res, nil
 }
 
+// ReadByName returns a single Role by name
+func (s *RoleServiceServer) ReadByName(ctx context.Context, req *api.RoleReadByNameReq) (*api.RoleReadByNameRes, error) {
+	// prepare a Res
+	res := new(api.RoleReadByNameRes)
+
+	// initialize Role
+	res.Role = new(api.Role)
+
+	// find a Role
+	err := s.DB.Collection(RoleCollection).FindOne(ctx,
+		bson.M{
+			"name": req.Name,
+		},
+	).Decode(res.Role)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
 // Update modifies a Role
 func (s *RoleServiceServer) Update(ctx context.Context, req *api.RoleUpdateReq) (*api.RoleUpdateRes, error) {
 	// prepare a Res

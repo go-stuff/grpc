@@ -50,6 +50,16 @@ message RoleReadRes {
     Role Role = 1;
 }
 
+message RoleReadByNameReq {
+    // read a Role by id
+    string Name = 1;
+}
+
+message RoleReadByNameRes {
+    // return a Role
+    Role Role = 1;
+}
+
 message RoleUpdateReq {
     // update a Role by id
     Role Role = 1;
@@ -76,6 +86,7 @@ service RoleService {
     rpc List(RoleListReq) returns (RoleListRes);
     rpc Create(RoleCreateReq) returns (RoleCreateRes);
     rpc Read(RoleReadReq) returns (RoleReadRes);
+    rpc ReadByName(RoleReadByNameReq) returns (RoleReadByNameRes);
     rpc Update(RoleUpdateReq) returns (RoleUpdateRes);
     rpc Delete(RoleDeleteReq) returns (RoleDeleteRes);
 }
