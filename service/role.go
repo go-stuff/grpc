@@ -122,7 +122,7 @@ func (s *RoleServiceServer) ReadByName(ctx context.Context, req *api.RoleReadByN
 		},
 	).Decode(res.Role)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
