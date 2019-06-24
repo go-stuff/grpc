@@ -60,7 +60,8 @@ func main() {
 	api.RegisterRouteServiceServer(svr, &service.RouteServiceServer{DB: db})
 	api.RegisterRoleServiceServer(svr, &service.RoleServiceServer{DB: db})
 	api.RegisterUserServiceServer(svr, &service.UserServiceServer{DB: db})
-	
+	api.RegisterAuditServiceServer(svr, &service.AuditServiceServer{DB: db})
+
 	// Register reflection service on gRPC server.
 	reflection.Register(svr)
 
