@@ -59,13 +59,14 @@ func (s *AuditServiceServer) List(ctx context.Context, req *api.AuditListReq) (*
 	return res, nil
 }
 
-// List returns a slice of Audits
+// List100 returns the last 100 audit records
 func (s *AuditServiceServer) List100(ctx context.Context, req *api.AuditList100Req) (*api.AuditList100Res, error) {
 	// prepare a Res
 	res := new(api.AuditList100Res)
 
 	opts := &options.FindOptions{}
 	opts.SetLimit(100)
+	opts.SetSort(bson.M{"createdat": 1})
 
 	// find all Audits
 	cursor, err := s.DB.Collection(AuditCollection).Find(ctx, bson.M{}, opts)
