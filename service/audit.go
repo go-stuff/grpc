@@ -8,6 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // AuditCollection is the name of the collection in the database.
@@ -33,6 +34,41 @@ func (s *AuditServiceServer) List(ctx context.Context, req *api.AuditListReq) (*
 		// 	},
 		// },
 	)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	// itterate each document returned
+	for cursor.Next(ctx) {
+		var Audit = new(api.Audit)
+		err := cursor.Decode(&Audit)
+		if err != nil {
+			return nil, err
+		}
+
+		// append the current Audit to the slice
+		res.Audits = append(res.Audits, Audit)
+	}
+
+	// handle any errors with the cursor
+	if err := cursor.Err(); err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+// List returns a slice of Audits
+func (s *AuditServiceServer) List100(ctx context.Context, req *api.AuditList100Req) (*api.AuditList100Res, error) {
+	// prepare a Res
+	res := new(api.AuditList100Res)
+
+	opts := &options.FindOptions{}
+	opts.SetLimit(100)
+
+	// find all Audits
+	cursor, err := s.DB.Collection(AuditCollection).Find(ctx, bson.M{}, opts)
 	if err != nil {
 		return nil, err
 	}
