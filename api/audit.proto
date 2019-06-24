@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+message Audit {
+    // @inject_tag: bson:"_id"
+    string ID = 1;
+    // @inject_tag: bson:"username"
+    string Username = 2;
+    // @inject_tag: bson:"action"
+    string Action = 3;
+    // @inject_tag: bson:"createdby"
+    string CreatedBy = 4;
+    // @inject_tag: bson:"createdat"
+    google.protobuf.Timestamp CreatedAt = 5;
+}
+
+message AuditListReq {
+    // do not filter
+}
+
+message AuditListRes {
+    // return a collection of Audits
+    repeated Audit Audits = 1;
+}
+
+message AuditList100Req {
+    // do not filter
+}
+
+message AuditList100Res {
+    // return a collection of Audits
+    repeated Audit Audits = 1;
+}
+
+message AuditCreateReq {
+    // create a Audit
+    Audit Audit = 1;
+}
+
+message AuditCreateRes {
+    // reutrn an id
+    string ID = 1;
+}
+
+message AuditReadReq {
+    // read a Audit by id
+    string ID = 1;
+}
+
+message AuditReadRes {
+    // return a Audit
+    Audit Audit = 1;
+}
+
+service AuditService {
+    rpc List(AuditListReq) returns (AuditListRes);
+    rpc List100(AuditList100Req) returns (AuditList100Res);
+    rpc Create(AuditCreateReq) returns (AuditCreateRes);
+    rpc Read(AuditReadReq) returns (AuditReadRes);
+}
