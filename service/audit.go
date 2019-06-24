@@ -104,6 +104,7 @@ func (s *AuditServiceServer) Create(ctx context.Context, req *api.AuditCreateReq
 		ID:        primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
 		Username:  req.Audit.Username,
 		Action:    req.Audit.Action,
+		Session:   req.Audit.Session,
 		CreatedBy: req.Audit.CreatedBy,
 		CreatedAt: ptypes.TimestampNow(),
 	}

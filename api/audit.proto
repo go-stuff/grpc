@@ -11,10 +11,12 @@ message Audit {
     string Username = 2;
     // @inject_tag: bson:"action"
     string Action = 3;
+    // @inject_tag: bson:"session"
+    string Session = 4;
     // @inject_tag: bson:"createdby"
-    string CreatedBy = 4;
+    string CreatedBy = 5;
     // @inject_tag: bson:"createdat"
-    google.protobuf.Timestamp CreatedAt = 5;
+    google.protobuf.Timestamp CreatedAt = 6;
 }
 
 message AuditListReq {
