@@ -16,6 +16,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
+
+	"go.mongodb.org/mongo-driver/bson/bsoncodec"
 )
 
 func main() {
@@ -81,8 +83,14 @@ func initMongoClient() (*mongo.Client, context.Context, error) {
 		os.Setenv("MONGO_URI", "mongodb://localhost:27017")
 	}
 
+	reg := bsoncodec.NewRegistryBuilder().Build()
+	
 	// connect does not do server discovery, use ping
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
+	client, err := mongo.Connect(ctx, 
+		options.Client().
+		ApplyURI(os.Getenv("MONGO_URI")).
+		SetRegistry(reg),
+	)
 	if err != nil {
 		return nil, nil, err
 	}

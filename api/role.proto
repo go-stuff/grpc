@@ -3,20 +3,21 @@ syntax = "proto3";
 package api;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 message Role {
     // @inject_tag: bson:"_id"
-    string ID = 1;
+    google.protobuf.StringValue ID = 1;
     // @inject_tag: bson:"name"
-    string Name = 2;
+    google.protobuf.StringValue Name = 2;
     // @inject_tag: bson:"description"
-    string Description = 3;
+    google.protobuf.StringValue Description = 3;
     // @inject_tag: bson:"createdby"
-    string CreatedBy = 4;
+    google.protobuf.StringValue CreatedBy = 4;
     // @inject_tag: bson:"createdat"
     google.protobuf.Timestamp CreatedAt = 5;
     // @inject_tag: bson:"modifiedby"
-    string ModifiedBy = 6;
+    google.protobuf.StringValue ModifiedBy = 6;
     // @inject_tag: bson:"modifiedat"
     google.protobuf.Timestamp ModifiedAt = 7;
 }
@@ -37,12 +38,12 @@ message RoleCreateReq {
 
 message RoleCreateRes {
     // reutrn an id
-    string ID = 1;
+    google.protobuf.StringValue ID = 1;
 }
 
 message RoleReadReq {
     // read a Role by id
-    string ID = 1;
+    google.protobuf.StringValue ID = 1;
 }
 
 message RoleReadRes {
@@ -52,7 +53,7 @@ message RoleReadRes {
 
 message RoleReadByNameReq {
     // read a Role by id
-    string Name = 1;
+    google.protobuf.StringValue Name = 1;
 }
 
 message RoleReadByNameRes {
@@ -68,18 +69,18 @@ message RoleUpdateReq {
 message RoleUpdateRes {
     // return number of Roles updated
     // should equal 1 on success
-    int64 Updated = 1;
+    google.protobuf.Int64Value Updated = 1;
 }
 
 message RoleDeleteReq {
     // delete a Role by id
-    string ID = 1;
+    google.protobuf.StringValue ID = 1;
 }
 
 message RoleDeleteRes {
     // return number of Roles deleted
     // should equal 1 on success
-    int64 Deleted = 1;
+    google.protobuf.Int64Value Deleted = 1;
 }
 
 service RoleService {

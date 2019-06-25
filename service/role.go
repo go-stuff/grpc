@@ -5,6 +5,7 @@ import (
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/golang/protobuf/ptypes/wrappers"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -65,7 +66,7 @@ func (s *RoleServiceServer) Create(ctx context.Context, req *api.RoleCreateReq) 
 	res := new(api.RoleCreateRes)
 
 	Role := &api.Role{
-		ID:          primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
+		ID:          &wrappers.StringValue{Value: primitive.NewObjectID().Hex()}, // ObjectID's are generated based on time
 		Name:        req.Role.Name,
 		Description: req.Role.Description,
 		CreatedBy:   req.Role.CreatedBy,
@@ -154,7 +155,7 @@ func (s *RoleServiceServer) Update(ctx context.Context, req *api.RoleUpdateReq) 
 		return nil, err
 	}
 
-	res.Updated = updateRes.ModifiedCount
+	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
 
 	return res, nil
 }
@@ -174,7 +175,7 @@ func (s *RoleServiceServer) Delete(ctx context.Context, req *api.RoleDeleteReq) 
 		return nil, err
 	}
 
-	res.Deleted = deleteRes.DeletedCount
+	res.Deleted = &wrappers.Int64Value{Value: deleteRes.DeletedCount}
 
 	return res, nil
 }
