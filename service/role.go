@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"time"
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
@@ -65,18 +66,24 @@ func (s *RoleServiceServer) Create(ctx context.Context, req *api.RoleCreateReq) 
 	// prepare a Res
 	res := new(api.RoleCreateRes)
 
+	now := time.Now()
+	ts, err := ptypes.TimestampProto(now)
+	if err != nil {
+		return nil, err
+	}
+
 	Role := &api.Role{
 		ID:          &wrappers.StringValue{Value: primitive.NewObjectID().Hex()}, // ObjectID's are generated based on time
 		Name:        req.Role.Name,
 		Description: req.Role.Description,
 		CreatedBy:   req.Role.CreatedBy,
-		CreatedAt:   ptypes.TimestampNow(),
+		CreatedAt:   ts,
 		ModifiedBy:  req.Role.ModifiedBy,
-		ModifiedAt:  ptypes.TimestampNow(),
+		ModifiedAt:  ts,
 	}
 
 	// insert role into mongo
-	_, err := s.DB.Collection(RoleCollection).InsertOne(ctx, Role)
+	_, err = s.DB.Collection(RoleCollection).InsertOne(ctx, Role)
 	if err != nil {
 		return nil, err
 	}

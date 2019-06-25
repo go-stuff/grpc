@@ -2,9 +2,11 @@ package service
 
 import (
 	"context"
+	"time"
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/golang/protobuf/ptypes/wrappers"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -64,19 +66,25 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 	// prepare a Res
 	res := new(api.UserCreateRes)
 
+	now := time.Now()
+	ts, err := ptypes.TimestampProto(now)
+	if err != nil {
+		return nil, err
+	}
+
 	user := &api.User{
-		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
+		ID:         &wrappers.StringValue{Value: primitive.NewObjectID().Hex()}, // ObjectID's are generated based on time
 		Username:   req.User.Username,
 		Groups:     req.User.Groups,
 		RoleID:     req.User.RoleID,
 		CreatedBy:  req.User.CreatedBy,
-		CreatedAt:  ptypes.TimestampNow(),
+		CreatedAt:  ts,
 		ModifiedBy: req.User.ModifiedBy,
-		ModifiedAt: ptypes.TimestampNow(),
+		ModifiedAt: ts,
 	}
 
 	// insert role into mongo
-	_, err := s.DB.Collection(UserCollection).InsertOne(ctx, user)
+	_, err = s.DB.Collection(UserCollection).InsertOne(ctx, user)
 	if err != nil {
 		return nil, err
 	}
@@ -153,7 +161,7 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 		return nil, err
 	}
 
-	res.Updated = updateRes.ModifiedCount
+	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
 
 	return res, nil
 }
@@ -173,7 +181,7 @@ func (s *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteReq) 
 		return nil, err
 	}
 
-	res.Deleted = deleteRes.DeletedCount
+	res.Deleted = &wrappers.Int64Value{Value: deleteRes.DeletedCount}
 
 	return res, nil
 }
