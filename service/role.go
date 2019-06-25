@@ -126,7 +126,7 @@ func (s *RoleServiceServer) ReadByName(ctx context.Context, req *api.RoleReadByN
 	// find a Role
 	err := s.DB.Collection(RoleCollection).FindOne(ctx,
 		bson.M{
-			"name": req.Name,
+			"name": req.Name.Value,
 		},
 	).Decode(res.Role)
 	if err == mongo.ErrNoDocuments {

@@ -14,10 +14,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
-
-	"go.mongodb.org/mongo-driver/bson/bsoncodec"
 )
 
 func main() {
@@ -48,14 +45,14 @@ func main() {
 	defer lis.Close()
 
 	// with cert
-	creds, err := credentials.NewServerTLSFromFile("./certs/cert.pem", "./certs/key.pem")
-	if err != nil {
-		log.Fatalf("failed to get creds: %v", err)
-	}
-	svr := grpc.NewServer(grpc.Creds(creds))
+	// creds, err := credentials.NewServerTLSFromFile("./certs/cert.pem", "./certs/key.pem")
+	// if err != nil {
+	// 	log.Fatalf("failed to get creds: %v", err)
+	// }
+	// svr := grpc.NewServer(grpc.Creds(creds))
 
 	// without cert
-	//svr := grpc.NewServer()
+	svr := grpc.NewServer()
 
 	// Register services with the server
 	api.RegisterSessionServiceServer(svr, &service.SessionServiceServer{DB: db})
@@ -83,13 +80,14 @@ func initMongoClient() (*mongo.Client, context.Context, error) {
 		os.Setenv("MONGO_URI", "mongodb://localhost:27017")
 	}
 
-	reg := bsoncodec.NewRegistryBuilder().Build()
-	
+	// register bson codecs for protobuf timestamp and wrapper types
+	//reg := bsoncodec.NewRegistryBuilder().Build()
+
 	// connect does not do server discovery, use ping
-	client, err := mongo.Connect(ctx, 
+	client, err := mongo.Connect(ctx,
 		options.Client().
-		ApplyURI(os.Getenv("MONGO_URI")).
-		SetRegistry(reg),
+			ApplyURI(os.Getenv("MONGO_URI")), //.
+		//SetRegistry(reg),
 	)
 	if err != nil {
 		return nil, nil, err
