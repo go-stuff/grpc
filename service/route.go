@@ -2,9 +2,11 @@ package service
 
 import (
 	"context"
+	"time"
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/golang/protobuf/ptypes/wrappers"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -106,17 +108,23 @@ func (s *RouteServiceServer) Create(ctx context.Context, req *api.RouteCreateReq
 	// prepare a Res
 	res := new(api.RouteCreateRes)
 
+	now := time.Now()
+	ts, err := ptypes.TimestampProto(now)
+	if err != nil {
+		return nil, err
+	}
+
 	Route := &api.Route{
-		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
+		ID:         &wrappers.StringValue{Value: primitive.NewObjectID().Hex()}, // ObjectID's are generated based on time
 		Path:       req.Route.Path,
 		CreatedBy:  req.Route.CreatedBy,
-		CreatedAt:  ptypes.TimestampNow(),
+		CreatedAt:  ts,
 		ModifiedBy: req.Route.ModifiedBy,
-		ModifiedAt: ptypes.TimestampNow(),
+		ModifiedAt: ts,
 	}
 
 	// insert Route into mongo
-	_, err := s.DB.Collection(RouteCollection).InsertOne(ctx, Route)
+	_, err = s.DB.Collection(RouteCollection).InsertOne(ctx, Route)
 	if err != nil {
 		return nil, err
 	}
@@ -192,7 +200,7 @@ func (s *RouteServiceServer) Update(ctx context.Context, req *api.RouteUpdateReq
 		return nil, err
 	}
 
-	res.Updated = updateRes.ModifiedCount
+	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
 
 	return res, nil
 }
@@ -223,19 +231,24 @@ func (s *RouteServiceServer) UpdateByRoleIDAndPath(ctx context.Context, req *api
 		return nil, err
 	}
 
-	res.Updated = updateRes.ModifiedCount
+	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
 
-	if res.Updated == 0 {
+	now := time.Now()
+	ts, err := ptypes.TimestampProto(now)
+	if err != nil {
+		return nil, err
+	}
 
+	if (res.Updated == &wrappers.Int64Value{Value: 0}) {
 		Route := &api.Route{
-			ID:         primitive.NewObjectID().Hex(),
+			ID:         &wrappers.StringValue{Value: primitive.NewObjectID().Hex()},
 			RoleID:     req.Route.RoleID,
 			Path:       req.Route.Path,
 			Permission: req.Route.Permission,
-			CreatedBy:  "System",
-			CreatedAt:  ptypes.TimestampNow(),
-			ModifiedBy: "System",
-			ModifiedAt: ptypes.TimestampNow(),
+			CreatedBy:  &wrappers.StringValue{Value: "System"},
+			CreatedAt:  ts,
+			ModifiedBy: &wrappers.StringValue{Value: "System"},
+			ModifiedAt: ts,
 		}
 
 		// insert Route into mongo
@@ -245,7 +258,7 @@ func (s *RouteServiceServer) UpdateByRoleIDAndPath(ctx context.Context, req *api
 		}
 
 		// update the Res id
-		res.Updated = 1
+		res.Updated = &wrappers.Int64Value{Value: 1}
 		//res.ID = Route.ID
 	}
 
@@ -267,7 +280,7 @@ func (s *RouteServiceServer) Delete(ctx context.Context, req *api.RouteDeleteReq
 		return nil, err
 	}
 
-	res.Deleted = deleteRes.DeletedCount
+	res.Deleted = &wrappers.Int64Value{Value: deleteRes.DeletedCount}
 
 	return res, nil
 }
