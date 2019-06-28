@@ -6,7 +6,6 @@ import (
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
-	"github.com/golang/protobuf/ptypes/wrappers"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -21,7 +20,7 @@ type RouteServiceServer struct {
 	DB *mongo.Database
 }
 
-// Slice returns a slice of Routes
+// List returns a slice of Routes
 func (s *RouteServiceServer) List(ctx context.Context, req *api.RouteListReq) (*api.RouteListRes, error) {
 	// prepare a Res
 	res := new(api.RouteListRes)
@@ -36,6 +35,9 @@ func (s *RouteServiceServer) List(ctx context.Context, req *api.RouteListReq) (*
 			},
 		},
 	)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -78,6 +80,9 @@ func (s *RouteServiceServer) ListByRoleID(ctx context.Context, req *api.RouteLis
 			},
 		},
 	)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +120,7 @@ func (s *RouteServiceServer) Create(ctx context.Context, req *api.RouteCreateReq
 	}
 
 	Route := &api.Route{
-		ID:         &wrappers.StringValue{Value: primitive.NewObjectID().Hex()}, // ObjectID's are generated based on time
+		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
 		Path:       req.Route.Path,
 		CreatedBy:  req.Route.CreatedBy,
 		CreatedAt:  ts,
@@ -149,6 +154,9 @@ func (s *RouteServiceServer) Read(ctx context.Context, req *api.RouteReadReq) (*
 			"_id": req.ID,
 		},
 	).Decode(res.Route)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -171,6 +179,9 @@ func (s *RouteServiceServer) ReadByRoleIDAndPath(ctx context.Context, req *api.R
 			"path":   req.Route.Path,
 		},
 	).Decode(res.Route)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -200,7 +211,7 @@ func (s *RouteServiceServer) Update(ctx context.Context, req *api.RouteUpdateReq
 		return nil, err
 	}
 
-	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
+	res.Updated = updateRes.ModifiedCount
 
 	return res, nil
 }
@@ -231,7 +242,7 @@ func (s *RouteServiceServer) UpdateByRoleIDAndPath(ctx context.Context, req *api
 		return nil, err
 	}
 
-	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
+	res.Updated = updateRes.ModifiedCount
 
 	now := time.Now()
 	ts, err := ptypes.TimestampProto(now)
@@ -239,15 +250,15 @@ func (s *RouteServiceServer) UpdateByRoleIDAndPath(ctx context.Context, req *api
 		return nil, err
 	}
 
-	if (res.Updated == &wrappers.Int64Value{Value: 0}) {
+	if res.Updated == 0 {
 		Route := &api.Route{
-			ID:         &wrappers.StringValue{Value: primitive.NewObjectID().Hex()},
+			ID:         primitive.NewObjectID().Hex(),
 			RoleID:     req.Route.RoleID,
 			Path:       req.Route.Path,
 			Permission: req.Route.Permission,
-			CreatedBy:  &wrappers.StringValue{Value: "System"},
+			CreatedBy:  "System",
 			CreatedAt:  ts,
-			ModifiedBy: &wrappers.StringValue{Value: "System"},
+			ModifiedBy: "System",
 			ModifiedAt: ts,
 		}
 
@@ -258,7 +269,7 @@ func (s *RouteServiceServer) UpdateByRoleIDAndPath(ctx context.Context, req *api
 		}
 
 		// update the Res id
-		res.Updated = &wrappers.Int64Value{Value: 1}
+		res.Updated = 1
 		//res.ID = Route.ID
 	}
 
@@ -280,7 +291,7 @@ func (s *RouteServiceServer) Delete(ctx context.Context, req *api.RouteDeleteReq
 		return nil, err
 	}
 
-	res.Deleted = &wrappers.Int64Value{Value: deleteRes.DeletedCount}
+	res.Deleted = deleteRes.DeletedCount
 
 	return res, nil
 }

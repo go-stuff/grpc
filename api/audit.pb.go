@@ -36,9 +36,9 @@ type Audit struct {
 	CreatedBy string `protobuf:"bytes,5,opt,name=CreatedBy,proto3" json:"CreatedBy,omitempty" bson:"createdby"`
 	// @inject_tag: bson:"createdat"
 	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,6,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" bson:"createdat"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-"`
 }
 
 func (m *Audit) Reset()         { *m = Audit{} }
@@ -109,9 +109,9 @@ func (m *Audit) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type AuditListReq struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditListReq) Reset()         { *m = AuditListReq{} }
@@ -142,9 +142,9 @@ var xxx_messageInfo_AuditListReq proto.InternalMessageInfo
 type AuditListRes struct {
 	// return a collection of Audits
 	Audits               []*Audit `protobuf:"bytes,1,rep,name=Audits,proto3" json:"Audits,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditListRes) Reset()         { *m = AuditListRes{} }
@@ -180,9 +180,9 @@ func (m *AuditListRes) GetAudits() []*Audit {
 }
 
 type AuditList100Req struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditList100Req) Reset()         { *m = AuditList100Req{} }
@@ -213,9 +213,9 @@ var xxx_messageInfo_AuditList100Req proto.InternalMessageInfo
 type AuditList100Res struct {
 	// return a collection of Audits
 	Audits               []*Audit `protobuf:"bytes,1,rep,name=Audits,proto3" json:"Audits,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditList100Res) Reset()         { *m = AuditList100Res{} }
@@ -253,9 +253,9 @@ func (m *AuditList100Res) GetAudits() []*Audit {
 type AuditCreateReq struct {
 	// create a Audit
 	Audit                *Audit   `protobuf:"bytes,1,opt,name=Audit,proto3" json:"Audit,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditCreateReq) Reset()         { *m = AuditCreateReq{} }
@@ -293,9 +293,9 @@ func (m *AuditCreateReq) GetAudit() *Audit {
 type AuditCreateRes struct {
 	// reutrn an id
 	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditCreateRes) Reset()         { *m = AuditCreateRes{} }
@@ -333,9 +333,9 @@ func (m *AuditCreateRes) GetID() string {
 type AuditReadReq struct {
 	// read a Audit by id
 	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditReadReq) Reset()         { *m = AuditReadReq{} }
@@ -373,9 +373,9 @@ func (m *AuditReadReq) GetID() string {
 type AuditReadRes struct {
 	// return a Audit
 	Audit                *Audit   `protobuf:"bytes,1,opt,name=Audit,proto3" json:"Audit,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *AuditReadRes) Reset()         { *m = AuditReadRes{} }

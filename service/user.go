@@ -6,7 +6,6 @@ import (
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
-	"github.com/golang/protobuf/ptypes/wrappers"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -21,7 +20,7 @@ type UserServiceServer struct {
 	DB *mongo.Database
 }
 
-// Slice returns a slice of users
+// List returns a slice of users
 func (s *UserServiceServer) List(ctx context.Context, req *api.UserListReq) (*api.UserListRes, error) {
 	// prepare a Res
 	res := new(api.UserListRes)
@@ -36,6 +35,9 @@ func (s *UserServiceServer) List(ctx context.Context, req *api.UserListReq) (*ap
 			},
 		},
 	)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -73,14 +75,14 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 	}
 
 	user := &api.User{
-		ID:         &wrappers.StringValue{Value: primitive.NewObjectID().Hex()}, // ObjectID's are generated based on time
+		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
 		Username:   req.User.Username,
 		Groups:     req.User.Groups,
 		RoleID:     req.User.RoleID,
 		CreatedBy:  req.User.CreatedBy,
 		CreatedAt:  ts,
 		ModifiedBy: req.User.ModifiedBy,
-		ModifiedAt: ts,
+		ModifiedAt: ptypes.TimestampNow(),
 	}
 
 	// insert role into mongo
@@ -109,6 +111,9 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 			"_id": req.ID,
 		},
 	).Decode(res.User)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +121,7 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 	return res, nil
 }
 
-// ByUsername returns a single user by username
+// ReadByUsername returns a single user by username
 func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserReadByUsernameReq) (*api.UserReadByUsernameRes, error) {
 	// prepare a Res
 	res := new(api.UserReadByUsernameRes)
@@ -130,6 +135,9 @@ func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserRea
 			"username": req.Username,
 		},
 	).Decode(res.User)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -161,7 +169,7 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 		return nil, err
 	}
 
-	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
+	res.Updated = updateRes.ModifiedCount
 
 	return res, nil
 }
@@ -181,7 +189,7 @@ func (s *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteReq) 
 		return nil, err
 	}
 
-	res.Deleted = &wrappers.Int64Value{Value: deleteRes.DeletedCount}
+	res.Deleted = deleteRes.DeletedCount
 
 	return res, nil
 }

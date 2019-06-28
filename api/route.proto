@@ -3,23 +3,22 @@ syntax = "proto3";
 package api;
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/wrappers.proto";
 
 message Route {
     // @inject_tag: bson:"_id"
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
     // @inject_tag: bson:"roleid"
-    google.protobuf.StringValue RoleID = 2;
+    string RoleID = 2;
     // @inject_tag: bson:"path"
-    google.protobuf.StringValue Path = 3;
+    string Path = 3;
     // @inject_tag: bson:"permission"
-    google.protobuf.BoolValue Permission = 4;
+    bool Permission = 4;
     // @inject_tag: bson:"createdby"
-    google.protobuf.StringValue CreatedBy = 5;
+    string CreatedBy = 5;
     // @inject_tag: bson:"createdat"
     google.protobuf.Timestamp CreatedAt = 6;
     // @inject_tag: bson:"modifiedby"
-    google.protobuf.StringValue ModifiedBy = 7;
+    string ModifiedBy = 7;
     // @inject_tag: bson:"modifiedat"
     google.protobuf.Timestamp ModifiedAt = 8;
 }
@@ -34,7 +33,7 @@ message RouteListRes {
 }
 
 message RouteListByRoleIDReq {
-    google.protobuf.StringValue RoleID = 1;
+    string RoleID = 1;
 }
 
 message RouteListByRoleIDRes {
@@ -49,12 +48,12 @@ message RouteCreateReq {
 
 message RouteCreateRes {
     // reutrn an id
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
 }
 
 message RouteReadReq {
     // read a Route by id
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
 }
 
 message RouteReadRes {
@@ -80,7 +79,7 @@ message RouteUpdateReq {
 message RouteUpdateRes {
     // return number of Routes updated
     // should equal 1 on success
-    google.protobuf.Int64Value Updated = 1;
+    int64 Updated = 1;
 }
 
 message RouteUpdateByRoleIDAndPathReq {
@@ -91,18 +90,18 @@ message RouteUpdateByRoleIDAndPathReq {
 message RouteUpdateByRoleIDAndPathRes {
     // return number of Routes updated
     // should equal 1 on success
-    google.protobuf.Int64Value Updated = 1;
+    int64 Updated = 1;
 }
 
 message RouteDeleteReq {
     // delete a Route by id
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
 }
 
 message RouteDeleteRes {
     // return number of Routes deleted
     // should equal 1 on success
-    google.protobuf.Int64Value Deleted = 1;
+    int64 Deleted = 1;
 }
 
 service RouteService {

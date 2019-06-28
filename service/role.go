@@ -6,7 +6,6 @@ import (
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
-	"github.com/golang/protobuf/ptypes/wrappers"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -36,6 +35,9 @@ func (s *RoleServiceServer) List(ctx context.Context, req *api.RoleListReq) (*ap
 			},
 		},
 	)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -73,7 +75,7 @@ func (s *RoleServiceServer) Create(ctx context.Context, req *api.RoleCreateReq) 
 	}
 
 	Role := &api.Role{
-		ID:          &wrappers.StringValue{Value: primitive.NewObjectID().Hex()}, // ObjectID's are generated based on time
+		ID:          primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
 		Name:        req.Role.Name,
 		Description: req.Role.Description,
 		CreatedBy:   req.Role.CreatedBy,
@@ -108,6 +110,9 @@ func (s *RoleServiceServer) Read(ctx context.Context, req *api.RoleReadReq) (*ap
 			"_id": req.ID,
 		},
 	).Decode(res.Role)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -126,11 +131,11 @@ func (s *RoleServiceServer) ReadByName(ctx context.Context, req *api.RoleReadByN
 	// find a Role
 	err := s.DB.Collection(RoleCollection).FindOne(ctx,
 		bson.M{
-			"name": req.Name.Value,
+			"name": req.Name,
 		},
 	).Decode(res.Role)
 	if err == mongo.ErrNoDocuments {
-		return res, nil
+		return nil, nil
 	}
 	if err != nil {
 		return nil, err
@@ -162,7 +167,7 @@ func (s *RoleServiceServer) Update(ctx context.Context, req *api.RoleUpdateReq) 
 		return nil, err
 	}
 
-	res.Updated = &wrappers.Int64Value{Value: updateRes.ModifiedCount}
+	res.Updated = updateRes.ModifiedCount
 
 	return res, nil
 }
@@ -182,7 +187,7 @@ func (s *RoleServiceServer) Delete(ctx context.Context, req *api.RoleDeleteReq) 
 		return nil, err
 	}
 
-	res.Deleted = &wrappers.Int64Value{Value: deleteRes.DeletedCount}
+	res.Deleted = deleteRes.DeletedCount
 
 	return res, nil
 }

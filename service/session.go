@@ -32,6 +32,9 @@ func (s *SessionServiceServer) List(ctx context.Context, req *api.SessionListReq
 			},
 		},
 	)
+	if err == mongo.ErrNoDocuments {
+		return nil, nil
+	}
 	if err != nil {
 		return nil, err
 	}

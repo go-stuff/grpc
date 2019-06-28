@@ -25,21 +25,26 @@ go get github.com/favadi/protoc-go-inject-tag
 
 This examples shows how to compile the `proto` file then how to inject the `custom tags`. First `cd` into the directory that contains the `.proto` files, the first command will generate a `.pb.go` file the second will inject tags from comments in the `.proto` file with the following format `// @inject_tag: bson:"_id"`.
 
+The `-XXX_skip=bson` flag will add the `bson:"-"` tag to any XXX_* fields in the generated file. This will keep the XXX_* fields from being added to the database.
+
 ```bash
 cd api
 
 protoc -I . --go_out=plugins=grpc:. ./session.proto
-protoc-go-inject-tag -input="./session.pb.go"
+protoc-go-inject-tag -input="./session.pb.go" -XXX_skip=bson
 
 protoc -I . --go_out=plugins=grpc:. ./user.proto
-protoc-go-inject-tag -input="./user.pb.go"
+protoc-go-inject-tag -input="./user.pb.go" -XXX_skip=bson
 
 protoc -I . --go_out=plugins=grpc:. ./role.proto
-protoc-go-inject-tag -input="./role.pb.go"
+protoc-go-inject-tag -input="./role.pb.go" -XXX_skip=bson
 
 protoc -I . --go_out=plugins=grpc:. ./route.proto
-protoc-go-inject-tag -input="./route.pb.go"
+protoc-go-inject-tag -input="./route.pb.go" -XXX_skip=bson
 
 protoc -I . --go_out=plugins=grpc:. ./audit.proto
-protoc-go-inject-tag -input="./audit.pb.go"
+protoc-go-inject-tag -input="./audit.pb.go" -XXX_skip=bson
+ 
 ```
+
+

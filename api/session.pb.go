@@ -36,9 +36,9 @@ type Session struct {
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" bson:"createdat"`
 	// @inject_tag: bson:"expiresat"
 	ExpiresAt            *timestamp.Timestamp `protobuf:"bytes,6,opt,name=ExpiresAt,proto3" json:"ExpiresAt,omitempty" bson:"expiresat"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-"`
 }
 
 func (m *Session) Reset()         { *m = Session{} }
@@ -109,9 +109,9 @@ func (m *Session) GetExpiresAt() *timestamp.Timestamp {
 }
 
 type SessionListReq struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *SessionListReq) Reset()         { *m = SessionListReq{} }
@@ -142,9 +142,9 @@ var xxx_messageInfo_SessionListReq proto.InternalMessageInfo
 type SessionListRes struct {
 	// return a collection of Sessions
 	Sessions             []*Session `protobuf:"bytes,1,rep,name=Sessions,proto3" json:"Sessions,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-" bson:"-"`
+	XXX_unrecognized     []byte     `json:"-" bson:"-"`
+	XXX_sizecache        int32      `json:"-" bson:"-"`
 }
 
 func (m *SessionListRes) Reset()         { *m = SessionListRes{} }

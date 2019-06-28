@@ -8,7 +8,6 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
-	wrappers "github.com/golang/protobuf/ptypes/wrappers"
 	grpc "google.golang.org/grpc"
 	math "math"
 )
@@ -26,22 +25,22 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Role struct {
 	// @inject_tag: bson:"_id"
-	ID *wrappers.StringValue `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty" bson:"_id"`
+	ID string `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty" bson:"_id"`
 	// @inject_tag: bson:"name"
-	Name *wrappers.StringValue `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty" bson:"name"`
+	Name string `protobuf:"bytes,2,opt,name=Name,proto3" json:"Name,omitempty" bson:"name"`
 	// @inject_tag: bson:"description"
-	Description *wrappers.StringValue `protobuf:"bytes,3,opt,name=Description,proto3" json:"Description,omitempty" bson:"description"`
+	Description string `protobuf:"bytes,3,opt,name=Description,proto3" json:"Description,omitempty" bson:"description"`
 	// @inject_tag: bson:"createdby"
-	CreatedBy *wrappers.StringValue `protobuf:"bytes,4,opt,name=CreatedBy,proto3" json:"CreatedBy,omitempty" bson:"createdby"`
+	CreatedBy string `protobuf:"bytes,4,opt,name=CreatedBy,proto3" json:"CreatedBy,omitempty" bson:"createdby"`
 	// @inject_tag: bson:"createdat"
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" bson:"createdat"`
 	// @inject_tag: bson:"modifiedby"
-	ModifiedBy *wrappers.StringValue `protobuf:"bytes,6,opt,name=ModifiedBy,proto3" json:"ModifiedBy,omitempty" bson:"modifiedby"`
+	ModifiedBy string `protobuf:"bytes,6,opt,name=ModifiedBy,proto3" json:"ModifiedBy,omitempty" bson:"modifiedby"`
 	// @inject_tag: bson:"modifiedat"
 	ModifiedAt           *timestamp.Timestamp `protobuf:"bytes,7,opt,name=ModifiedAt,proto3" json:"ModifiedAt,omitempty" bson:"modifiedat"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-"`
 }
 
 func (m *Role) Reset()         { *m = Role{} }
@@ -69,32 +68,32 @@ func (m *Role) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Role proto.InternalMessageInfo
 
-func (m *Role) GetID() *wrappers.StringValue {
+func (m *Role) GetID() string {
 	if m != nil {
 		return m.ID
 	}
-	return nil
+	return ""
 }
 
-func (m *Role) GetName() *wrappers.StringValue {
+func (m *Role) GetName() string {
 	if m != nil {
 		return m.Name
 	}
-	return nil
+	return ""
 }
 
-func (m *Role) GetDescription() *wrappers.StringValue {
+func (m *Role) GetDescription() string {
 	if m != nil {
 		return m.Description
 	}
-	return nil
+	return ""
 }
 
-func (m *Role) GetCreatedBy() *wrappers.StringValue {
+func (m *Role) GetCreatedBy() string {
 	if m != nil {
 		return m.CreatedBy
 	}
-	return nil
+	return ""
 }
 
 func (m *Role) GetCreatedAt() *timestamp.Timestamp {
@@ -104,11 +103,11 @@ func (m *Role) GetCreatedAt() *timestamp.Timestamp {
 	return nil
 }
 
-func (m *Role) GetModifiedBy() *wrappers.StringValue {
+func (m *Role) GetModifiedBy() string {
 	if m != nil {
 		return m.ModifiedBy
 	}
-	return nil
+	return ""
 }
 
 func (m *Role) GetModifiedAt() *timestamp.Timestamp {
@@ -119,9 +118,9 @@ func (m *Role) GetModifiedAt() *timestamp.Timestamp {
 }
 
 type RoleListReq struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleListReq) Reset()         { *m = RoleListReq{} }
@@ -152,9 +151,9 @@ var xxx_messageInfo_RoleListReq proto.InternalMessageInfo
 type RoleListRes struct {
 	// return a collection of Roles
 	Roles                []*Role  `protobuf:"bytes,1,rep,name=Roles,proto3" json:"Roles,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleListRes) Reset()         { *m = RoleListRes{} }
@@ -192,9 +191,9 @@ func (m *RoleListRes) GetRoles() []*Role {
 type RoleCreateReq struct {
 	// create a Role
 	Role                 *Role    `protobuf:"bytes,1,opt,name=Role,proto3" json:"Role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleCreateReq) Reset()         { *m = RoleCreateReq{} }
@@ -231,10 +230,10 @@ func (m *RoleCreateReq) GetRole() *Role {
 
 type RoleCreateRes struct {
 	// reutrn an id
-	ID                   *wrappers.StringValue `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleCreateRes) Reset()         { *m = RoleCreateRes{} }
@@ -262,19 +261,19 @@ func (m *RoleCreateRes) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RoleCreateRes proto.InternalMessageInfo
 
-func (m *RoleCreateRes) GetID() *wrappers.StringValue {
+func (m *RoleCreateRes) GetID() string {
 	if m != nil {
 		return m.ID
 	}
-	return nil
+	return ""
 }
 
 type RoleReadReq struct {
 	// read a Role by id
-	ID                   *wrappers.StringValue `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleReadReq) Reset()         { *m = RoleReadReq{} }
@@ -302,19 +301,19 @@ func (m *RoleReadReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RoleReadReq proto.InternalMessageInfo
 
-func (m *RoleReadReq) GetID() *wrappers.StringValue {
+func (m *RoleReadReq) GetID() string {
 	if m != nil {
 		return m.ID
 	}
-	return nil
+	return ""
 }
 
 type RoleReadRes struct {
 	// return a Role
 	Role                 *Role    `protobuf:"bytes,1,opt,name=Role,proto3" json:"Role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleReadRes) Reset()         { *m = RoleReadRes{} }
@@ -351,10 +350,10 @@ func (m *RoleReadRes) GetRole() *Role {
 
 type RoleReadByNameReq struct {
 	// read a Role by id
-	Name                 *wrappers.StringValue `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	Name                 string   `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleReadByNameReq) Reset()         { *m = RoleReadByNameReq{} }
@@ -382,19 +381,19 @@ func (m *RoleReadByNameReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RoleReadByNameReq proto.InternalMessageInfo
 
-func (m *RoleReadByNameReq) GetName() *wrappers.StringValue {
+func (m *RoleReadByNameReq) GetName() string {
 	if m != nil {
 		return m.Name
 	}
-	return nil
+	return ""
 }
 
 type RoleReadByNameRes struct {
 	// return a Role
 	Role                 *Role    `protobuf:"bytes,1,opt,name=Role,proto3" json:"Role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleReadByNameRes) Reset()         { *m = RoleReadByNameRes{} }
@@ -432,9 +431,9 @@ func (m *RoleReadByNameRes) GetRole() *Role {
 type RoleUpdateReq struct {
 	// update a Role by id
 	Role                 *Role    `protobuf:"bytes,1,opt,name=Role,proto3" json:"Role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleUpdateReq) Reset()         { *m = RoleUpdateReq{} }
@@ -472,10 +471,10 @@ func (m *RoleUpdateReq) GetRole() *Role {
 type RoleUpdateRes struct {
 	// return number of Roles updated
 	// should equal 1 on success
-	Updated              *wrappers.Int64Value `protobuf:"bytes,1,opt,name=Updated,proto3" json:"Updated,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	Updated              int64    `protobuf:"varint,1,opt,name=Updated,proto3" json:"Updated,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleUpdateRes) Reset()         { *m = RoleUpdateRes{} }
@@ -503,19 +502,19 @@ func (m *RoleUpdateRes) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RoleUpdateRes proto.InternalMessageInfo
 
-func (m *RoleUpdateRes) GetUpdated() *wrappers.Int64Value {
+func (m *RoleUpdateRes) GetUpdated() int64 {
 	if m != nil {
 		return m.Updated
 	}
-	return nil
+	return 0
 }
 
 type RoleDeleteReq struct {
 	// delete a Role by id
-	ID                   *wrappers.StringValue `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	ID                   string   `protobuf:"bytes,1,opt,name=ID,proto3" json:"ID,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleDeleteReq) Reset()         { *m = RoleDeleteReq{} }
@@ -543,20 +542,20 @@ func (m *RoleDeleteReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RoleDeleteReq proto.InternalMessageInfo
 
-func (m *RoleDeleteReq) GetID() *wrappers.StringValue {
+func (m *RoleDeleteReq) GetID() string {
 	if m != nil {
 		return m.ID
 	}
-	return nil
+	return ""
 }
 
 type RoleDeleteRes struct {
 	// return number of Roles deleted
 	// should equal 1 on success
-	Deleted              *wrappers.Int64Value `protobuf:"bytes,1,opt,name=Deleted,proto3" json:"Deleted,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	Deleted              int64    `protobuf:"varint,1,opt,name=Deleted,proto3" json:"Deleted,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RoleDeleteRes) Reset()         { *m = RoleDeleteRes{} }
@@ -584,11 +583,11 @@ func (m *RoleDeleteRes) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RoleDeleteRes proto.InternalMessageInfo
 
-func (m *RoleDeleteRes) GetDeleted() *wrappers.Int64Value {
+func (m *RoleDeleteRes) GetDeleted() int64 {
 	if m != nil {
 		return m.Deleted
 	}
-	return nil
+	return 0
 }
 
 func init() {
@@ -610,37 +609,35 @@ func init() {
 func init() { proto.RegisterFile("role.proto", fileDescriptor_48a3ff9f7c9032f8) }
 
 var fileDescriptor_48a3ff9f7c9032f8 = []byte{
-	// 480 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0x5d, 0x6b, 0xdb, 0x30,
-	0x14, 0x25, 0x1f, 0x4d, 0xe9, 0x0d, 0x85, 0xed, 0x3e, 0x0c, 0xa3, 0x7d, 0xb4, 0xf8, 0xa9, 0x8c,
-	0xe2, 0x96, 0xec, 0x83, 0xd1, 0x7d, 0x40, 0xbb, 0xac, 0x10, 0xd8, 0xf6, 0xe0, 0x6e, 0x7b, 0x77,
-	0xeb, 0xdb, 0x20, 0x70, 0x22, 0x55, 0x52, 0x37, 0xf2, 0x47, 0xf6, 0x5f, 0xf6, 0xef, 0x86, 0x24,
-	0xdb, 0x51, 0xe2, 0x42, 0x9c, 0xb7, 0xe8, 0xe8, 0x1c, 0xdd, 0xe3, 0x7b, 0x4e, 0x00, 0x94, 0x28,
-	0x28, 0x91, 0x4a, 0x18, 0x81, 0xbd, 0x4c, 0x72, 0x76, 0x30, 0x15, 0x62, 0x5a, 0xd0, 0x89, 0x83,
-	0xae, 0xef, 0x6f, 0x4f, 0x0c, 0x9f, 0x91, 0x36, 0xd9, 0x4c, 0x7a, 0x16, 0x7b, 0xb1, 0x4e, 0xf8,
-	0xa3, 0x32, 0x29, 0x49, 0x69, 0x7f, 0x1f, 0xff, 0xed, 0x41, 0x3f, 0x15, 0x05, 0xe1, 0x31, 0x74,
-	0x27, 0xe3, 0xa8, 0x73, 0xd8, 0x39, 0x1a, 0x8e, 0x9e, 0x25, 0x5e, 0x95, 0x54, 0xaa, 0xe4, 0xca,
-	0x28, 0x3e, 0x9f, 0xfe, 0xca, 0x8a, 0x7b, 0x4a, 0xbb, 0x93, 0x31, 0x9e, 0x42, 0xff, 0x7b, 0x36,
-	0xa3, 0xa8, 0xdb, 0x82, 0xef, 0x98, 0xf8, 0x09, 0x86, 0x63, 0xd2, 0x37, 0x8a, 0x4b, 0xc3, 0xc5,
-	0x3c, 0xea, 0xb5, 0x10, 0x86, 0x02, 0x3c, 0x83, 0xbd, 0xcf, 0x8a, 0x32, 0x43, 0xf9, 0xc5, 0x22,
-	0xea, 0xb7, 0x50, 0x2f, 0xe9, 0xf8, 0xae, 0xd6, 0x9e, 0x9b, 0x68, 0xc7, 0x69, 0x59, 0x43, 0xfb,
-	0xa3, 0xda, 0x5c, 0xba, 0x24, 0xe3, 0x07, 0x80, 0x6f, 0x22, 0xe7, 0xb7, 0xdc, 0x8d, 0x1d, 0xb4,
-	0x18, 0x1b, 0xf0, 0xf1, 0x6c, 0xa9, 0x3e, 0x37, 0xd1, 0xee, 0xc6, 0xc1, 0x01, 0x3b, 0xde, 0x87,
-	0xa1, 0xcd, 0xe5, 0x2b, 0xd7, 0x26, 0xa5, 0xbb, 0x38, 0x09, 0x8f, 0x1a, 0x0f, 0x60, 0xc7, 0x1e,
-	0x75, 0xd4, 0x39, 0xec, 0x1d, 0x0d, 0x47, 0x7b, 0x49, 0x26, 0x79, 0x62, 0x91, 0xd4, 0xe3, 0x71,
-	0x02, 0xfb, 0xf6, 0x87, 0xff, 0x92, 0x94, 0xee, 0xf0, 0xb9, 0xcf, 0xb9, 0x4c, 0x38, 0x10, 0x38,
-	0x38, 0xfe, 0xb8, 0xca, 0xd7, 0xdb, 0xf5, 0x21, 0x7e, 0xef, 0xed, 0xa5, 0x94, 0xe5, 0x76, 0xd8,
-	0x76, 0xe2, 0xe3, 0x50, 0xac, 0x37, 0x39, 0xfd, 0x02, 0x8f, 0x2b, 0xf6, 0xc5, 0xc2, 0x56, 0xcb,
-	0x0e, 0xac, 0xfa, 0xd8, 0x69, 0xdb, 0xc7, 0x78, 0xd4, 0x7c, 0x66, 0xe3, 0xe8, 0x72, 0xa9, 0x3f,
-	0x65, 0xde, 0x6e, 0xa9, 0x97, 0xab, 0x7c, 0x8d, 0x6f, 0x60, 0xd7, 0x1f, 0xf2, 0x52, 0xf2, 0xb4,
-	0xe1, 0x74, 0x32, 0x37, 0x6f, 0x5f, 0x7b, 0xa3, 0x15, 0xb7, 0x0a, 0x67, 0x4c, 0x05, 0xf9, 0xb9,
-	0xdb, 0xed, 0xf7, 0x72, 0x55, 0xee, 0x6c, 0xf8, 0x43, 0x3b, 0x1b, 0x25, 0x77, 0xf4, 0xaf, 0xeb,
-	0x83, 0xba, 0x22, 0xf5, 0x9b, 0xdf, 0x10, 0xbe, 0x84, 0xbe, 0xed, 0x23, 0x3e, 0xaa, 0xbf, 0xbb,
-	0x6c, 0x2b, 0x5b, 0x47, 0x34, 0x9e, 0xc2, 0xc0, 0x77, 0x0b, 0xb1, 0xbe, 0xab, 0xcb, 0xc9, 0x9a,
-	0x98, 0xb6, 0xaf, 0xdb, 0x70, 0x82, 0xd7, 0xcb, 0x76, 0xb1, 0x75, 0x44, 0xdb, 0xbf, 0xe9, 0x32,
-	0x48, 0x7c, 0xb2, 0x72, 0x5f, 0x97, 0x84, 0x3d, 0x8c, 0x3b, 0x6f, 0x7e, 0xd3, 0x81, 0xb7, 0x3a,
-	0x63, 0xd6, 0xc4, 0x9c, 0xc2, 0x2f, 0x25, 0x50, 0xd4, 0xe9, 0xb0, 0x26, 0xa6, 0xaf, 0x07, 0x6e,
-	0xb3, 0xaf, 0xfe, 0x07, 0x00, 0x00, 0xff, 0xff, 0xa4, 0x63, 0xb8, 0x6c, 0xc2, 0x05, 0x00, 0x00,
+	// 438 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x53, 0xc1, 0x6e, 0xd4, 0x30,
+	0x14, 0x54, 0xb2, 0xdb, 0xad, 0xf6, 0xad, 0x8a, 0xe0, 0x1d, 0x90, 0x65, 0x51, 0x76, 0x95, 0x0b,
+	0x5b, 0x84, 0x5c, 0xb4, 0x5c, 0x10, 0xe2, 0xd2, 0x92, 0x4b, 0x25, 0xe0, 0x60, 0xe0, 0x03, 0xd2,
+	0xc6, 0xad, 0x2c, 0x65, 0x71, 0x1a, 0x1b, 0xa4, 0xde, 0xf8, 0x2d, 0xfe, 0x0e, 0xd9, 0x4e, 0x1c,
+	0x27, 0x41, 0xda, 0xde, 0xf2, 0xe6, 0xcd, 0x9b, 0x1d, 0xcf, 0x68, 0x01, 0x1a, 0x55, 0x09, 0x56,
+	0x37, 0xca, 0x28, 0x9c, 0x15, 0xb5, 0xa4, 0xeb, 0x3b, 0xa5, 0xee, 0x2a, 0x71, 0xee, 0xa0, 0xeb,
+	0x5f, 0xb7, 0xe7, 0x46, 0xee, 0x85, 0x36, 0xc5, 0xbe, 0xf6, 0xac, 0xec, 0x4f, 0x0a, 0x73, 0xae,
+	0x2a, 0x81, 0x4f, 0x20, 0xbd, 0xca, 0x49, 0xb2, 0x49, 0xb6, 0x4b, 0x9e, 0x5e, 0xe5, 0x88, 0x30,
+	0xff, 0x5a, 0xec, 0x05, 0x49, 0x1d, 0xe2, 0xbe, 0x71, 0x03, 0xab, 0x5c, 0xe8, 0x9b, 0x46, 0xd6,
+	0x46, 0xaa, 0x9f, 0x64, 0xe6, 0x56, 0x31, 0x84, 0x2f, 0x60, 0xf9, 0xa9, 0x11, 0x85, 0x11, 0xe5,
+	0xe5, 0x03, 0x99, 0xbb, 0x7d, 0x0f, 0xe0, 0xfb, 0xb0, 0xbd, 0x30, 0xe4, 0x68, 0x93, 0x6c, 0x57,
+	0x3b, 0xca, 0xbc, 0x43, 0xd6, 0x39, 0x64, 0xdf, 0x3b, 0x87, 0xbc, 0x27, 0xe3, 0x4b, 0x80, 0x2f,
+	0xaa, 0x94, 0xb7, 0xd2, 0x09, 0x2f, 0x9c, 0x70, 0x84, 0xe0, 0x87, 0x7e, 0x7f, 0x61, 0xc8, 0xf1,
+	0x41, 0xe9, 0x88, 0x9d, 0x9d, 0xc0, 0xca, 0x26, 0xf0, 0x59, 0x6a, 0xc3, 0xc5, 0x7d, 0xc6, 0xe2,
+	0x51, 0xe3, 0x1a, 0x8e, 0xec, 0xa8, 0x49, 0xb2, 0x99, 0x6d, 0x57, 0xbb, 0x25, 0x2b, 0x6a, 0xc9,
+	0x2c, 0xc2, 0x3d, 0x9e, 0x31, 0x38, 0xb1, 0x1f, 0xde, 0x2b, 0x17, 0xf7, 0x78, 0xea, 0x13, 0x75,
+	0x59, 0x0e, 0x0e, 0x1c, 0x9c, 0xad, 0x87, 0x7c, 0x3d, 0x4e, 0x3e, 0x3b, 0xf5, 0x06, 0xb8, 0x28,
+	0x4a, 0x2b, 0x37, 0x5e, 0xbf, 0x89, 0xd7, 0xfa, 0xd0, 0xaf, 0xbd, 0x82, 0x67, 0x1d, 0xfb, 0xf2,
+	0xc1, 0x96, 0x68, 0x25, 0xbb, 0x6e, 0x93, 0xbe, 0xdb, 0x6c, 0x37, 0x25, 0x1e, 0x14, 0x6f, 0x9f,
+	0xfe, 0xa3, 0x2e, 0x1f, 0xf7, 0xf4, 0xb3, 0x21, 0x5f, 0x23, 0x81, 0x63, 0x3f, 0x94, 0xee, 0x64,
+	0xc6, 0xbb, 0xb1, 0x4b, 0x29, 0x17, 0x95, 0xf0, 0xd2, 0xe3, 0x18, 0xce, 0x86, 0x04, 0xa7, 0xe5,
+	0x87, 0xa0, 0xd5, 0x8e, 0xbb, 0xbf, 0xa9, 0x8f, 0xec, 0x9b, 0x68, 0x7e, 0xcb, 0x1b, 0x81, 0xaf,
+	0x61, 0x6e, 0xdb, 0xc5, 0xa7, 0xc1, 0x5f, 0xdb, 0x3d, 0x1d, 0x23, 0x1a, 0xdf, 0xc2, 0xc2, 0x37,
+	0x85, 0x18, 0x76, 0xa1, 0x6a, 0x3a, 0xc5, 0xb4, 0x55, 0xb7, 0x21, 0x46, 0xea, 0x6d, 0x93, 0x74,
+	0x8c, 0x68, 0xfc, 0x08, 0xd0, 0x07, 0x8e, 0xcf, 0x07, 0xfb, 0x50, 0x17, 0xfd, 0x3f, 0xee, 0xbc,
+	0xf9, 0xb8, 0x22, 0x6f, 0xa1, 0x0b, 0x3a, 0xc5, 0xdc, 0x85, 0x0f, 0x25, 0xba, 0x08, 0x11, 0xd3,
+	0x29, 0xa6, 0xaf, 0x17, 0xee, 0xcf, 0xf3, 0xee, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xdc, 0x80,
+	0xc7, 0xb9, 0x5a, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.

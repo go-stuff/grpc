@@ -3,23 +3,22 @@ syntax = "proto3";
 package api;
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/wrappers.proto";
 
 message User {
     // @inject_tag: bson:"_id"
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
     // @inject_tag: bson:"username"
-    google.protobuf.StringValue Username = 2;
+    string Username = 2;
     // @inject_tag: bson:"groups"
-    repeated google.protobuf.StringValue Groups = 3;
+    repeated string Groups = 3;
     // @inject_tag: bson:"roleid"
-    google.protobuf.StringValue RoleID = 4;
+    string RoleID = 4;
     // @inject_tag: bson:"createdby"
-    google.protobuf.StringValue CreatedBy = 5;
+    string CreatedBy = 5;
     // @inject_tag: bson:"createdat"
     google.protobuf.Timestamp CreatedAt = 6;
     // @inject_tag: bson:"modifiedby"
-    google.protobuf.StringValue ModifiedBy = 7;
+    string ModifiedBy = 7;
     // @inject_tag: bson:"modifiedat"
     google.protobuf.Timestamp ModifiedAt = 8;
 }
@@ -40,12 +39,12 @@ message UserCreateReq {
 
 message UserCreateRes {
     // reutrn an id
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
 }
 
 message UserReadReq {
     // read a user by id
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
 }
 
 message UserReadRes {
@@ -55,7 +54,7 @@ message UserReadRes {
 
 message UserReadByUsernameReq {
     // read a user by id
-    google.protobuf.StringValue Username = 1;
+    string Username = 1;
 }
 
 message UserReadByUsernameRes {
@@ -71,18 +70,18 @@ message UserUpdateReq {
 message UserUpdateRes {
     // return number of users updated
     // should equal 1 on success
-    google.protobuf.Int64Value Updated = 1;
+    int64 Updated = 1;
 }
 
 message UserDeleteReq {
     // delete a user by id
-    google.protobuf.StringValue ID = 1;
+    string ID = 1;
 }
 
 message UserDeleteRes {
     // return number of users deleted
     // should equal 1 on success
-    google.protobuf.Int64Value Deleted = 1;
+    int64 Deleted = 1;
 }
 
 service UserService {
