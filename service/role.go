@@ -36,7 +36,7 @@ func (s *RoleServiceServer) List(ctx context.Context, req *api.RoleListReq) (*ap
 		},
 	)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -111,7 +111,7 @@ func (s *RoleServiceServer) Read(ctx context.Context, req *api.RoleReadReq) (*ap
 		},
 	).Decode(res.Role)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -135,7 +135,7 @@ func (s *RoleServiceServer) ReadByName(ctx context.Context, req *api.RoleReadByN
 		},
 	).Decode(res.Role)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err

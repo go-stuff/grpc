@@ -35,7 +35,7 @@ func (s *AuditServiceServer) List(ctx context.Context, req *api.AuditListReq) (*
 		// },
 	)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -74,7 +74,7 @@ func (s *AuditServiceServer) List100(ctx context.Context, req *api.AuditList100R
 	// find all Audits
 	cursor, err := s.DB.Collection(AuditCollection).Find(ctx, bson.M{}, opts)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err

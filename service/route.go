@@ -36,7 +36,7 @@ func (s *RouteServiceServer) List(ctx context.Context, req *api.RouteListReq) (*
 		},
 	)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -81,7 +81,7 @@ func (s *RouteServiceServer) ListByRoleID(ctx context.Context, req *api.RouteLis
 		},
 	)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -155,7 +155,7 @@ func (s *RouteServiceServer) Read(ctx context.Context, req *api.RouteReadReq) (*
 		},
 	).Decode(res.Route)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -180,7 +180,7 @@ func (s *RouteServiceServer) ReadByRoleIDAndPath(ctx context.Context, req *api.R
 		},
 	).Decode(res.Route)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err

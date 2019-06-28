@@ -36,7 +36,7 @@ func (s *UserServiceServer) List(ctx context.Context, req *api.UserListReq) (*ap
 		},
 	)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -112,7 +112,7 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 		},
 	).Decode(res.User)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
@@ -136,7 +136,7 @@ func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserRea
 		},
 	).Decode(res.User)
 	if err == mongo.ErrNoDocuments {
-		return nil, nil
+		return res, nil
 	}
 	if err != nil {
 		return nil, err
