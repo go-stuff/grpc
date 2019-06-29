@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"time"
 
 	"github.com/go-stuff/grpc/api"
 	"github.com/golang/protobuf/ptypes"
@@ -21,12 +20,12 @@ type UserServiceServer struct {
 }
 
 // List returns a slice of users
-func (s *UserServiceServer) List(ctx context.Context, req *api.UserListReq) (*api.UserListRes, error) {
+func (svc *UserServiceServer) List(ctx context.Context, req *api.UserListReq) (*api.UserListRes, error) {
 	// prepare a Res
 	res := new(api.UserListRes)
 
 	// find all users
-	cursor, err := s.DB.Collection(UserCollection).Find(ctx,
+	cursor, err := svc.DB.Collection(UserCollection).Find(ctx,
 		bson.M{},
 		&options.FindOptions{
 			Sort: bson.M{
@@ -64,15 +63,9 @@ func (s *UserServiceServer) List(ctx context.Context, req *api.UserListReq) (*ap
 }
 
 // Create inserts a user
-func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) (*api.UserCreateRes, error) {
+func (svc *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) (*api.UserCreateRes, error) {
 	// prepare a Res
 	res := new(api.UserCreateRes)
-
-	now := time.Now()
-	ts, err := ptypes.TimestampProto(now)
-	if err != nil {
-		return nil, err
-	}
 
 	user := &api.User{
 		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
@@ -80,13 +73,13 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 		Groups:     req.User.Groups,
 		RoleID:     req.User.RoleID,
 		CreatedBy:  req.User.CreatedBy,
-		CreatedAt:  ts,
+		CreatedAt:  ptypes.TimestampNow(),
 		ModifiedBy: req.User.ModifiedBy,
 		ModifiedAt: ptypes.TimestampNow(),
 	}
 
 	// insert role into mongo
-	_, err = s.DB.Collection(UserCollection).InsertOne(ctx, user)
+	_, err := svc.DB.Collection(UserCollection).InsertOne(ctx, user)
 	if err != nil {
 		return nil, err
 	}
@@ -98,7 +91,7 @@ func (s *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq) 
 }
 
 // Read returns a single user
-func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*api.UserReadRes, error) {
+func (svc *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*api.UserReadRes, error) {
 	// prepare a Res
 	res := new(api.UserReadRes)
 
@@ -106,7 +99,7 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 	res.User = new(api.User)
 
 	// find a user
-	err := s.DB.Collection(UserCollection).FindOne(ctx,
+	err := svc.DB.Collection(UserCollection).FindOne(ctx,
 		bson.M{
 			"_id": req.ID,
 		},
@@ -122,7 +115,7 @@ func (s *UserServiceServer) Read(ctx context.Context, req *api.UserReadReq) (*ap
 }
 
 // ReadByUsername returns a single user by username
-func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserReadByUsernameReq) (*api.UserReadByUsernameRes, error) {
+func (svc *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserReadByUsernameReq) (*api.UserReadByUsernameRes, error) {
 	// prepare a Res
 	res := new(api.UserReadByUsernameRes)
 
@@ -130,7 +123,7 @@ func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserRea
 	res.User = new(api.User)
 
 	// find a user
-	err := s.DB.Collection(UserCollection).FindOne(ctx,
+	err := svc.DB.Collection(UserCollection).FindOne(ctx,
 		bson.M{
 			"username": req.Username,
 		},
@@ -146,12 +139,12 @@ func (s *UserServiceServer) ReadByUsername(ctx context.Context, req *api.UserRea
 }
 
 // Update modifies a user
-func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) (*api.UserUpdateRes, error) {
+func (svc *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) (*api.UserUpdateRes, error) {
 	// prepare a Res
 	res := new(api.UserUpdateRes)
 
 	// update a user
-	updateRes, err := s.DB.Collection(UserCollection).UpdateOne(ctx,
+	updateRes, err := svc.DB.Collection(UserCollection).UpdateOne(ctx,
 		bson.M{
 			"_id": req.User.ID,
 		},
@@ -175,12 +168,12 @@ func (s *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq) 
 }
 
 // Delete removes a user
-func (s *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteReq) (*api.UserDeleteRes, error) {
+func (svc *UserServiceServer) Delete(ctx context.Context, req *api.UserDeleteReq) (*api.UserDeleteRes, error) {
 	// prepare a Res
 	res := new(api.UserDeleteRes)
 
 	// delete a user
-	deleteRes, err := s.DB.Collection(UserCollection).DeleteOne(ctx,
+	deleteRes, err := svc.DB.Collection(UserCollection).DeleteOne(ctx,
 		bson.M{
 			"_id": req.ID,
 		},
