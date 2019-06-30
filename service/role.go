@@ -73,7 +73,7 @@ func (s *RoleServiceServer) Create(ctx context.Context, req *api.RoleCreateReq) 
 		Description: req.Description,
 		CreatedBy:   req.CreatedBy,
 		CreatedAt:   ptypes.TimestampNow(),
-		ModifiedBy:  req.ModifiedBy,
+		ModifiedBy:  req.CreatedBy,
 		ModifiedAt:  ptypes.TimestampNow(),
 	}
 

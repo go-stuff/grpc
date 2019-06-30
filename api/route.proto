@@ -47,7 +47,6 @@ message RouteCreateReq {
     string Path = 2;
     bool Permission = 3;
     string CreatedBy = 4;
-    string ModifiedBy = 5;
 }
 
 message RouteCreateRes {

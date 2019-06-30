@@ -38,7 +38,6 @@ message UserCreateReq {
     repeated string Groups = 2;
     string RoleID = 3;
     string CreatedBy = 4;
-    string ModifiedBy = 5;
 }
 
 message UserCreateRes {

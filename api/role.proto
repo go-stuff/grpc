@@ -35,7 +35,6 @@ message RoleCreateReq {
     string Name = 1;
     string Description = 2;
     string CreatedBy = 3;
-    string ModifiedBy = 4;
 }
 
 message RoleCreateRes {

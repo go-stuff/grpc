@@ -74,7 +74,7 @@ func (svc *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq
 		RoleID:     req.RoleID,
 		CreatedBy:  req.CreatedBy,
 		CreatedAt:  ptypes.TimestampNow(),
-		ModifiedBy: req.ModifiedBy,
+		ModifiedBy: req.CreatedBy,
 		ModifiedAt: ptypes.TimestampNow(),
 	}
 

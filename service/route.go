@@ -117,7 +117,7 @@ func (s *RouteServiceServer) Create(ctx context.Context, req *api.RouteCreateReq
 		Path:       req.Path,
 		CreatedBy:  req.CreatedBy,
 		CreatedAt:  ptypes.TimestampNow(),
-		ModifiedBy: req.ModifiedBy,
+		ModifiedBy: req.CreatedBy,
 		ModifiedAt: ptypes.TimestampNow(),
 	}
 
