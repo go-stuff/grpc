@@ -91,11 +91,10 @@ message RouteReadByRoleIDAndPathRes {
 
 message RouteUpdateByRoleIDAndPathReq {
     // update a Route by roleid and path
-    string ID = 1;
-    string RoleID = 2;
-    string Path = 3;
-    bool Permission = 4;
-    string ModifiedBy = 5;
+    string RoleID = 1;
+    string Path = 2;
+    bool Permission = 3;
+    string ModifiedBy = 4;
 }
 
 message RouteUpdateByRoleIDAndPathRes {
