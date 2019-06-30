@@ -32,7 +32,10 @@ message RoleListRes {
 
 message RoleCreateReq {
     // create a Role
-    Role Role = 1;
+    string Name = 1;
+    string Description = 2;
+    string CreatedBy = 3;
+    string ModifiedBy = 4;
 }
 
 message RoleCreateRes {
@@ -62,7 +65,10 @@ message RoleReadByNameRes {
 
 message RoleUpdateReq {
     // update a Role by id
-    Role Role = 1;
+    string ID = 1;
+    string Name = 2;
+    string Description = 3;
+    string ModifiedBy = 4;
 }
 
 message RoleUpdateRes {

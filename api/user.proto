@@ -34,7 +34,11 @@ message UserListRes {
 
 message UserCreateReq {
     // create a user
-    User User = 1;
+    string Username = 1;
+    repeated string Groups = 2;
+    string RoleID = 3;
+    string CreatedBy = 4;
+    string ModifiedBy = 5;
 }
 
 message UserCreateRes {
@@ -64,7 +68,10 @@ message UserReadByUsernameRes {
 
 message UserUpdateReq {
     // update a user by id
-    User User = 1;
+    string ID = 1;
+    repeated string Groups = 2;
+    string RoleID = 3;
+    string ModifiedBy = 4;
 }
 
 message UserUpdateRes {

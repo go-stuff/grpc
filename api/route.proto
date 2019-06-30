@@ -43,7 +43,11 @@ message RouteListByRoleIDRes {
 
 message RouteCreateReq {
     // create a Route
-    Route Route = 1;
+    string RoleID = 1;
+    string Path = 2;
+    bool Permission = 3;
+    string CreatedBy = 4;
+    string ModifiedBy = 5;
 }
 
 message RouteCreateRes {
@@ -71,20 +75,28 @@ message RouteReadByRoleIDAndPathRes {
     Route Route = 1;
 }
 
-message RouteUpdateReq {
-    // update a Route by id
-    Route Route = 1;
-}
+// message RouteUpdateReq {
+//     // update a Route by id
+//     string ID = 1;
+//     string RoleID = 2;
+//     string Path = 3;
+//     bool Permission = 4;
+//     string ModifiedBy = 5;
+// }
 
-message RouteUpdateRes {
-    // return number of Routes updated
-    // should equal 1 on success
-    int64 Updated = 1;
-}
+// message RouteUpdateRes {
+//     // return number of Routes updated
+//     // should equal 1 on success
+//     int64 Updated = 1;
+// }
 
 message RouteUpdateByRoleIDAndPathReq {
     // update a Route by roleid and path
-    Route Route = 1;
+    string ID = 1;
+    string RoleID = 2;
+    string Path = 3;
+    bool Permission = 4;
+    string ModifiedBy = 5;
 }
 
 message RouteUpdateByRoleIDAndPathRes {
@@ -110,7 +122,7 @@ service RouteService {
     rpc Create(RouteCreateReq) returns (RouteCreateRes);
     rpc Read(RouteReadReq) returns (RouteReadRes);
     rpc ReadByRoleIDAndPath(RouteReadByRoleIDAndPathReq) returns (RouteReadByRoleIDAndPathRes);
-    rpc Update(RouteUpdateReq) returns (RouteUpdateRes);
+    // rpc Update(RouteUpdateReq) returns (RouteUpdateRes);
     rpc UpdateByRoleIDAndPath(RouteUpdateByRoleIDAndPathReq) returns (RouteUpdateByRoleIDAndPathRes);
     rpc Delete(RouteDeleteReq) returns (RouteDeleteRes);
 }

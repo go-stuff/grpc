@@ -69,12 +69,12 @@ func (svc *UserServiceServer) Create(ctx context.Context, req *api.UserCreateReq
 
 	user := &api.User{
 		ID:         primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
-		Username:   req.User.Username,
-		Groups:     req.User.Groups,
-		RoleID:     req.User.RoleID,
-		CreatedBy:  req.User.CreatedBy,
+		Username:   req.Username,
+		Groups:     req.Groups,
+		RoleID:     req.RoleID,
+		CreatedBy:  req.CreatedBy,
 		CreatedAt:  ptypes.TimestampNow(),
-		ModifiedBy: req.User.ModifiedBy,
+		ModifiedBy: req.ModifiedBy,
 		ModifiedAt: ptypes.TimestampNow(),
 	}
 
@@ -146,14 +146,13 @@ func (svc *UserServiceServer) Update(ctx context.Context, req *api.UserUpdateReq
 	// update a user
 	updateRes, err := svc.DB.Collection(UserCollection).UpdateOne(ctx,
 		bson.M{
-			"_id": req.User.ID,
+			"_id": req.ID,
 		},
 		bson.M{
 			"$set": bson.M{
-				"username":   req.User.Username,
-				"groups":     req.User.Groups,
-				"roleid":     req.User.RoleID,
-				"modifiedby": req.User.ModifiedBy,
+				"groups":     req.Groups,
+				"roleid":     req.RoleID,
+				"modifiedby": req.ModifiedBy,
 				"modifiedat": ptypes.TimestampNow(),
 			},
 		},
