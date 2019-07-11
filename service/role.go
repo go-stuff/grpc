@@ -71,6 +71,7 @@ func (s *RoleServiceServer) Create(ctx context.Context, req *api.RoleCreateReq) 
 		ID:          primitive.NewObjectID().Hex(), // ObjectID's are generated based on time
 		Name:        req.Name,
 		Description: req.Description,
+		Group:       req.Group,
 		CreatedBy:   req.CreatedBy,
 		CreatedAt:   ptypes.TimestampNow(),
 		ModifiedBy:  req.CreatedBy,
@@ -151,6 +152,7 @@ func (s *RoleServiceServer) Update(ctx context.Context, req *api.RoleUpdateReq) 
 			"$set": bson.M{
 				"name":        req.Name,
 				"description": req.Description,
+				"group":       req.Group,
 				"modifiedby":  req.ModifiedBy,
 				"modifiedat":  ptypes.TimestampNow(),
 			},

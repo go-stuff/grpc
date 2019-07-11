@@ -69,7 +69,7 @@ func (s *AuditServiceServer) List100(ctx context.Context, req *api.AuditList100R
 
 	opts := &options.FindOptions{}
 	opts.SetLimit(100)
-	opts.SetSort(bson.M{"createdat.seconds": -1})
+	opts.SetSort(bson.M{"createdat": -1})
 
 	// find all Audits
 	cursor, err := s.DB.Collection(AuditCollection).Find(ctx, bson.M{}, opts)

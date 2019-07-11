@@ -11,14 +11,16 @@ message Role {
     string Name = 2;
     // @inject_tag: bson:"description"
     string Description = 3;
+    // @inject_tag: bson:"group"
+    string Group = 4;
     // @inject_tag: bson:"createdby"
-    string CreatedBy = 4;
+    string CreatedBy = 5;
     // @inject_tag: bson:"createdat"
-    google.protobuf.Timestamp CreatedAt = 5;
+    google.protobuf.Timestamp CreatedAt = 6;
     // @inject_tag: bson:"modifiedby"
-    string ModifiedBy = 6;
+    string ModifiedBy = 7;
     // @inject_tag: bson:"modifiedat"
-    google.protobuf.Timestamp ModifiedAt = 7;
+    google.protobuf.Timestamp ModifiedAt = 8;
 }
 
 message RoleListReq {
@@ -34,7 +36,8 @@ message RoleCreateReq {
     // create a Role
     string Name = 1;
     string Description = 2;
-    string CreatedBy = 3;
+    string Group = 3;
+    string CreatedBy = 4;
 }
 
 message RoleCreateRes {
@@ -67,7 +70,8 @@ message RoleUpdateReq {
     string ID = 1;
     string Name = 2;
     string Description = 3;
-    string ModifiedBy = 4;
+    string Group = 4;
+    string ModifiedBy = 5;
 }
 
 message RoleUpdateRes {

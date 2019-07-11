@@ -46,5 +46,3 @@ protoc -I . --go_out=plugins=grpc:. ./audit.proto
 protoc-go-inject-tag -input="./audit.pb.go" -XXX_skip=bson
  
 ```
-
-
