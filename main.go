@@ -8,16 +8,24 @@ import (
 	"os"
 	"time"
 
+	"github.com/go-stuff/env"
 	"github.com/go-stuff/grpc/api"
 	"github.com/go-stuff/grpc/service"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/reflection"
 )
 
 func main() {
+	// load an environment file if one exists
+	err := env.File(".env")
+	if err != nil {
+		log.Fatalf("failed to parse: %v", err)
+	}
+
 	// init database client
 	client, ctx, err := initMongoClient()
 	if err != nil {
@@ -30,9 +38,6 @@ func main() {
 		os.Setenv("MONGO_DATABASE", "test")
 	}
 
-	// init a pointer to the database
-	db := client.Database(os.Getenv("MONGO_DATABASE"))
-
 	// use a default api uri if the API_URI environment variable is not set
 	if os.Getenv("API_URI") == "" {
 		os.Setenv("API_URI", "localhost:6000")
@@ -44,26 +49,39 @@ func main() {
 	}
 	defer lis.Close()
 
-	// with cert
-	// creds, err := credentials.NewServerTLSFromFile("./certs/cert.pem", "./certs/key.pem")
-	// if err != nil {
-	// 	log.Fatalf("failed to get creds: %v", err)
-	// }
-	// svr := grpc.NewServer(grpc.Creds(creds))
+	// by default do not use certs
+	if os.Getenv("API_SECURE") == "" {
+		os.Setenv("API_SECURE", "false")
+	}
 
-	// without cert
-	svr := grpc.NewServer()
+	// create a server with or without certs
+	svr := new(grpc.Server)
+	if os.Getenv("API_SECURE") == "true" {
+		// with cert
+		creds, err := credentials.NewServerTLSFromFile("./certs/cert.pem", "./certs/key.pem")
+		if err != nil {
+			log.Fatalf("failed to get creds: %v", err)
+		}
+		svr = grpc.NewServer(grpc.Creds(creds))
+	} else {
+		// without cert
+		svr = grpc.NewServer()
+	}
 
-	// Register services with the server
+	// init a pointer to the database
+	db := client.Database(os.Getenv("MONGO_DATABASE"))
+
+	// register services with the server
 	api.RegisterSessionServiceServer(svr, &service.SessionServiceServer{DB: db})
 	api.RegisterRouteServiceServer(svr, &service.RouteServiceServer{DB: db})
 	api.RegisterRoleServiceServer(svr, &service.RoleServiceServer{DB: db})
 	api.RegisterUserServiceServer(svr, &service.UserServiceServer{DB: db})
 	api.RegisterAuditServiceServer(svr, &service.AuditServiceServer{DB: db})
 
-	// Register reflection service on gRPC server.
+	// register reflection service with the server
 	reflection.Register(svr)
 
+	// start listening for requests
 	fmt.Printf("listening @ %v...", lis.Addr().String())
 	svr.Serve(lis)
 }
@@ -80,14 +98,10 @@ func initMongoClient() (*mongo.Client, context.Context, error) {
 		os.Setenv("MONGO_URI", "mongodb://localhost:27017")
 	}
 
-	// register bson codecs for protobuf timestamp and wrapper types
-	//reg := bsoncodec.NewRegistryBuilder().Build()
-
 	// connect does not do server discovery, use ping
 	client, err := mongo.Connect(ctx,
 		options.Client().
-			ApplyURI(os.Getenv("MONGO_URI")), //.
-		//SetRegistry(reg),
+			ApplyURI(os.Getenv("MONGO_URI")),
 	)
 	if err != nil {
 		return nil, nil, err

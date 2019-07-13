@@ -5,6 +5,7 @@ go 1.12
 require (
 	github.com/favadi/protoc-go-inject-tag v0.0.0-20181008023834-c2c1884c833d // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
+	github.com/go-stuff/env v0.0.0-20190713002952-cf01381d7479
 	github.com/golang/protobuf v1.3.1
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/google/go-cmp v0.3.0 // indirect
