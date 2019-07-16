@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net"
 	"os"
@@ -16,8 +15,16 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/health"
+	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/reflection"
 )
+
+const (
+	serviceName = "grpc"
+)
+
+var isHealth = false
 
 func main() {
 	// load an environment file if one exists
@@ -81,9 +88,30 @@ func main() {
 	// register reflection service with the server
 	reflection.Register(svr)
 
+	healthSvr := health.NewServer()
+	grpc_health_v1.RegisterHealthServer(svr, healthSvr)
+
+	go func() {
+		for {
+			if isHealth {
+				healthSvr.SetServingStatus(serviceName, grpc_health_v1.HealthCheckResponse_SERVING)
+				log.Printf("service %s is serving", serviceName)
+			} else {
+				healthSvr.SetServingStatus(serviceName, grpc_health_v1.HealthCheckResponse_NOT_SERVING)
+				log.Printf("service %s is not serving", serviceName)
+			}
+			time.Sleep(time.Second * 5)
+		}
+	}()
+
+	isHealth = true
+
 	// start listening for requests
-	fmt.Printf("listening @ %v...", lis.Addr().String())
-	svr.Serve(lis)
+	log.Printf("listening @ %v...", lis.Addr().String())
+	err = svr.Serve(lis)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
 }
 
 func initMongoClient() (*mongo.Client, context.Context, error) {
